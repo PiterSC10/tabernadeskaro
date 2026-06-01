@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taberna Deskaro | Carta Completa e IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Oswald:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --deskaro-red: #e11d48;
+            --deskaro-dark: #050505;
+            --deskaro-card: #0f0f0f;
+        }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: var(--deskaro-dark); 
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        .font-title { font-family: 'Oswald', sans-serif; }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .glass-header {
+            background: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(225, 29, 72, 0.1);
+        }
+
+        .neon-text {
+            text-shadow: 0 0 10px rgba(225, 29, 72, 0.5);
+        }
+
+        .menu-row {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .menu-row:hover {
+            background: rgba(225, 29, 72, 0.03);
+            padding-left: 8px;
+        }
+
+        .chat-bubble-ai {
+            background: #1a1a1a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem 1.5rem 1.5rem 0;
+        }
+        
+        .chat-bubble-user {
+            background: var(--deskaro-red);
+            border-radius: 1.5rem 1.5rem 0 1.5rem;
+        }
+
+        .scroll-hide::-webkit-scrollbar { display: none; }
+        
+        /* Botones de IA dinámicos */
+        .btn-option {
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 99px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        .btn-option:hover {
+            background: var(--deskaro-red);
+            border-color: var(--deskaro-red);
+            transform: translateY(-2px);
+        }
+        .btn-option.active {
+            background: var(--deskaro-red);
+            border-color: white;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav class="fixed top-0 w-full z-[100] glass-header px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex flex-col leading-none cursor-default">
+                <span class="font-title text-2xl tracking-tighter uppercase">TABERNA</span>
+                <span class="font-title text-2xl tracking-tighter uppercase text-[--deskaro-red] ml-4">DESKARO</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-[10px] font-black uppercase tracking-[0.3em]">
+                <a href="#inicio" class="hover:text-rose-500 transition-colors">Inicio</a>
+                <a href="#ia-section" class="text-rose-400 hover:text-white transition-colors">Diseñador Menú</a>
+                <a href="#carta" class="hover:text-rose-500 transition-colors">La Carta</a>
+                <a href="#contacto" class="hover:text-rose-500 transition-colors">Contacto</a>
+            </div>
+            <a href="https://wa.me/34744660685" class="px-5 py-2.5 bg-[--deskaro-red] text-white rounded-full text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_20px_rgba(225,29,72,0.3)]">
+                RESERVAR
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-rose-950/20 via-black to-black"></div>
+        <div class="relative z-10 text-center px-6">
+            <!-- Título de marca clásico con la 'K' en rojo y gran tamaño -->
+            <h1 class="reveal font-title text-7xl md:text-[11rem] font-black uppercase tracking-tighter leading-[0.8] mb-6">
+                DES<span class="text-[--deskaro-red]">K</span>ARO
+            </h1>
+            <p class="reveal text-lg md:text-2xl font-light tracking-[0.4em] uppercase text-gray-400 mb-12 italic">
+                Cocina tradicional con un toque actual en Huelin, Málaga.
+            </p>
+            <div class="reveal flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#ia-section" class="w-full sm:w-auto px-8 py-4 bg-[--deskaro-red] rounded-full font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_30px_rgba(225,29,72,0.5)] transition-all">
+                    Diseñar mi Menú <i class="fas fa-robot ml-1.5"></i>
+                </a>
+                <a href="#carta" class="w-full sm:w-auto px-8 py-4 border border-white/20 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-black transition-all">
+                    Ver Carta Completa
+                </a>
+            </div>
+        </div>
+        <!-- Indicador de Scroll -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center opacity-30 animate-bounce">
+            <span class="text-[9px] uppercase tracking-[0.3em] mb-1">Desliza</span>
+            <i class="fas fa-chevron-down text-xs text-[--deskaro-red]"></i>
+        </div>
+    </section>
+
+    <!-- ASISTENTE DE MENÚ IA -->
+    <section id="ia-section" class="py-24 px-6 bg-[#080808]">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <span class="text-[--deskaro-red] font-bold text-xs uppercase tracking-[0.4em] block mb-2">Asistente Inteligente Deskaro</span>
+                <h2 class="font-title text-4xl md:text-6xl uppercase tracking-tighter">DISEÑA TU COMIDA IDEAL</h2>
+                <p class="text-gray-500 text-sm mt-3">Dime cuántos sois y qué os gusta, y yo me encargo de que el festín sea épico.</p>
+            </div>
+
+            <div class="reveal bg-[#0c0c0c] border border-white/5 rounded-[3rem] overflow-hidden flex flex-col shadow-2xl">
+                <div class="bg-black/60 px-8 py-5 border-b border-white/5 flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-robot text-[--deskaro-red] text-xl animate-pulse"></i>
+                        <span class="text-xs font-bold uppercase tracking-widest">Chef Virtual v3.0</span>
+                    </div>
+                    <div class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                </div>
+
+                <div id="chat-window" class="h-[400px] p-8 overflow-y-auto space-y-6 scroll-hide">
+                    <div class="flex items-start gap-3">
+                        <div class="chat-bubble-ai p-5 text-sm leading-relaxed text-gray-300 max-w-[80%]">
+                            ¡Buenas! Estoy listo para configurar vuestra mesa. <br><br>
+                            Para empezar, <strong>¿Cuántos comensales vais a ser?</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="controls" class="p-8 bg-black/40 border-t border-white/5 flex flex-wrap gap-3 justify-center">
+                    <button onclick="nextStep('qty', 2, 'Somos 2 ✌️')" class="btn-option">Somos 2</button>
+                    <button onclick="nextStep('qty', 4, 'Somos 3 o 4 👥')" class="btn-option">Somos 3 o 4</button>
+                    <button onclick="nextStep('qty', 6, 'Grupo grande 🎉')" class="btn-option">Somos +5</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LA CARTA -->
+    <section id="carta" class="py-24 px-6 max-w-6xl mx-auto">
+        <div class="text-center reveal mb-20">
+            <h2 class="font-title text-6xl md:text-8xl uppercase tracking-tighter text-gradient-red">LA CARTA</h2>
+            <div class="h-1 w-24 bg-[--deskaro-red] mx-auto mt-4"></div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-20">
+            
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="space-y-16">
+                <!-- Entrantes -->
+                <div class="reveal">
+                    <h3 class="font-title text-4xl uppercase tracking-tighter text-[--deskaro-red] mb-8 border-b border-rose-500/20 pb-2">Entrantes</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Ensaladilla Rusa</span>
+                            <div class="flex gap-4 text-[11px] font-bold">
+                                <span class="text-gray-500">Tapa 3€</span>
+                                <span class="text-gray-400">Med. 5€</span>
+                                <span class="text-rose-400">Rac. 8€</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Tomate picado con ajitos</span>
+                            <span class="font-bold">7€</span>
+                        </div>
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Tomate con anchoas o melva</span>
+                            <span class="font-bold">9€</span>
+                        </div>
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Ensalada Mixta</span>
+                            <span class="font-bold">9€</span>
+                        </div>
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Pimientos asados con melva</span>
+                            <span class="font-bold">8€</span>
+                        </div>
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Choricitos picantes a la sidra</span>
+                            <span class="font-bold">5€</span>
+                        </div>
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Nachos Caseros (tomate, guacamole, queso...)</span>
+                            <div class="flex gap-4 text-[11px] font-bold">
+                                <span class="text-gray-400">Med. 8€</span>
+                                <span class="text-rose-400">Rac. 14€</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Patatas Bravas</span>
+                            <span class="font-bold">7€</span>
+                        </div>
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Torreznos</span>
+                            <span class="font-bold">6€</span>
+                        </div>
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Huevos Rotos (Jamón / Langostinos)</span>
+                            <span class="font-bold">12€</span>
+                        </div>
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Albóndigas en salsa de almendras</span>
+                            <div class="flex gap-4 text-[11px] font-bold">
+                                <span class="text-gray-400">Med. 7€</span>
+                                <span class="text-rose-400">Rac. 12€</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Croqueta de la Abuela (unidad)</span>
+                            <span class="font-bold">1.20€</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Del Mar -->
+                <div class="reveal">
+                    <h3 class="font-title text-4xl uppercase tracking-tighter text-blue-500 mb-8 border-b border-blue-500/20 pb-2">Del Mar</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Gambas a la plancha (12-14 ud)</span>
+                            <div class="flex gap-4 text-[11px] font-bold">
+                                <span class="text-gray-400">Med. 7.5€</span>
+                                <span class="text-blue-400">Rac. 15€</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Langostinos Pil-Pil</span>
+                            <span class="font-bold">7€</span>
+                        </div>
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Tartar de Atún y Aguacate</span>
+                            <span class="font-bold text-blue-400">20€</span>
+                        </div>
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Pata de Pulpo Parrilla</span>
+                            <span class="font-bold text-blue-400">20€</span>
+                        </div>
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Pulpo a la Gallega</span>
+                            <span class="font-bold">20€</span>
+                        </div>
+                        <div class="p-4 bg-blue-500/5 rounded-xl border border-blue-500/10 mt-6">
+                            <p class="text-[10px] uppercase tracking-widest font-black text-blue-500 mb-4">Nuestras Frituras (Media 6€-8€ / Ración 9€-14€)</p>
+                            <div class="grid grid-cols-2 gap-4 text-[12px]">
+                                <span>• Boquerones</span>
+                                <span>• Rosada (Buchones)</span>
+                                <span>• Jibia (Frita/Plancha)</span>
+                                <span>• Calamares</span>
+                                <span>• Cazón en Adobo</span>
+                                <span>• Pulpo Frito</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMNA DERECHA -->
+            <div class="space-y-16">
+                <!-- Carnes Parrilla -->
+                <div class="reveal">
+                    <h3 class="font-title text-4xl uppercase tracking-tighter text-amber-600 mb-8 border-b border-amber-600/20 pb-2">Carnes Parrilla</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <div>
+                                <span class="block">Entrecot Ternera (300gr)</span>
+                                <span class="text-[10px] text-gray-500 italic">Ternera hembra simmental</span>
+                            </div>
+                            <span class="font-bold">20€</span>
+                        </div>
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Presa Ibérica (300gr)</span>
+                            <span class="font-bold">20€</span>
+                        </div>
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Plumilla Ibérica (300gr)</span>
+                            <span class="font-bold">14€</span>
+                        </div>
+                        <div class="flex justify-between items-center menu-row py-3">
+                            <span>Secreto Ibérico (Baja temp/cajún)</span>
+                            <span class="font-bold">16€</span>
+                        </div>
+                        <p class="text-[10px] text-gray-500 mt-4 italic">*Todas las carnes acompañadas de guarnición.</p>
+                    </div>
+                </div>
+
+                <!-- Fuera de Carta / Sugerencias -->
+                <div class="reveal p-8 bg-rose-600/10 rounded-[2rem] border border-rose-500/30">
+                    <h3 class="font-title text-4xl uppercase tracking-tighter text-white mb-8">Sugerencias Temporada</h3>
+                    <div class="space-y-6 text-sm">
+                        <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                            <div>
+                                <span class="block font-bold">Fideos Tostados con Presa</span>
+                                <span class="text-[10px] text-rose-400">El plato más viral</span>
+                            </div>
+                            <span class="font-bold text-xl">30€</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                            <span>Fideos Tostados con Entrecot</span>
+                            <span class="font-bold text-xl">30€</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                            <span>Fideos Tostados con Gambón</span>
+                            <span class="font-bold text-xl">25€</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                            <div>
+                                <span class="block font-bold">Cachopo "Deskaro"</span>
+                                <span class="text-[10px] text-gray-400">Ternera hembra, jamón, queso manchego</span>
+                            </div>
+                            <span class="font-bold text-xl">25€</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                            <span>Carrillada de Cerdo (Miel de caña)</span>
+                            <span class="font-bold">16€</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bocaditos y Postres -->
+                <div class="reveal grid grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-title text-2xl uppercase tracking-tighter text-gray-400 mb-4">Bocaditos</h4>
+                        <div class="space-y-2 text-[11px] uppercase tracking-wider font-bold">
+                            <div class="flex justify-between"><span>Miniburguer</span><span>4.5€</span></div>
+                            <div class="flex justify-between"><span>Serranito Mini</span><span>6€</span></div>
+                            <div class="flex justify-between"><span>Bocata Calamar</span><span>6€</span></div>
+                            <div class="flex justify-between"><span>Mini Cresta</span><span>4.5€</span></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-title text-2xl uppercase tracking-tighter text-gray-400 mb-4">Postres</h4>
+                        <div class="space-y-2 text-[11px] uppercase tracking-wider font-bold">
+                            <div class="flex justify-between"><span>Brownie Helado</span><span>5€</span></div>
+                            <div class="flex justify-between"><span>Tarta de Queso</span><span>5€</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CONTACTO -->
+    <footer id="contacto" class="py-20 text-center bg-black">
+        <p class="text-[9px] text-gray-700 uppercase tracking-[0.5em] mb-4 italic">Taberna Deskaro • Málaga Huelin • Calle Princesa 34</p>
+        <div class="flex justify-center space-x-12 text-2xl mb-8">
+            <a href="https://instagram.com/tabernadeskaro" target="_blank" class="text-rose-600 hover:scale-125 transition-transform"><i class="fab fa-instagram"></i></a>
+            <a href="tel:744660685" class="text-white hover:scale-125 transition-transform"><i class="fas fa-phone"></i></a>
+            <a href="https://wa.me/34744660685" target="_blank" class="text-emerald-500 hover:scale-125 transition-transform"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </footer>
+
+    <!-- Botón Whatsapp Flotante -->
+    <div class="fixed bottom-6 right-6 z-[100]">
+        <a href="https://wa.me/34744660685" target="_blank" class="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white text-2xl shadow-xl hover:scale-110 active:scale-95 transition-all">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script>
+        let state = {
+            qty: 0,
+            prefs: [],
+            style: '',
+        };
+
+        function addMessage(text, side) {
+            const chat = document.getElementById("chat-window");
+            const sideClass = side === 'ai' ? 'justify-start' : 'justify-end';
+            const bubbleClass = side === 'ai' ? 'chat-bubble-ai text-gray-300' : 'chat-bubble-user text-white font-bold';
+            
+            const msg = document.createElement('div');
+            msg.className = `flex ${sideClass} w-full animate-fadeIn`;
+            msg.innerHTML = `<div class="${bubbleClass} p-5 text-sm leading-relaxed max-w-[85%] shadow-xl">${text}</div>`;
+            chat.appendChild(msg);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        function nextStep(type, val, label) {
+            addMessage(label, 'user');
+            const controls = document.getElementById("controls");
+            controls.innerHTML = `<div class="flex space-x-2 py-2"><div class="w-2 h-2 bg-rose-600 rounded-full animate-bounce"></div><div class="w-2 h-2 bg-rose-600 rounded-full animate-bounce [animation-delay:0.2s]"></div><div class="w-2 h-2 bg-rose-600 rounded-full animate-bounce [animation-delay:0.4s]"></div></div>`;
+
+            setTimeout(() => {
+                if (type === 'qty') {
+                    state.qty = val;
+                    addMessage("¡Perfecto! Ahora dime, <strong>¿qué os apetece hoy?</strong> Podéis elegir varias si queréis mezclar.", 'ai');
+                    controls.innerHTML = `
+                        <button onclick="togglePref('Carne 🥩', 'meat')" class="btn-option pref-btn" id="btn-meat">Carne</button>
+                        <button onclick="togglePref('Pescado 🐟', 'fish')" class="btn-option pref-btn" id="btn-fish">Pescado</button>
+                        <button onclick="togglePref('Entrantes/Varios 🌀', 'mix')" class="btn-option pref-btn" id="btn-mix">Varios</button>
+                        <button onclick="confirmPrefs()" class="btn-option bg-rose-600 text-white font-black mt-2">CONTINUAR →</button>
+                    `;
+                } else if (type === 'confirm') {
+                    addMessage("Última pregunta: ¿Vais a por todas (Vara fuerte 💪) o queréis algo de picoteo ligero (Ligerito 🥗)?", 'ai');
+                    controls.innerHTML = `
+                        <button onclick="generateFinal('Vara Fuerte 💪', 'heavy')" class="btn-option bg-rose-600 text-white">VARA FUERTE</button>
+                        <button onclick="generateFinal('Ligerito 🥗', 'light')" class="btn-option">ALGO LIGERO</button>
+                    `;
+                }
+            }, 800);
+        }
+
+        function togglePref(label, val) {
+            if (state.prefs.includes(val)) {
+                state.prefs = state.prefs.filter(p => p !== val);
+                document.getElementById('btn-'+val).classList.remove('bg-rose-600');
+            } else {
+                state.prefs.push(val);
+                document.getElementById('btn-'+val).classList.add('bg-rose-600');
+            }
+        }
+
+        function confirmPrefs() {
+            if (state.prefs.length === 0) return;
+            nextStep('confirm', null, "Lo tengo claro.");
+        }
+
+        function generateFinal(label, style) {
+            addMessage(label, 'user');
+            state.style = style;
+            
+            setTimeout(() => {
+                let proposal = "";
+                let dishes = [];
+                
+                if (state.qty <= 2) {
+                    if (state.style === 'heavy') {
+                        dishes = ["1 Media de Ensaladilla Rusa (5€)", "1 Fideos Tostados con Presa (30€)", "1 Tarta de Queso para compartir (5€)"];
+                        proposal = "Para 2, los fideos son contundentes, mejor acompañar solo con una media ración de ensaladilla.";
+                    } else {
+                        dishes = ["1 Media de Ensaladilla (5€)", "2 Croquetas (2.40€)", "1 Tartar de Atún y Aguacate (20€)", "2 Miniburguers (9€)"];
+                        proposal = "Picoteo variado para probar la calidad del producto sin empacharse.";
+                    }
+                } else if (state.qty <= 4) {
+                    if (state.prefs.includes('meat') && state.prefs.includes('fish')) {
+                        dishes = ["Ración de Nachos (14€)", "Tartar de Atún (20€)", "Fideos Tostados con Presa (30€)", "Postre variado"];
+                        proposal = "Mezcla ideal: el frescor del tartar con la potencia de los fideos.";
+                    } else {
+                        dishes = ["Ración de Nachos (14€)", "Huevos Rotos (12€)", "Cachopo Deskaro (25€)", "2 Postres"];
+                        proposal = "Menú clásico de taberna para salir rodando.";
+                    }
+                } else {
+                    dishes = ["2 Raciones de Nachos (28€)", "Ronda de Croquetas", "Fritura Variada (14€)", "Fideos con Presa (30€)", "Presa Ibérica a la brasa (20€)"];
+                    proposal = "Para grupos, lo mejor es poner el centro lleno de platos y compartir el descaro.";
+                }
+
+                let html = `<div class='space-y-4'><p class='text-rose-500 font-black text-[10px] uppercase tracking-widest'>Menú Recomendado:</p><ul class='space-y-2 border-l-2 border-rose-600 pl-4 text-xs font-bold'>`;
+                dishes.forEach(d => html += `<li>• ${d}</li>`);
+                html += `</ul><p class='text-[11px] italic text-gray-500 mt-4'>${proposal}</p></div>`;
+                
+                addMessage(html, 'ai');
+                document.getElementById("controls").innerHTML = `<button onclick="location.reload()" class="btn-option border-rose-600 text-rose-500">REINICIAR 🔄</button> <a href="https://wa.me/34744660685" target="_blank" class="btn-option bg-rose-600 text-white">RESERVAR ESTA MESA</a>`;
+            }, 1000);
+        }
+
+        // Reveal on scroll
+        window.addEventListener("scroll", () => {
+            document.querySelectorAll(".reveal").forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight * 0.9) el.classList.add("active");
+            });
+        });
+        window.onload = () => { document.querySelector(".reveal").classList.add("active"); };
+    </script>
+
+</body>
+</html>
