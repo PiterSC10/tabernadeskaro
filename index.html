@@ -112,6 +112,18 @@
         .neon-glow-red {
             box-shadow: 0 0 30px rgba(225, 29, 72, 0.1);
         }
+
+        /* Estilo de la Barra de Desplazamiento de los Popups Legales */
+        .modal-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .modal-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .modal-scroll::-webkit-scrollbar-thumb {
+            background: var(--deskaro-red);
+            border-radius: 99px;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-rose-600 selection:text-white">
@@ -578,7 +590,7 @@
         </div>
     </section>
 
-    <!-- NUEVA SECCIÓN UBICACIÓN (CÓMO LLEGAR) -->
+    <!-- SECCIÓN UBICACIÓN (CÓMO LLEGAR) -->
     <section id="ubicacion" class="py-24 px-6 bg-[#070707] relative overflow-hidden">
         <div class="absolute bottom-0 right-0 w-80 h-80 bg-rose-950/10 blur-[120px] rounded-full pointer-events-none"></div>
         <div class="max-w-4xl mx-auto">
@@ -619,32 +631,233 @@
             <h2 class="font-title text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4">
                 DES<span class="text-[--deskaro-red]">K</span>ARO
             </h2>
-            <p class="text-xs uppercase tracking-[0.4em] text-gray-500 mb-10">Málaga Huelin • Calle Princesa 34</p>
+            <p class="text-xs uppercase tracking-[0.4em] text-gray-500 mb-6">Málaga Huelin • Calle Princesa 34</p>
             
             <div class="flex justify-center space-x-10 text-3xl mb-12">
                 <a href="https://instagram.com/tabernadeskaro" target="_blank" class="text-white hover:text-[--deskaro-red] hover:scale-125 transition-all"><i class="fab fa-instagram"></i></a>
                 <a href="tel:744660685" class="text-white hover:text-[--deskaro-red] hover:scale-125 transition-all"><i class="fas fa-phone"></i></a>
                 <a href="https://wa.me/34744660685" target="_blank" class="text-[#25D366] hover:scale-125 transition-all"><i class="fab fa-whatsapp"></i></a>
             </div>
+
+            <!-- ENLACES LEGALES (Sencillos y alineados al estilo de la web) -->
+            <div class="flex flex-wrap justify-center gap-6 text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-8 select-none">
+                <button onclick="openModal('modal-aviso')" class="hover:text-[--deskaro-red] transition-colors">Aviso Legal</button>
+                <span>•</span>
+                <button onclick="openModal('modal-privacidad')" class="hover:text-[--deskaro-red] transition-colors">Política de Privacidad</button>
+                <span>•</span>
+                <button onclick="openModal('modal-cookies')" class="hover:text-[--deskaro-red] transition-colors">Política de Cookies</button>
+            </div>
             
             <p class="text-[9px] text-gray-700 uppercase tracking-[0.4em]">&copy; 2026 TABERNA DESKARO • TODOS LOS DERECHOS RESERVADOS</p>
         </div>
     </footer>
 
-    <!-- BOTÓN DE CONTACTO RÁPIDO FLOTANTE -->
+    <!-- POPUP 1: AVISO LEGAL -->
+    <div id="modal-aviso" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[200] hidden flex items-center justify-center p-4">
+        <div class="bg-[#0c0c0c] border border-rose-600/30 rounded-[2rem] w-full max-w-2xl p-8 max-h-[85vh] flex flex-col relative text-left">
+            <button onclick="closeModal('modal-aviso')" class="absolute top-6 right-6 text-gray-500 hover:text-[--deskaro-red] text-2xl transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="font-title text-3xl uppercase tracking-tighter text-white border-b border-rose-600/20 pb-4 mb-6">Aviso Legal</h3>
+            <div class="modal-scroll overflow-y-auto pr-2 space-y-6 text-xs text-gray-400 leading-relaxed">
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">1. Información general</h4>
+                <p>En cumplimiento de la Ley 34/2002, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa que el presente sitio web corresponde a:</p>
+                <ul class="space-y-1 list-disc pl-4 text-gray-300">
+                    <li><strong>Nombre comercial:</strong> Taberna Deskaro</li>
+                    <li><strong>Dirección del establecimiento:</strong> Calle Princesa, 34, 29002 Málaga, España</li>
+                    <li><strong>Teléfono de contacto:</strong> 744 66 06 85</li>
+                    <li><strong>Correo electrónico:</strong> [PENDIENTE DE FACILITAR]</li>
+                    <li><strong>Titular legal:</strong> [PENDIENTE DE FACILITAR]</li>
+                    <li><strong>NIF/CIF:</strong> [PENDIENTE DE FACILITAR]</li>
+                </ul>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">2. Objeto del sitio web</h4>
+                <p>La finalidad de esta página web es proporcionar información sobre Taberna Deskaro, incluyendo información sobre el establecimiento, ubicación, horarios, galería fotográfica, especialidades gastronómicas, medios de contacto y cualquier otra información relacionada con la actividad del restaurante.</p>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">3. Condiciones de uso</h4>
+                <p>El acceso y utilización de este sitio web atribuye la condición de usuario e implica la aceptación de las presentes condiciones de uso. El usuario se compromete a utilizar el sitio web de forma lícita, respetando la legislación vigente, la buena fe y el orden público.</p>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">4. Propiedad intelectual e industrial</h4>
+                <p>Todos los contenidos publicados en esta web, incluyendo textos, fotografías, imágenes, logotipos, diseños, elementos gráficos y demás materiales, están protegidos por la normativa de propiedad intelectual e industrial. Queda prohibida su reproducción, distribución o utilización sin autorización expresa de sus legítimos titulares.</p>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">5. Responsabilidad</h4>
+                <p>Taberna Deskaro no garantiza la disponibilidad permanente del sitio web ni la ausencia de errores técnicos, aunque adoptará las medidas razonables para garantizar su correcto funcionamiento. Asimismo, no será responsable de daños derivados de interrupciones del servicio, incidencias técnicas ajenas a su control o accesos no autorizados por terceros.</p>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">6. Enlaces externos</h4>
+                <p>Este sitio web puede contener enlaces a servicios externos, incluyendo Google Maps, redes sociales y otras plataformas de terceros. Taberna Deskaro no se responsabiliza de los contenidos, políticas o prácticas de privacidad de dichos sitios externos.</p>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">7. Protección de datos</h4>
+                <p>Los datos personales facilitados a través de los formularios o medios de contacto disponibles serán tratados de conformidad con la Política de Privacidad publicada en este sitio web.</p>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">8. Cookies</h4>
+                <p>Este sitio web puede utilizar cookies propias y de terceros para mejorar la experiencia de navegación y mostrar contenidos integrados como mapas o redes sociales. La información detallada sobre su uso puede consultarse en la Política de Cookies.</p>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">9. Legislación aplicable</h4>
+                <p>La relación entre el usuario y el titular de la web se regirá por la legislación española vigente.</p>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">10. Jurisdicción</h4>
+                <p>Cualquier controversia derivada del acceso o uso del presente sitio web será sometida a los Juzgados y Tribunales competentes conforme a la legislación española.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- POPUP 2: POLÍTICA DE PRIVACIDAD -->
+    <div id="modal-privacidad" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[200] hidden flex items-center justify-center p-4">
+        <div class="bg-[#0c0c0c] border border-rose-600/30 rounded-[2rem] w-full max-w-2xl p-8 max-h-[85vh] flex flex-col relative text-left">
+            <button onclick="closeModal('modal-privacidad')" class="absolute top-6 right-6 text-gray-500 hover:text-[--deskaro-red] text-2xl transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="font-title text-3xl uppercase tracking-tighter text-white border-b border-rose-600/20 pb-4 mb-6">Política de Privacidad</h3>
+            <div class="modal-scroll overflow-y-auto pr-2 space-y-6 text-xs text-gray-400 leading-relaxed">
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">1. Responsable del tratamiento</h4>
+                <p>En cumplimiento del Reglamento (UE) 2016/679 (RGPD) y de la Ley Orgánica 3/2018 (LOPDGDD), se informa a los usuarios de que los datos personales facilitados a través de este sitio web serán tratados por:</p>
+                <ul class="space-y-1 list-disc pl-4 text-gray-300">
+                    <li><strong>Nombre comercial:</strong> Taberna Deskaro</li>
+                    <li><strong>Titular:</strong> [PENDIENTE DE FACILITAR]</li>
+                    <li><strong>NIF/CIF:</strong> [PENDIENTE DE FACILITAR]</li>
+                    <li><strong>Dirección:</strong> Calle Princesa, 34, 29002 Málaga, España</li>
+                    <li><strong>Correo electrónico:</strong> [PENDIENTE DE FACILITAR]</li>
+                    <li><strong>Teléfono:</strong> 744 66 06 85</li>
+                </ul>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">2. Finalidad del tratamiento</h4>
+                <p>Los datos personales facilitados por los usuarios podrán ser utilizados para:</p>
+                <ul class="list-disc pl-4 space-y-1 text-gray-300">
+                    <li>Atender consultas realizadas a través de formularios o medios de contacto.</li>
+                    <li>Gestionar solicitudes de información.</li>
+                    <li>Responder a comunicaciones recibidas.</li>
+                    <li>Gestionar reservas o solicitudes relacionadas con el establecimiento.</li>
+                    <li>Cumplir obligaciones legales aplicables.</li>
+                </ul>
+                <p>Los datos no serán utilizados para finalidades distintas a las indicadas sin el consentimiento previo del usuario.</p>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">3. Base jurídica del tratamiento</h4>
+                <p>El tratamiento de los datos personales se realiza sobre las siguientes bases legales:</p>
+                <ul class="list-disc pl-4 space-y-1 text-gray-300">
+                    <li>Consentimiento expreso del usuario.</li>
+                    <li>Ejecución de medidas precontractuales solicitadas por el interesado.</li>
+                    <li>Cumplimiento de obligaciones legales.</li>
+                    <li>Interés legítimo en la gestión y mejora de los servicios ofrecidos.</li>
+                </ul>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">4. Conservación de los datos</h4>
+                <p>Los datos personales se conservarán únicamente durante el tiempo necesario para cumplir con la finalidad para la que fueron recogidos y para atender posibles responsabilidades legales derivadas del tratamiento.</p>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">5. Comunicación de datos a terceros</h4>
+                <p>Con carácter general, los datos personales no serán cedidos a terceros salvo obligación legal. No obstante, determinados servicios utilizados por la web, como Google Maps, proveedores de alojamiento web o servicios técnicos necesarios para el funcionamiento del sitio, pueden tener acceso limitado a determinados datos conforme a sus propias políticas de privacidad.</p>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">6. Derechos de los usuarios</h4>
+                <p>Los usuarios podrán ejercer en cualquier momento los siguientes derechos:</p>
+                <ul class="list-disc pl-4 space-y-1 text-gray-300">
+                    <li>Derecho de acceso, rectificación y supresión.</li>
+                    <li>Derecho de oposición y limitación del tratamiento.</li>
+                    <li>Derecho a la portabilidad de los datos y a retirar el consentimiento.</li>
+                </ul>
+                <p>Para ejercer cualquiera de estos derechos podrá enviarse una solicitud al correo electrónico indicado por el responsable del tratamiento.</p>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">7. Medidas de seguridad</h4>
+                <p>Taberna Deskaro adopta las medidas técnicas y organizativas adecuadas para garantizar la seguridad, integridad y confidencialidad de los datos personales, evitando su alteración, pérdida, tratamiento o acceso no autorizado.</p>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">8. Menores de edad</h4>
+                <p>Este sitio web no está dirigido específicamente a menores de 14 años. En caso de que un menor facilite datos personales, deberá contar con la autorización de sus padres o representantes legales.</p>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">9. Redes sociales</h4>
+                <p>Taberna Deskaro puede disponer de perfiles en redes sociales. La interacción de los usuarios con dichos perfiles se regirá por las políticas de privacidad de cada plataforma.</p>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">10. Modificaciones de la política de privacidad</h4>
+                <p>Taberna Deskaro se reserva el derecho de modificar la presente Política de Privacidad para adaptarla a novedades legislativas, jurisprudenciales o técnicas. Las modificaciones serán publicadas en esta misma página y entrarán en vigor desde su publicación.</p>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">11. Autoridad de control</h4>
+                <p>Si considera que sus derechos no han sido respetados, puede presentar una reclamación ante la Agencia Española de Protección de Datos (AEPD): <a href="https://www.aepd.es" target="_blank" class="text-[--deskaro-red] underline">https://www.aepd.es</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- POPUP 3: POLÍTICA DE COOKIES -->
+    <div id="modal-cookies" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[200] hidden flex items-center justify-center p-4">
+        <div class="bg-[#0c0c0c] border border-rose-600/30 rounded-[2rem] w-full max-w-2xl p-8 max-h-[85vh] flex flex-col relative text-left">
+            <button onclick="closeModal('modal-cookies')" class="absolute top-6 right-6 text-gray-500 hover:text-[--deskaro-red] text-2xl transition-colors">
+                <i class="fas fa-times"></i>
+            </button>
+            <h3 class="font-title text-3xl uppercase tracking-tighter text-white border-b border-rose-600/20 pb-4 mb-6">Política de Cookies</h3>
+            <div class="modal-scroll overflow-y-auto pr-2 space-y-6 text-xs text-gray-400 leading-relaxed">
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">1. ¿Qué son las cookies?</h4>
+                <p>Una cookie es un fichero que se descarga en su ordenador al acceder a determinadas páginas web. Las cookies permiten a una página web, entre otras cosas, almacenar y recuperar información sobre los hábitos de navegación de un usuario o de su equipo y facilitar la navegación.</p>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">2. ¿Qué tipos de cookies utiliza este sitio web?</h4>
+                <ul class="space-y-3 text-gray-300">
+                    <li><strong>Cookies Técnicas y de Preferencia:</strong> Aquellas estrictamente necesarias para recordar el estado de tu navegación, el uso del recomendador inteligente y recordar tus preferencias de aceptación de cookies.</li>
+                    <li><strong>Cookies de Análisis de Terceros:</strong> Podemos utilizar herramientas de mapas embebidos como Google Maps, que cargan sus propias cookies técnicas para permitir la navegación interactiva y mostrar las rutas de llegada al establecimiento.</li>
+                </ul>
+
+                <h4 class="font-bold text-white text-sm uppercase tracking-wider">3. ¿Cómo desactivar las cookies?</h4>
+                <p>Usted puede permitir, bloquear o eliminar las cookies instaladas en su equipo mediante la configuración de las opciones del navegador instalado en su ordenador:</p>
+                <ul class="list-disc pl-4 space-y-1 text-gray-300">
+                    <li>Para más información sobre Chrome, pulse <a href="https://support.google.com/chrome/answer/95647?hl=es" target="_blank" class="text-[--deskaro-red] underline">aquí</a>.</li>
+                    <li>Para más información sobre Firefox, pulse <a href="https://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-sitios-web-rastrear-preferencias" target="_blank" class="text-[--deskaro-red] underline">aquí</a>.</li>
+                    <li>Para más información sobre Safari, pulse <a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" class="text-[--deskaro-red] underline">aquí</a>.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- VENTANA FLOTANTE: BANNER DE COOKIES -->
+    <div id="cookies-banner" class="fixed bottom-6 left-6 right-6 md:left-1/2 md:right-auto md:-translate-x-1/2 md:w-full md:max-w-xl bg-[#0c0c0c] border border-rose-600/30 rounded-2xl md:rounded-3xl p-6 shadow-[0_10px_50px_rgba(0,0,0,0.8)] z-[150] hidden flex flex-col sm:flex-row items-center justify-between gap-4 select-none">
+        <div class="text-left space-y-1">
+            <h5 class="text-xs font-black uppercase tracking-wider text-white">🍪 ¿Unos fideos con cookies?</h5>
+            <p class="text-[11px] text-gray-400 leading-normal">
+                Utilizamos cookies propias y de terceros para mejorar tu experiencia de navegación y mostrarte nuestro mapa. Puedes consultar nuestra <button onclick="openModal('modal-cookies')" class="text-[--deskaro-red] underline font-bold">Política de Cookies</button>.
+            </p>
+        </div>
+        <div class="flex gap-2 w-full sm:w-auto shrink-0">
+            <button onclick="handleCookies(false)" class="w-1/2 sm:w-auto px-4 py-2 bg-transparent border border-white/10 hover:border-white/30 text-white rounded-full text-[10px] font-black uppercase tracking-wider transition-colors">
+                Rechazar
+            </button>
+            <button onclick="handleCookies(true)" class="w-1/2 sm:w-auto px-5 py-2 bg-[--deskaro-red] text-white rounded-full text-[10px] font-black uppercase tracking-wider hover:bg-rose-500 transition-colors shadow-lg">
+                Aceptar
+            </button>
+        </div>
+    </div>
+
+    <!-- BOTÓN DE CONTACTO RÁPIDO FLOTANTE (Solo si el banner de cookies no lo tapa o desplazado arriba en móvil) -->
     <div class="fixed bottom-6 right-6 z-[100]">
         <a href="https://wa.me/34744660685" target="_blank" class="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white text-2xl shadow-2xl hover:scale-110 active:scale-95 transition-all">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
 
-    <!-- SCRIPT DE NAVEGACIÓN E IA -->
+    <!-- SCRIPT DE NAVEGACIÓN, COOKIES E IA -->
     <script>
         let state = {
             qty: 0,
             prefs: [],
             style: '',
         };
+
+        // Comprobación inicial de aceptación de cookies
+        window.addEventListener('DOMContentLoaded', () => {
+            const cookiesDecision = localStorage.getItem('deskaro-cookies');
+            if (!cookiesDecision) {
+                document.getElementById('cookies-banner').classList.remove('hidden');
+            }
+        });
+
+        // Gestionar cookies (Aceptar / Rechazar)
+        function handleCookies(accepted) {
+            localStorage.setItem('deskaro-cookies', accepted ? 'accepted' : 'rejected');
+            document.getElementById('cookies-banner').classList.add('hidden');
+        }
+
+        // Gestión de Ventanas Modales Legales
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Bloquear scroll de la página de fondo
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.body.style.overflow = ''; // Restaurar scroll
+        }
 
         function addMessage(text, side) {
             const chat = document.getElementById("chat-window");
