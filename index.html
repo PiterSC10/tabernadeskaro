@@ -11,19 +11,25 @@
         :root {
             --deskaro-red: #e11d48;
             --deskaro-dark: #050505;
-            --deskaro-card: #0f0f0f;
+            --deskaro-card: #0a0a0a;
+            --deskaro-glow: rgba(225, 29, 72, 0.15);
         }
+        
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background-color: var(--deskaro-dark); 
             color: #ffffff;
             overflow-x: hidden;
         }
-        .font-title { font-family: 'Oswald', sans-serif; }
         
+        .font-title { 
+            font-family: 'Oswald', sans-serif; 
+        }
+        
+        /* Animaciones de scroll */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal.active {
@@ -32,76 +38,100 @@
         }
 
         .glass-header {
-            background: rgba(5, 5, 5, 0.9);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(225, 29, 72, 0.1);
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(225, 29, 72, 0.15);
         }
 
-        .neon-text {
-            text-shadow: 0 0 10px rgba(225, 29, 72, 0.5);
-        }
-
+        /* Líneas conectoras de precios alineadas */
         .menu-row {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            padding: 0.85rem 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
             transition: all 0.3s ease;
         }
         .menu-row:hover {
-            background: rgba(225, 29, 72, 0.03);
+            border-bottom-color: var(--deskaro-red);
+            background: rgba(225, 29, 72, 0.02);
             padding-left: 8px;
+            padding-right: 8px;
+            border-radius: 4px;
+        }
+        
+        .menu-dots {
+            flex-grow: 1;
+            border-bottom: 1px dotted rgba(255, 255, 255, 0.15);
+            margin: 0 12px;
+            position: relative;
+            top: -4px;
         }
 
+        /* Burbujas del Chat con la esencia Deskaro */
         .chat-bubble-ai {
-            background: #1a1a1a;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #0f0f0f;
+            border: 1px solid rgba(225, 29, 72, 0.15);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             border-radius: 1.5rem 1.5rem 1.5rem 0;
         }
         
         .chat-bubble-user {
             background: var(--deskaro-red);
             border-radius: 1.5rem 1.5rem 0 1.5rem;
+            box-shadow: 0 4px 15px rgba(225, 29, 72, 0.25);
         }
 
         .scroll-hide::-webkit-scrollbar { display: none; }
         
         /* Botones de IA dinámicos */
         .btn-option {
-            background: #111;
+            background: #0f0f0f;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 99px;
             font-size: 11px;
-            font-weight: 700;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
+            letter-spacing: 1.5px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            color: #ffffff;
         }
         .btn-option:hover {
             background: var(--deskaro-red);
             border-color: var(--deskaro-red);
             transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(225, 29, 72, 0.3);
         }
         .btn-option.active {
             background: var(--deskaro-red);
             border-color: white;
         }
+
+        /* Glow decorativos sutiles */
+        .neon-glow-red {
+            box-shadow: 0 0 30px rgba(225, 29, 72, 0.1);
+        }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased selection:bg-rose-600 selection:text-white">
 
+    <!-- MENÚ DE NAVEGACIÓN -->
     <nav class="fixed top-0 w-full z-[100] glass-header px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex flex-col leading-none cursor-default">
-                <span class="font-title text-2xl tracking-tighter uppercase">TABERNA</span>
-                <span class="font-title text-2xl tracking-tighter uppercase text-[--deskaro-red] ml-4">DESKARO</span>
+            <div class="flex flex-col leading-none cursor-default select-none">
+                <span class="font-title text-2xl tracking-tighter uppercase font-black">TABERNA</span>
+                <span class="font-title text-2xl tracking-tighter uppercase text-[--deskaro-red] ml-4 font-black">DES<span class="text-white">K</span>ARO</span>
             </div>
-            <div class="hidden md:flex space-x-8 text-[10px] font-black uppercase tracking-[0.3em]">
+            <div class="hidden md:flex space-x-8 text-[11px] font-black uppercase tracking-[0.25em]">
                 <a href="#inicio" class="hover:text-rose-500 transition-colors">Inicio</a>
-                <a href="#ia-section" class="text-rose-400 hover:text-white transition-colors">Diseñador Menú</a>
+                <a href="#ia-section" class="text-rose-400 hover:text-rose-300 transition-colors"><i class="fas fa-robot mr-1"></i> Diseñador Menú</a>
                 <a href="#carta" class="hover:text-rose-500 transition-colors">La Carta</a>
+                <a href="#opiniones" class="hover:text-rose-500 transition-colors">Opiniones</a>
                 <a href="#contacto" class="hover:text-rose-500 transition-colors">Contacto</a>
             </div>
-            <a href="https://wa.me/34744660685" class="px-5 py-2.5 bg-[--deskaro-red] text-white rounded-full text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_20px_rgba(225,29,72,0.3)]">
-                RESERVAR
+            <a href="https://wa.me/34744660685" class="px-6 py-3 bg-[--deskaro-red] text-white rounded-full text-xs font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(225,29,72,0.3)]">
+                RESERVAR MESA
             </a>
         </div>
     </nav>
@@ -109,17 +139,17 @@
     <!-- HERO SECTION -->
     <section id="inicio" class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-b from-rose-950/20 via-black to-black"></div>
-        <div class="relative z-10 text-center px-6">
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
             <!-- Título de marca clásico con la 'K' en rojo y gran tamaño -->
-            <h1 class="reveal font-title text-7xl md:text-[11rem] font-black uppercase tracking-tighter leading-[0.8] mb-6">
+            <h1 class="reveal font-title text-8xl md:text-[12rem] font-black uppercase tracking-tighter leading-[0.8] mb-6">
                 DES<span class="text-[--deskaro-red]">K</span>ARO
             </h1>
-            <p class="reveal text-lg md:text-2xl font-light tracking-[0.4em] uppercase text-gray-400 mb-12 italic">
+            <p class="reveal text-lg md:text-2xl font-light tracking-[0.35em] uppercase text-gray-400 mb-12 italic">
                 Cocina tradicional con un toque actual en Huelin, Málaga.
             </p>
             <div class="reveal flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="#ia-section" class="w-full sm:w-auto px-8 py-4 bg-[--deskaro-red] rounded-full font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_30px_rgba(225,29,72,0.5)] transition-all">
-                    Diseñar mi Menú <i class="fas fa-robot ml-1.5"></i>
+                <a href="#ia-section" class="w-full sm:w-auto px-8 py-4 bg-[--deskaro-red] rounded-full font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_35px_rgba(225,29,72,0.4)] transition-all">
+                    Configurar mi Menú <i class="fas fa-magic ml-1.5"></i>
                 </a>
                 <a href="#carta" class="w-full sm:w-auto px-8 py-4 border border-white/20 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-black transition-all">
                     Ver Carta Completa
@@ -127,40 +157,44 @@
             </div>
         </div>
         <!-- Indicador de Scroll -->
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center opacity-30 animate-bounce">
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center opacity-40 animate-bounce">
             <span class="text-[9px] uppercase tracking-[0.3em] mb-1">Desliza</span>
             <i class="fas fa-chevron-down text-xs text-[--deskaro-red]"></i>
         </div>
     </section>
 
     <!-- ASISTENTE DE MENÚ IA -->
-    <section id="ia-section" class="py-24 px-6 bg-[#080808]">
-        <div class="max-w-4xl mx-auto">
+    <section id="ia-section" class="py-24 px-6 bg-[#070707] relative">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-rose-950/10 blur-[150px] rounded-full pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto relative z-10">
             <div class="text-center mb-16 reveal">
                 <span class="text-[--deskaro-red] font-bold text-xs uppercase tracking-[0.4em] block mb-2">Asistente Inteligente Deskaro</span>
                 <h2 class="font-title text-4xl md:text-6xl uppercase tracking-tighter">DISEÑA TU COMIDA IDEAL</h2>
-                <p class="text-gray-500 text-sm mt-3">Dime cuántos sois y qué os gusta, y yo me encargo de que el festín sea épico.</p>
+                <p class="text-gray-500 text-sm mt-3">Dinos qué te apetece y cuántos sois; nuestro sistema calcula las raciones perfectas.</p>
             </div>
 
-            <div class="reveal bg-[#0c0c0c] border border-white/5 rounded-[3rem] overflow-hidden flex flex-col shadow-2xl">
-                <div class="bg-black/60 px-8 py-5 border-b border-white/5 flex items-center justify-between">
+            <div class="reveal bg-[#0b0b0b] border border-white/5 rounded-[2.5rem] overflow-hidden flex flex-col shadow-2xl neon-glow-red">
+                <div class="bg-black/80 px-8 py-5 border-b border-white/5 flex items-center justify-between">
                     <div class="flex items-center space-x-3">
                         <i class="fas fa-robot text-[--deskaro-red] text-xl animate-pulse"></i>
-                        <span class="text-xs font-bold uppercase tracking-widest">Chef Virtual v3.0</span>
+                        <span class="text-xs font-black uppercase tracking-[0.15em] font-title text-gray-400">CHEF DES<span class="text-[--deskaro-red]">K</span>ARADO v3.0</span>
                     </div>
-                    <div class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                    <div class="flex items-center space-x-2">
+                        <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span class="text-[10px] uppercase font-bold text-emerald-500">Listo</span>
+                    </div>
                 </div>
 
-                <div id="chat-window" class="h-[400px] p-8 overflow-y-auto space-y-6 scroll-hide">
+                <div id="chat-window" class="h-[420px] p-8 overflow-y-auto space-y-6 scroll-hide bg-[#090909]/50">
                     <div class="flex items-start gap-3">
                         <div class="chat-bubble-ai p-5 text-sm leading-relaxed text-gray-300 max-w-[80%]">
                             ¡Buenas! Estoy listo para configurar vuestra mesa. <br><br>
-                            Para empezar, <strong>¿Cuántos comensales vais a ser?</strong>
+                            Para empezar, <strong>¿Cuántos comensales vais a ser hoy?</strong>
                         </div>
                     </div>
                 </div>
 
-                <div id="controls" class="p-8 bg-black/40 border-t border-white/5 flex flex-wrap gap-3 justify-center">
+                <div id="controls" class="p-8 bg-black/60 border-t border-white/5 flex flex-wrap gap-3 justify-center">
                     <button onclick="nextStep('qty', 2, 'Somos 2 ✌️')" class="btn-option">Somos 2</button>
                     <button onclick="nextStep('qty', 4, 'Somos 3 o 4 👥')" class="btn-option">Somos 3 o 4</button>
                     <button onclick="nextStep('qty', 6, 'Grupo grande 🎉')" class="btn-option">Somos +5</button>
@@ -172,115 +206,139 @@
     <!-- LA CARTA -->
     <section id="carta" class="py-24 px-6 max-w-6xl mx-auto">
         <div class="text-center reveal mb-20">
-            <h2 class="font-title text-6xl md:text-8xl uppercase tracking-tighter text-gradient-red">LA CARTA</h2>
-            <div class="h-1 w-24 bg-[--deskaro-red] mx-auto mt-4"></div>
+            <h2 class="font-title text-6xl md:text-8xl uppercase tracking-tighter">NUESTRA <span class="text-[--deskaro-red]">CARTA</span></h2>
+            <div class="h-1.5 w-24 bg-[--deskaro-red] mx-auto mt-4 rounded-full"></div>
         </div>
 
-        <div class="grid lg:grid-cols-2 gap-20">
+        <div class="grid lg:grid-cols-2 gap-16 items-start">
             
             <!-- COLUMNA IZQUIERDA -->
             <div class="space-y-16">
                 <!-- Entrantes -->
                 <div class="reveal">
-                    <h3 class="font-title text-4xl uppercase tracking-tighter text-[--deskaro-red] mb-8 border-b border-rose-500/20 pb-2">Entrantes</h3>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Ensaladilla Rusa</span>
-                            <div class="flex gap-4 text-[11px] font-bold">
+                    <h3 class="font-title text-4xl uppercase tracking-tighter text-[--deskaro-red] mb-8 border-b border-rose-500/20 pb-3 flex justify-between items-end">
+                        <span>Entrantes</span>
+                        <span class="text-xs tracking-[0.2em] uppercase font-sans text-gray-500 font-bold">Para abrir boca</span>
+                    </h3>
+                    <div class="space-y-1">
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Ensaladilla Rusa</span>
+                            <span class="menu-dots"></span>
+                            <div class="flex gap-4 text-[11px] font-black uppercase tracking-wider text-right shrink-0">
                                 <span class="text-gray-500">Tapa 3€</span>
                                 <span class="text-gray-400">Med. 5€</span>
-                                <span class="text-rose-400">Rac. 8€</span>
+                                <span class="text-[--deskaro-red] font-title text-sm">Rac. 8€</span>
                             </div>
                         </div>
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Tomate picado con ajitos</span>
-                            <span class="font-bold">7€</span>
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Tomate picado con ajitos</span>
+                            <span class="menu-dots"></span>
+                            <span class="font-title text-lg font-bold text-[--deskaro-red] shrink-0">7.00€</span>
                         </div>
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Tomate con anchoas o melva</span>
-                            <span class="font-bold">9€</span>
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Tomate con anchoas o melva</span>
+                            <span class="menu-dots"></span>
+                            <span class="font-title text-lg font-bold text-[--deskaro-red] shrink-0">9.00€</span>
                         </div>
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Ensalada Mixta</span>
-                            <span class="font-bold">9€</span>
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Ensalada Mixta</span>
+                            <span class="menu-dots"></span>
+                            <span class="font-title text-lg font-bold text-[--deskaro-red] shrink-0">9.00€</span>
                         </div>
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Pimientos asados con melva</span>
-                            <span class="font-bold">8€</span>
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Pimientos asados con melva</span>
+                            <span class="menu-dots"></span>
+                            <span class="font-title text-lg font-bold text-[--deskaro-red] shrink-0">8.00€</span>
                         </div>
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Choricitos picantes a la sidra</span>
-                            <span class="font-bold">5€</span>
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Choricitos picantes a la sidra</span>
+                            <span class="menu-dots"></span>
+                            <span class="font-title text-lg font-bold text-[--deskaro-red] shrink-0">5.00€</span>
                         </div>
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Nachos Caseros (tomate, guacamole, queso...)</span>
-                            <div class="flex gap-4 text-[11px] font-bold">
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Nachos Caseros <span class="text-xs text-gray-400 font-normal">(tomate, guacamole, queso...)</span></span>
+                            <span class="menu-dots"></span>
+                            <div class="flex gap-4 text-[11px] font-black uppercase tracking-wider text-right shrink-0">
                                 <span class="text-gray-400">Med. 8€</span>
-                                <span class="text-rose-400">Rac. 14€</span>
+                                <span class="text-[--deskaro-red] font-title text-sm">Rac. 14€</span>
                             </div>
                         </div>
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Patatas Bravas</span>
-                            <span class="font-bold">7€</span>
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Patatas Bravas</span>
+                            <span class="menu-dots"></span>
+                            <span class="font-title text-lg font-bold text-[--deskaro-red] shrink-0">7.00€</span>
                         </div>
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Torreznos</span>
-                            <span class="font-bold">6€</span>
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Torreznos</span>
+                            <span class="menu-dots"></span>
+                            <span class="font-title text-lg font-bold text-[--deskaro-red] shrink-0">6.00€</span>
                         </div>
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Huevos Rotos (Jamón / Langostinos)</span>
-                            <span class="font-bold">12€</span>
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Huevos Rotos <span class="text-xs text-gray-400 font-normal">(Jamón / Langostinos)</span></span>
+                            <span class="menu-dots"></span>
+                            <span class="font-title text-lg font-bold text-[--deskaro-red] shrink-0">12.00€</span>
                         </div>
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Albóndigas en salsa de almendras</span>
-                            <div class="flex gap-4 text-[11px] font-bold">
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Albóndigas en salsa de almendras</span>
+                            <span class="menu-dots"></span>
+                            <div class="flex gap-4 text-[11px] font-black uppercase tracking-wider text-right shrink-0">
                                 <span class="text-gray-400">Med. 7€</span>
-                                <span class="text-rose-400">Rac. 12€</span>
+                                <span class="text-[--deskaro-red] font-title text-sm">Rac. 12€</span>
                             </div>
                         </div>
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Croqueta de la Abuela (unidad)</span>
-                            <span class="font-bold">1.20€</span>
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Croqueta de la Abuela <span class="text-xs text-gray-400 font-normal">(unidad)</span></span>
+                            <span class="menu-dots"></span>
+                            <span class="font-title text-lg font-bold text-[--deskaro-red] shrink-0">1.20€</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Del Mar -->
                 <div class="reveal">
-                    <h3 class="font-title text-4xl uppercase tracking-tighter text-blue-500 mb-8 border-b border-blue-500/20 pb-2">Del Mar</h3>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Gambas a la plancha (12-14 ud)</span>
-                            <div class="flex gap-4 text-[11px] font-bold">
-                                <span class="text-gray-400">Med. 7.5€</span>
-                                <span class="text-blue-400">Rac. 15€</span>
+                    <h3 class="font-title text-4xl uppercase tracking-tighter text-blue-500 mb-8 border-b border-blue-500/20 pb-3 flex justify-between items-end">
+                        <span>Del Mar</span>
+                        <span class="text-xs tracking-[0.2em] uppercase font-sans text-gray-500 font-bold">Fresco y crujiente</span>
+                    </h3>
+                    <div class="space-y-1">
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Gambas a la plancha <span class="text-xs text-gray-400 font-normal">(12-14 ud)</span></span>
+                            <span class="menu-dots"></span>
+                            <div class="flex gap-4 text-[11px] font-black uppercase tracking-wider text-right shrink-0">
+                                <span class="text-gray-400">Med. 7.50€</span>
+                                <span class="text-blue-500 font-title text-sm">Rac. 15.00€</span>
                             </div>
                         </div>
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Langostinos Pil-Pil</span>
-                            <span class="font-bold">7€</span>
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Langostinos Pil-Pil</span>
+                            <span class="menu-dots"></span>
+                            <span class="font-title text-lg font-bold text-blue-500 shrink-0">7.00€</span>
                         </div>
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Tartar de Atún y Aguacate</span>
-                            <span class="font-bold text-blue-400">20€</span>
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Tartar de Atún y Aguacate</span>
+                            <span class="menu-dots"></span>
+                            <span class="font-title text-lg font-bold text-blue-500 shrink-0">20.00€</span>
                         </div>
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Pata de Pulpo Parrilla</span>
-                            <span class="font-bold text-blue-400">20€</span>
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Pata de Pulpo Parrilla</span>
+                            <span class="menu-dots"></span>
+                            <span class="font-title text-lg font-bold text-blue-500 shrink-0">20.00€</span>
                         </div>
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Pulpo a la Gallega</span>
-                            <span class="font-bold">20€</span>
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Pulpo a la Gallega</span>
+                            <span class="menu-dots"></span>
+                            <span class="font-title text-lg font-bold text-blue-500 shrink-0">20.00€</span>
                         </div>
-                        <div class="p-4 bg-blue-500/5 rounded-xl border border-blue-500/10 mt-6">
-                            <p class="text-[10px] uppercase tracking-widest font-black text-blue-500 mb-4">Nuestras Frituras (Media 6€-8€ / Ración 9€-14€)</p>
-                            <div class="grid grid-cols-2 gap-4 text-[12px]">
-                                <span>• Boquerones</span>
-                                <span>• Rosada (Buchones)</span>
-                                <span>• Jibia (Frita/Plancha)</span>
-                                <span>• Calamares</span>
-                                <span>• Cazón en Adobo</span>
-                                <span>• Pulpo Frito</span>
+                        
+                        <div class="p-6 bg-blue-500/[0.03] rounded-3xl border border-blue-500/10 mt-8">
+                            <p class="text-[10px] uppercase tracking-widest font-black text-blue-400 mb-4 text-center">Nuestras Frituras (Media 6€-8€ / Ración 9€-14€)</p>
+                            <div class="grid grid-cols-2 gap-y-3 gap-x-8 text-xs font-bold text-gray-300">
+                                <div class="flex justify-between border-b border-white/5 pb-1"><span>• Boquerones</span></div>
+                                <div class="flex justify-between border-b border-white/5 pb-1"><span>• Rosada (Buchones)</span></div>
+                                <div class="flex justify-between border-b border-white/5 pb-1"><span>• Jibia (Frita/Plancha)</span></div>
+                                <div class="flex justify-between border-b border-white/5 pb-1"><span>• Calamares</span></div>
+                                <div class="flex justify-between border-b border-white/5 pb-1"><span>• Cazón en Adobo</span></div>
+                                <div class="flex justify-between border-b border-white/5 pb-1"><span>• Pulpo Frito</span></div>
                             </div>
                         </div>
                     </div>
@@ -291,80 +349,96 @@
             <div class="space-y-16">
                 <!-- Carnes Parrilla -->
                 <div class="reveal">
-                    <h3 class="font-title text-4xl uppercase tracking-tighter text-amber-600 mb-8 border-b border-amber-600/20 pb-2">Carnes Parrilla</h3>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between items-center menu-row py-3">
+                    <h3 class="font-title text-4xl uppercase tracking-tighter text-amber-500 mb-8 border-b border-amber-500/20 pb-3 flex justify-between items-end">
+                        <span>Carnes a la Brasa</span>
+                        <span class="text-xs tracking-[0.2em] uppercase font-sans text-gray-500 font-bold">Parrilla directa</span>
+                    </h3>
+                    <div class="space-y-1">
+                        <div class="menu-row">
                             <div>
-                                <span class="block">Entrecot Ternera (300gr)</span>
-                                <span class="text-[10px] text-gray-500 italic">Ternera hembra simmental</span>
+                                <span class="block font-bold text-gray-100">Entrecot Ternera (300gr)</span>
+                                <span class="text-[10px] text-gray-500 italic block">Ternera hembra Simmental</span>
                             </div>
-                            <span class="font-bold">20€</span>
+                            <span class="menu-dots"></span>
+                            <span class="font-title text-lg font-bold text-amber-500 shrink-0">20.00€</span>
                         </div>
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Presa Ibérica (300gr)</span>
-                            <span class="font-bold">20€</span>
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Presa Ibérica (300gr)</span>
+                            <span class="menu-dots"></span>
+                            <span class="font-title text-lg font-bold text-amber-500 shrink-0">20.00€</span>
                         </div>
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Plumilla Ibérica (300gr)</span>
-                            <span class="font-bold">14€</span>
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Plumilla Ibérica (300gr)</span>
+                            <span class="menu-dots"></span>
+                            <span class="font-title text-lg font-bold text-amber-500 shrink-0">14.00€</span>
                         </div>
-                        <div class="flex justify-between items-center menu-row py-3">
-                            <span>Secreto Ibérico (Baja temp/cajún)</span>
-                            <span class="font-bold">16€</span>
+                        <div class="menu-row">
+                            <span class="font-bold text-gray-100">Secreto Ibérico <span class="text-xs text-gray-400 font-normal">(Baja temp/cajún)</span></span>
+                            <span class="menu-dots"></span>
+                            <span class="font-title text-lg font-bold text-amber-500 shrink-0">16.00€</span>
                         </div>
-                        <p class="text-[10px] text-gray-500 mt-4 italic">*Todas las carnes acompañadas de guarnición.</p>
+                        <p class="text-[10px] text-gray-500 mt-4 italic text-right">*Todas las carnes se acompañan de guarnición tradicional.</p>
                     </div>
                 </div>
 
                 <!-- Fuera de Carta / Sugerencias -->
-                <div class="reveal p-8 bg-rose-600/10 rounded-[2rem] border border-rose-500/30">
-                    <h3 class="font-title text-4xl uppercase tracking-tighter text-white mb-8">Sugerencias Temporada</h3>
-                    <div class="space-y-6 text-sm">
-                        <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                <div class="reveal p-8 bg-rose-600/5 rounded-[2.5rem] border-2 border-[--deskaro-red] shadow-[0_0_40px_rgba(225,29,72,0.15)]">
+                    <h3 class="font-title text-4xl uppercase tracking-tighter text-white mb-6 flex justify-between items-center">
+                        <span>Sugerencias</span>
+                        <span class="text-[10px] bg-[--deskaro-red] text-white px-3 py-1 rounded-full font-sans tracking-widest font-black uppercase">¡Estrella!</span>
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center border-b border-white/5 pb-3">
                             <div>
-                                <span class="block font-bold">Fideos Tostados con Presa</span>
-                                <span class="text-[10px] text-rose-400">El plato más viral</span>
+                                <span class="block font-bold text-white">Fideos Tostados con Presa</span>
+                                <span class="text-[10px] text-rose-400 italic block">El plato definitivo de Huelin</span>
                             </div>
-                            <span class="font-bold text-xl">30€</span>
+                            <span class="font-title text-xl text-[--deskaro-red] font-bold">30.00€</span>
                         </div>
-                        <div class="flex justify-between items-center border-b border-white/10 pb-3">
-                            <span>Fideos Tostados con Entrecot</span>
-                            <span class="font-bold text-xl">30€</span>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-white/10 pb-3">
-                            <span>Fideos Tostados con Gambón</span>
-                            <span class="font-bold text-xl">25€</span>
-                        </div>
-                        <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                        <div class="flex justify-between items-center border-b border-white/5 pb-3">
                             <div>
-                                <span class="block font-bold">Cachopo "Deskaro"</span>
-                                <span class="text-[10px] text-gray-400">Ternera hembra, jamón, queso manchego</span>
+                                <span class="block font-bold text-white">Fideos Tostados con Entrecot</span>
                             </div>
-                            <span class="font-bold text-xl">25€</span>
+                            <span class="font-title text-xl text-[--deskaro-red] font-bold">30.00€</span>
                         </div>
-                        <div class="flex justify-between items-center border-b border-white/10 pb-3">
-                            <span>Carrillada de Cerdo (Miel de caña)</span>
-                            <span class="font-bold">16€</span>
+                        <div class="flex justify-between items-center border-b border-white/5 pb-3">
+                            <div>
+                                <span class="block font-bold text-white">Fideos Tostados con Gambón</span>
+                            </div>
+                            <span class="font-title text-xl text-[--deskaro-red] font-bold">25.00€</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-white/5 pb-3">
+                            <div>
+                                <span class="block font-bold text-white">Cachopo "Deskaro"</span>
+                                <span class="text-[10px] text-gray-400 italic block">Ternera hembra, jamón, queso manchego</span>
+                            </div>
+                            <span class="font-title text-xl text-[--deskaro-red] font-bold">25.00€</span>
+                        </div>
+                        <div class="flex justify-between items-center pb-1">
+                            <div>
+                                <span class="block font-bold text-white">Carrillada de Cerdo (Miel de caña)</span>
+                            </div>
+                            <span class="font-title text-xl text-[--deskaro-red] font-bold">16.00€</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Bocaditos y Postres -->
-                <div class="reveal grid grid-cols-2 gap-8">
-                    <div>
-                        <h4 class="font-title text-2xl uppercase tracking-tighter text-gray-400 mb-4">Bocaditos</h4>
-                        <div class="space-y-2 text-[11px] uppercase tracking-wider font-bold">
-                            <div class="flex justify-between"><span>Miniburguer</span><span>4.5€</span></div>
-                            <div class="flex justify-between"><span>Serranito Mini</span><span>6€</span></div>
-                            <div class="flex justify-between"><span>Bocata Calamar</span><span>6€</span></div>
-                            <div class="flex justify-between"><span>Mini Cresta</span><span>4.5€</span></div>
+                <div class="reveal grid sm:grid-cols-2 gap-8">
+                    <div class="p-6 bg-[#0c0c0c] border border-white/5 rounded-3xl">
+                        <h4 class="font-title text-2xl uppercase tracking-tighter text-gray-400 mb-4 border-b border-white/5 pb-2">Bocaditos</h4>
+                        <div class="space-y-3 font-bold text-sm">
+                            <div class="flex justify-between"><span>Miniburguer</span><span class="text-[--deskaro-red]">4.50€</span></div>
+                            <div class="flex justify-between"><span>Serranito Mini</span><span class="text-[--deskaro-red]">6.00€</span></div>
+                            <div class="flex justify-between"><span>Bocata Calamar</span><span class="text-[--deskaro-red]">6.00€</span></div>
+                            <div class="flex justify-between"><span>Mini Cresta</span><span class="text-[--deskaro-red]">4.50€</span></div>
                         </div>
                     </div>
-                    <div>
-                        <h4 class="font-title text-2xl uppercase tracking-tighter text-gray-400 mb-4">Postres</h4>
-                        <div class="space-y-2 text-[11px] uppercase tracking-wider font-bold">
-                            <div class="flex justify-between"><span>Brownie Helado</span><span>5€</span></div>
-                            <div class="flex justify-between"><span>Tarta de Queso</span><span>5€</span></div>
+                    <div class="p-6 bg-[#0c0c0c] border border-white/5 rounded-3xl">
+                        <h4 class="font-title text-2xl uppercase tracking-tighter text-gray-400 mb-4 border-b border-white/5 pb-2">Postres</h4>
+                        <div class="space-y-3 font-bold text-sm">
+                            <div class="flex justify-between"><span>Brownie Helado</span><span class="text-[--deskaro-red]">5.00€</span></div>
+                            <div class="flex justify-between"><span>Tarta de Queso</span><span class="text-[--deskaro-red]">5.00€</span></div>
                         </div>
                     </div>
                 </div>
@@ -372,23 +446,163 @@
         </div>
     </section>
 
+    <!-- SECCIÓN OPINIONES (NUEVO CARRUSEL INTERACTIVO) -->
+    <section id="opiniones" class="py-24 px-6 bg-[#050505] relative overflow-hidden">
+        <div class="absolute top-1/2 left-0 w-80 h-80 bg-rose-950/10 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <span class="text-[--deskaro-red] font-bold text-xs uppercase tracking-[0.4em] block mb-2">La voz del barrio</span>
+                <h2 class="font-title text-4xl md:text-6xl uppercase tracking-tighter">RESEÑAS DESKARADAS</h2>
+                <div class="h-1.5 w-24 bg-[--deskaro-red] mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Contenedor del Carrusel -->
+            <div class="relative reveal px-4">
+                
+                <!-- Botones del Carrusel (Solo visibles en PC) -->
+                <button onclick="scrollCarousel(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 -ml-6 z-20 w-12 h-12 bg-[#0c0c0c]/80 border border-white/10 rounded-full flex items-center justify-center text-white hover:bg-[--deskaro-red] hover:border-[--deskaro-red] transition-all hidden md:flex">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button onclick="scrollCarousel(1)" class="absolute right-0 top-1/2 -translate-y-1/2 -mr-6 z-20 w-12 h-12 bg-[#0c0c0c]/80 border border-white/10 rounded-full flex items-center justify-center text-white hover:bg-[--deskaro-red] hover:border-[--deskaro-red] transition-all hidden md:flex">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <!-- Tarjetas del Carrusel -->
+                <div id="carousel" class="flex overflow-x-auto gap-6 snap-x snap-mandatory scroll-smooth scroll-hide py-4 px-2">
+                    
+                    <!-- Reseña 1 -->
+                    <div class="min-w-[280px] sm:min-w-[340px] md:min-w-[380px] snap-start bg-[#0a0a0a] border border-white/5 rounded-3xl p-6 flex flex-col justify-between hover:border-rose-600/30 transition-all duration-300">
+                        <div>
+                            <div class="flex text-amber-500 mb-4 text-xs">
+                                <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-sm text-gray-300 italic leading-relaxed">"¡Escandalosamente bien! Fuimos recomendados por ver los fideos tostados en TikTok y es real, está todo buenísimo. Volveré seguro a probar más de la carta."</p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
+                            <div>
+                                <span class="font-bold text-xs uppercase tracking-widest text-white block">Fran J.</span>
+                                <span class="text-[10px] text-rose-500 uppercase font-black">Local Guide</span>
+                            </div>
+                            <span class="text-[10px] text-gray-500">Hace 17h</span>
+                        </div>
+                    </div>
+
+                    <!-- Reseña 2 -->
+                    <div class="min-w-[280px] sm:min-w-[340px] md:min-w-[380px] snap-start bg-[#0a0a0a] border border-white/5 rounded-3xl p-6 flex flex-col justify-between hover:border-rose-600/30 transition-all duration-300">
+                        <div>
+                            <div class="flex text-amber-500 mb-4 text-xs">
+                                <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-sm text-gray-300 italic leading-relaxed">"¡Un bar de tapas estupendo en Huelin! Comida fantástica y el clima del local es super auténtico. Los nachos son, sin duda, los mejores que he comido."</p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
+                            <div>
+                                <span class="font-bold text-xs uppercase tracking-widest text-white block">Milan J.</span>
+                                <span class="text-[10px] text-rose-500 uppercase font-black">Viajero</span>
+                            </div>
+                            <span class="text-[10px] text-gray-500">Hace 1 día</span>
+                        </div>
+                    </div>
+
+                    <!-- Reseña 3 -->
+                    <div class="min-w-[280px] sm:min-w-[340px] md:min-w-[380px] snap-start bg-[#0a0a0a] border border-white/5 rounded-3xl p-6 flex flex-col justify-between hover:border-rose-600/30 transition-all duration-300">
+                        <div>
+                            <div class="flex text-amber-500 mb-4 text-xs">
+                                <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-sm text-gray-300 italic leading-relaxed">"Especialistas indiscutibles de la fideuà y los fideos tostados. El toque tostado es increíble y las raciones son gigantescas para el precio que tienen."</p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
+                            <div>
+                                <span class="font-bold text-xs uppercase tracking-widest text-white block">Laurent G.</span>
+                                <span class="text-[10px] text-rose-500 uppercase font-black">Local Guide</span>
+                            </div>
+                            <span class="text-[10px] text-gray-500">Hace 1 semana</span>
+                        </div>
+                    </div>
+
+                    <!-- Reseña 4 -->
+                    <div class="min-w-[280px] sm:min-w-[340px] md:min-w-[380px] snap-start bg-[#0a0a0a] border border-white/5 rounded-3xl p-6 flex flex-col justify-between hover:border-rose-600/30 transition-all duration-300">
+                        <div>
+                            <div class="flex text-amber-500 mb-4 text-xs">
+                                <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-sm text-gray-300 italic leading-relaxed">"Llevaba tiempo queriendo ir por sus redes y no defraudó. Pedimos la oferta de los fideos con entrecot, espectacular. Y la tarta de pistacho... sin palabras."</p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
+                            <div>
+                                <span class="font-bold text-xs uppercase tracking-widest text-white block">Sonia S.</span>
+                                <span class="text-[10px] text-rose-500 uppercase font-black">Foodie</span>
+                            </div>
+                            <span class="text-[10px] text-gray-500">Hace 2 semanas</span>
+                        </div>
+                    </div>
+
+                    <!-- Reseña 5 -->
+                    <div class="min-w-[280px] sm:min-w-[340px] md:min-w-[380px] snap-start bg-[#0a0a0a] border border-white/5 rounded-3xl p-6 flex flex-col justify-between hover:border-rose-600/30 transition-all duration-300">
+                        <div>
+                            <div class="flex text-amber-500 mb-4 text-xs">
+                                <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-sm text-gray-300 italic leading-relaxed">"Un lugar fantástico para cenar en Málaga con amigos. Buen servicio, comida deliciosa y trato de diez por parte del camarero que nos recomendó genial."</p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
+                            <div>
+                                <span class="font-bold text-xs uppercase tracking-widest text-white block">Celia G.</span>
+                                <span class="text-[10px] text-rose-500 uppercase font-black">Local Guide</span>
+                            </div>
+                            <span class="text-[10px] text-gray-500">Hace 3 semanas</span>
+                        </div>
+                    </div>
+
+                    <!-- Reseña 6 -->
+                    <div class="min-w-[280px] sm:min-w-[340px] md:min-w-[380px] snap-start bg-[#0a0a0a] border border-white/5 rounded-3xl p-6 flex flex-col justify-between hover:border-rose-600/30 transition-all duration-300">
+                        <div>
+                            <div class="flex text-amber-500 mb-4 text-xs">
+                                <i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star mr-1"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-sm text-gray-300 italic leading-relaxed">"Los camareros son un amor y la comida está para chuparse los dedos de verdad. El ambiente es increíble, el mejor local de barrio de toda la zona."</p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
+                            <div>
+                                <span class="font-bold text-xs uppercase tracking-widest text-white block">Marina G.</span>
+                                <span class="text-[10px] text-rose-500 uppercase font-black">Vecina</span>
+                            </div>
+                            <span class="text-[10px] text-gray-500">Hace 4 semanas</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FOOTER / CONTACTO -->
-    <footer id="contacto" class="py-20 text-center bg-black">
-        <p class="text-[9px] text-gray-700 uppercase tracking-[0.5em] mb-4 italic">Taberna Deskaro • Málaga Huelin • Calle Princesa 34</p>
-        <div class="flex justify-center space-x-12 text-2xl mb-8">
-            <a href="https://instagram.com/tabernadeskaro" target="_blank" class="text-rose-600 hover:scale-125 transition-transform"><i class="fab fa-instagram"></i></a>
-            <a href="tel:744660685" class="text-white hover:scale-125 transition-transform"><i class="fas fa-phone"></i></a>
-            <a href="https://wa.me/34744660685" target="_blank" class="text-emerald-500 hover:scale-125 transition-transform"><i class="fab fa-whatsapp"></i></a>
+    <footer id="contacto" class="py-24 text-center bg-black border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="font-title text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4">
+                DES<span class="text-[--deskaro-red]">K</span>ARO
+            </h2>
+            <p class="text-xs uppercase tracking-[0.4em] text-gray-500 mb-10">Málaga Huelin • Calle Princesa 34</p>
+            
+            <div class="flex justify-center space-x-10 text-3xl mb-12">
+                <a href="https://instagram.com/tabernadeskaro" target="_blank" class="text-white hover:text-[--deskaro-red] hover:scale-125 transition-all"><i class="fab fa-instagram"></i></a>
+                <a href="tel:744660685" class="text-white hover:text-[--deskaro-red] hover:scale-125 transition-all"><i class="fas fa-phone"></i></a>
+                <a href="https://wa.me/34744660685" target="_blank" class="text-[#25D366] hover:scale-125 transition-all"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            
+            <p class="text-[9px] text-gray-700 uppercase tracking-[0.4em]">&copy; 2026 TABERNA DESKARO • TODOS LOS DERECHOS RESERVADOS</p>
         </div>
     </footer>
 
-    <!-- Botón Whatsapp Flotante -->
+    <!-- BOTÓN DE CONTACTO RÁPIDO FLOTANTE -->
     <div class="fixed bottom-6 right-6 z-[100]">
-        <a href="https://wa.me/34744660685" target="_blank" class="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white text-2xl shadow-xl hover:scale-110 active:scale-95 transition-all">
+        <a href="https://wa.me/34744660685" target="_blank" class="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white text-2xl shadow-2xl hover:scale-110 active:scale-95 transition-all">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
 
+    <!-- SCRIPT DE NAVEGACIÓN E IA -->
     <script>
         let state = {
             qty: 0,
@@ -416,7 +630,7 @@
             setTimeout(() => {
                 if (type === 'qty') {
                     state.qty = val;
-                    addMessage("¡Perfecto! Ahora dime, <strong>¿qué os apetece hoy?</strong> Podéis elegir varias si queréis mezclar.", 'ai');
+                    addMessage("¡Perfecto! Ahora dime, <strong>¿qué os apetece hoy?</strong> Podéis marcar varias si queréis mezclar gustos.", 'ai');
                     controls.innerHTML = `
                         <button onclick="togglePref('Carne 🥩', 'meat')" class="btn-option pref-btn" id="btn-meat">Carne</button>
                         <button onclick="togglePref('Pescado 🐟', 'fish')" class="btn-option pref-btn" id="btn-fish">Pescado</button>
@@ -424,7 +638,7 @@
                         <button onclick="confirmPrefs()" class="btn-option bg-rose-600 text-white font-black mt-2">CONTINUAR →</button>
                     `;
                 } else if (type === 'confirm') {
-                    addMessage("Última pregunta: ¿Vais a por todas (Vara fuerte 💪) o queréis algo de picoteo ligero (Ligerito 🥗)?", 'ai');
+                    addMessage("Última pregunta: ¿Queréis salir rodando (Vara fuerte 💪) o preferís picoteear (Ligerito 🥗)?", 'ai');
                     controls.innerHTML = `
                         <button onclick="generateFinal('Vara Fuerte 💪', 'heavy')" class="btn-option bg-rose-600 text-white">VARA FUERTE</button>
                         <button onclick="generateFinal('Ligerito 🥗', 'light')" class="btn-option">ALGO LIGERO</button>
@@ -445,7 +659,7 @@
 
         function confirmPrefs() {
             if (state.prefs.length === 0) return;
-            nextStep('confirm', null, "Lo tengo claro.");
+            nextStep('confirm', null, "Tengo claras las preferencias.");
         }
 
         function generateFinal(label, style) {
@@ -458,38 +672,82 @@
                 
                 if (state.qty <= 2) {
                     if (state.style === 'heavy') {
-                        dishes = ["1 Media de Ensaladilla Rusa (5€)", "1 Fideos Tostados con Presa (30€)", "1 Tarta de Queso para compartir (5€)"];
-                        proposal = "Para 2, los fideos son contundentes, mejor acompañar solo con una media ración de ensaladilla.";
+                        dishes = [
+                            "1 Media de Ensaladilla Rusa (5.00€)",
+                            "1 Fideos Tostados con Presa (30.00€)",
+                            "1 Tarta de Queso (5.00€)"
+                        ];
+                        proposal = "Para 2 hambrientos, la combinación reina de Huelin: la cremosidad de la ensaladilla y el sabor imbatible de los fideos tostados.";
                     } else {
-                        dishes = ["1 Media de Ensaladilla (5€)", "2 Croquetas (2.40€)", "1 Tartar de Atún y Aguacate (20€)", "2 Miniburguers (9€)"];
-                        proposal = "Picoteo variado para probar la calidad del producto sin empacharse.";
+                        dishes = [
+                            "1 Media de Ensaladilla (5.00€)",
+                            "2 Croquetas de la Abuela (2.40€)",
+                            "1 Tartar de Atún y Aguacate (20.00€)",
+                            "1 Mini de Serranito (6.00€)"
+                        ];
+                        proposal = "Un picoteo selecto y variado para disfrutar de la frescura del atún sin saturar el paladar.";
                     }
                 } else if (state.qty <= 4) {
                     if (state.prefs.includes('meat') && state.prefs.includes('fish')) {
-                        dishes = ["Ración de Nachos (14€)", "Tartar de Atún (20€)", "Fideos Tostados con Presa (30€)", "Postre variado"];
-                        proposal = "Mezcla ideal: el frescor del tartar con la potencia de los fideos.";
+                        dishes = [
+                            "1 Ración de Nachos Caseros (14.00€)",
+                            "1 Tartar de Atún (20.00€)",
+                            "1 Fideos Tostados con Presa (30.00€)",
+                            "2 Croquetas (2.40€)",
+                            "2 Postres variados (10.00€)"
+                        ];
+                        proposal = "Equilibrio perfecto de mar y montaña ideal para compartir en el centro de la mesa.";
                     } else {
-                        dishes = ["Ración de Nachos (14€)", "Huevos Rotos (12€)", "Cachopo Deskaro (25€)", "2 Postres"];
-                        proposal = "Menú clásico de taberna para salir rodando.";
+                        dishes = [
+                            "1 Ración de Nachos Caseros (14.00€)",
+                            "1 Huevos Rotos con Jamón (12.00€)",
+                            "1 Cachopo Deskaro (25.00€)",
+                            "2 Tarta de Queso Payoyo (10.00€)"
+                        ];
+                        proposal = "Propuesta tabernera de pura cepa. Potencia y sabor directos al centro.";
                     }
                 } else {
-                    dishes = ["2 Raciones de Nachos (28€)", "Ronda de Croquetas", "Fritura Variada (14€)", "Fideos con Presa (30€)", "Presa Ibérica a la brasa (20€)"];
-                    proposal = "Para grupos, lo mejor es poner el centro lleno de platos y compartir el descaro.";
+                    dishes = [
+                        "2 Raciones de Nachos Caseros (28.00€)",
+                        "Ronda de Croquetas individuales (1.20€/u)",
+                        "1 Ración de Fritura Variada (14.00€)",
+                        "1 Fideos con Presa (30.00€)",
+                        "1 Presa Ibérica a la brasa (20.00€)"
+                    ];
+                    proposal = "Para un grupo, la regla de oro es llenar la mesa con platos fáciles de repartir y degustar juntos.";
                 }
 
-                let html = `<div class='space-y-4'><p class='text-rose-500 font-black text-[10px] uppercase tracking-widest'>Menú Recomendado:</p><ul class='space-y-2 border-l-2 border-rose-600 pl-4 text-xs font-bold'>`;
-                dishes.forEach(d => html += `<li>• ${d}</li>`);
-                html += `</ul><p class='text-[11px] italic text-gray-500 mt-4'>${proposal}</p></div>`;
+                let html = `
+                    <div class='space-y-4'>
+                        <p class='text-[--deskaro-red] font-black text-xs uppercase tracking-widest font-title'><i class='fas fa-utensils mr-1'></i> Propuesta de Menú:</p>
+                        <div class='space-y-2 border-l-2 border-rose-600 pl-4 text-xs font-bold text-gray-200'>
+                `;
+                dishes.forEach(d => html += `<div class='flex justify-between py-1'><span>• ${d}</span></div>`);
+                html += `
+                        </div>
+                        <p class='text-[11px] italic text-gray-400 mt-4 leading-relaxed'>${proposal}</p>
+                    </div>
+                `;
                 
                 addMessage(html, 'ai');
-                document.getElementById("controls").innerHTML = `<button onclick="location.reload()" class="btn-option border-rose-600 text-rose-500">REINICIAR 🔄</button> <a href="https://wa.me/34744660685" target="_blank" class="btn-option bg-rose-600 text-white">RESERVAR ESTA MESA</a>`;
+                document.getElementById("controls").innerHTML = `
+                    <button onclick="location.reload()" class="btn-option border-rose-600 text-rose-500">RECONFIGURAR 🔄</button>
+                    <a href="https://wa.me/34744660685" target="_blank" class="btn-option bg-rose-600 text-white shadow-[0_4px_15px_rgba(225,29,72,0.3)]">RESERVAR ESTE MENÚ</a>
+                `;
             }, 1000);
         }
 
-        // Reveal on scroll
+        // Desplazamiento del Carrusel de Opiniones
+        function scrollCarousel(direction) {
+            const carousel = document.getElementById("carousel");
+            const cardWidth = carousel.firstElementChild.offsetWidth + 24; // Card width + gap (6 in Tailwind = 24px)
+            carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+        }
+
+        // Animación Reveal on Scroll
         window.addEventListener("scroll", () => {
             document.querySelectorAll(".reveal").forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight * 0.9) el.classList.add("active");
+                if (el.getBoundingClientRect().top < window.innerHeight * 0.92) el.classList.add("active");
             });
         });
         window.onload = () => { document.querySelector(".reveal").classList.add("active"); };
