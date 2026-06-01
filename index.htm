@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taberna Deskaro | Menú Personalizado IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Oswald:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --deskaro-red: #e11d48;
+            --deskaro-dark: #050505;
+            --deskaro-card: #0f0f0f;
+        }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: var(--deskaro-dark); 
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        .font-title { font-family: 'Oswald', sans-serif; }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .glass-header {
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .neon-border {
+            border: 1px solid rgba(225, 29, 72, 0.2);
+            box-shadow: 0 0 25px rgba(225, 29, 72, 0.05);
+            transition: all 0.4s ease;
+        }
+
+        .menu-row {
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hide scrollbar for cleaner look */
+        .scroll-hide::-webkit-scrollbar { display: none; }
+        
+        .chat-bubble-ai {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 1.5rem 1.5rem 1.5rem 0;
+        }
+        
+        .chat-bubble-user {
+            background: var(--deskaro-red);
+            border-radius: 1.5rem 1.5rem 0 1.5rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-rose-600 selection:text-white">
+
+    <nav class="fixed top-0 w-full z-[100] glass-header px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#inicio" class="flex flex-col leading-none">
+                <span class="font-title text-2xl tracking-tighter uppercase">TABERNA</span>
+                <span class="font-title text-2xl tracking-tighter uppercase text-[--deskaro-red] ml-4">DESKARO</span>
+            </a>
+            <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest">
+                <a href="#ia-section" class="text-rose-400 flex items-center gap-2">
+                    <i class="fas fa-magic animate-pulse"></i> Diseñador de Menú
+                </a>
+                <a href="#carta" class="hover:text-rose-500 transition-colors">La Carta</a>
+                <a href="#contacto" class="hover:text-rose-500 transition-colors">Ubicación</a>
+            </div>
+            <a href="https://wa.me/34744660685" class="px-5 py-2.5 bg-[--deskaro-red] text-white rounded-full text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all">
+                RESERVAR
+            </a>
+        </div>
+    </nav>
+
+    <section id="inicio" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-rose-950/20 via-black to-black"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-rose-600/5 blur-[120px] rounded-full"></div>
+        
+        <div class="relative z-10 text-center px-6">
+            <h1 class="reveal font-title text-7xl md:text-[12rem] font-black uppercase tracking-tighter leading-[0.8] mb-6">
+                DES<span class="text-[--deskaro-red]">K</span>ARO
+            </h1>
+            <p class="reveal text-lg md:text-2xl font-light tracking-[0.4em] uppercase text-gray-400 mb-12 italic">
+                Huelin, Málaga. Sabor con actitud.
+            </p>
+            <div class="reveal">
+                <a href="#ia-section" class="px-10 py-5 bg-[--deskaro-red] rounded-full font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_40px_rgba(225,29,72,0.4)] transition-all">
+                    Configurar mi menú ahora
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="ia-section" class="py-24 px-6 bg-[#080808]">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12 reveal">
+                <span class="text-[--deskaro-red] font-bold text-xs uppercase tracking-[0.4em] block mb-2">Asistente Inteligente</span>
+                <h2 class="font-title text-4xl md:text-6xl uppercase tracking-tighter">TU COMIDA A MEDIDA</h2>
+                <p class="text-gray-500 text-sm mt-3">Dime qué buscas y diseñaré la propuesta perfecta de platos y cantidades.</p>
+            </div>
+
+            <div class="reveal neon-border bg-[#0c0c0c] rounded-[2.5rem] overflow-hidden min-h-[500px] flex flex-col">
+                <!-- Chat Header -->
+                <div class="bg-black/40 px-8 py-5 border-b border-white/5 flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-rose-600/10 flex items-center justify-center border border-rose-600/30">
+                            <i class="fas fa-robot text-[--deskaro-red] animate-bounce"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm">Chef Virtual Deskaro</h4>
+                            <span class="text-[10px] text-emerald-400">En línea • Especialista en Huelin</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Body -->
+                <div id="chat-window" class="flex-grow p-8 space-y-6 overflow-y-auto max-h-[400px] scroll-hide">
+                    <div class="flex items-start gap-3 max-w-[90%]">
+                        <div class="chat-bubble-ai p-5 text-sm leading-relaxed text-gray-300">
+                            ¡Hola! Soy el Chef Virtual de Deskaro. Vamos a diseñar tu menú perfecto para que no sobre ni falte nada. <br><br>
+                            Para empezar, <strong>¿Cuántos comensales vais a ser hoy?</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Inputs (Quick Replies) -->
+                <div class="p-8 bg-black/40 border-t border-white/5">
+                    <div id="options-container" class="flex flex-wrap gap-3 justify-center">
+                        <button onclick="handleStep('quantity', 'Somos 2', 2)" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Somos 2</button>
+                        <button onclick="handleStep('quantity', 'Somos 3 o 4', 4)" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Somos 3 o 4</button>
+                        <button onclick="handleStep('quantity', 'Grupo Grande (+5)', 6)" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Grupo Grande</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="carta" class="py-24 px-6 max-w-5xl mx-auto">
+        <div class="text-center reveal mb-20">
+            <h2 class="font-title text-6xl uppercase tracking-tighter">LA CARTA</h2>
+            <div class="h-1 w-20 bg-[--deskaro-red] mx-auto mt-4"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-16">
+            <!-- Entrantes -->
+            <div class="reveal">
+                <h3 class="font-title text-3xl uppercase tracking-tighter mb-8 text-rose-500">Entrantes</h3>
+                <div class="space-y-4">
+                    <div class="flex justify-between menu-row pb-2"><span>Nachos Caseros Deskaro</span><span>7.00€</span></div>
+                    <div class="flex justify-between menu-row pb-2"><span>Torreznos Crujientes</span><span>5.00€</span></div>
+                    <div class="flex justify-between menu-row pb-2"><span>Croquetas del Chef (ud)</span><span>1.50€</span></div>
+                    <div class="flex justify-between menu-row pb-2"><span>Ensaladilla Rusa</span><span>5.00€</span></div>
+                </div>
+            </div>
+            <!-- Platos Viral -->
+            <div class="reveal">
+                <h3 class="font-title text-3xl uppercase tracking-tighter mb-8 text-rose-500">Los Virales</h3>
+                <div class="space-y-4">
+                    <div class="flex justify-between menu-row pb-2"><span>Fideos Tostados con Presa</span><span>25.00€</span></div>
+                    <div class="flex justify-between menu-row pb-2"><span>Fideos Tostados con Entrecot</span><span>30.00€</span></div>
+                    <div class="flex justify-between menu-row pb-2"><span>Pata de Pulpo a la Brasa</span><span>20.00€</span></div>
+                    <div class="flex justify-between menu-row pb-2"><span>Tartar de Atún y Aguacate</span><span>20.00€</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-24 px-6 bg-black">
+        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 reveal">
+            <div class="p-10 bg-[#0f0f0f] rounded-[3rem] border border-white/5">
+                <h4 class="font-title text-3xl uppercase mb-6 text-[--deskaro-red]">Ubicación</h4>
+                <p class="text-gray-400 mb-6 leading-relaxed">Estamos en el corazón de Huelin, donde el sabor tradicional se encuentra con la actitud moderna.</p>
+                <div class="space-y-4 text-sm font-bold uppercase tracking-widest">
+                    <div class="flex items-center gap-3"><i class="fas fa-map-marker-alt text-rose-600"></i> Calle Princesa 34, Málaga</div>
+                    <div class="flex items-center gap-3"><i class="fas fa-phone-alt text-rose-600"></i> 744 66 06 85</div>
+                </div>
+            </div>
+            <div class="flex flex-col justify-center space-y-4">
+                <a href="https://wa.me/34744660685" class="w-full p-6 bg-emerald-600 rounded-3xl text-center font-black uppercase tracking-[0.2em] hover:bg-emerald-500 transition-all flex items-center justify-center gap-3">
+                    <i class="fab fa-whatsapp text-2xl"></i> Hablar por WhatsApp
+                </a>
+                <a href="https://instagram.com/tabernadeskaro" class="w-full p-6 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl text-center font-black uppercase tracking-[0.2em] hover:opacity-90 transition-all flex items-center justify-center gap-3">
+                    <i class="fab fa-instagram text-2xl"></i> DM en Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center text-[10px] text-gray-700 uppercase tracking-[0.5em]">
+        TABERNA DESKARO &copy; 2026 • HUELIN • MÁLAGA
+    </footer>
+
+    <script>
+        // Scroll Reveal
+        function checkReveal() {
+            document.querySelectorAll(".reveal").forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight * 0.9) el.classList.add("active");
+            });
+        }
+        window.addEventListener("scroll", checkReveal);
+        window.addEventListener("load", checkReveal);
+
+        // IA Assistant State
+        let config = {
+            qty: 0,
+            drink: '',
+            pref: '',
+            step: 'quantity'
+        };
+
+        function addMessage(text, side) {
+            const chat = document.getElementById("chat-window");
+            const bubbleClass = side === 'ai' ? 'chat-bubble-ai text-gray-300' : 'chat-bubble-user text-white self-end ml-auto';
+            const icon = side === 'ai' ? '🤖' : '👤';
+            
+            chat.innerHTML += `
+                <div class="flex items-start gap-3 ${side === 'user' ? 'justify-end' : ''} max-w-full">
+                    ${side === 'ai' ? `<div class="text-xs mt-4">${icon}</div>` : ''}
+                    <div class="${bubbleClass} p-5 text-sm leading-relaxed">
+                        ${text}
+                    </div>
+                </div>`;
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        function handleStep(currentStep, label, value) {
+            addMessage(label, 'user');
+            
+            const container = document.getElementById("options-container");
+            container.innerHTML = `<span class="text-xs text-gray-500 animate-pulse uppercase font-black tracking-widest">El Chef está anotando...</span>`;
+
+            setTimeout(() => {
+                if (currentStep === 'quantity') {
+                    config.qty = value;
+                    addMessage("¡Perfecto! Un buen grupo. Ahora, <strong>¿Qué os apetece beber para empezar?</strong>", 'ai');
+                    container.innerHTML = `
+                        <button onclick="handleStep('drink', 'Cervezas bien frías 🍻', 'beer')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Cervezas</button>
+                        <button onclick="handleStep('drink', 'Vinito de la tierra 🍷', 'wine')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Vino</button>
+                        <button onclick="handleStep('drink', 'Refrescos / Agua 💧', 'soft')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Refrescos</button>
+                    `;
+                } else if (currentStep === 'drink') {
+                    config.drink = value;
+                    addMessage("Marchando la bebida. Vamos a lo importante: <strong>¿Qué tipo de comida preferís hoy?</strong>", 'ai');
+                    container.innerHTML = `
+                        <button onclick="handleStep('pref', 'Carne y Brasa 🥩', 'meat')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Carne / Brasa</button>
+                        <button onclick="handleStep('pref', 'Pescado y Mar 🐟', 'fish')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Pescado / Mar</button>
+                        <button onclick="handleStep('pref', 'Un poco de todo 🌀', 'all')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Variado</button>
+                    `;
+                } else if (currentStep === 'pref') {
+                    config.pref = value;
+                    generateMenu();
+                }
+            }, 800);
+        }
+
+        function generateMenu() {
+            let proposal = "";
+            let items = [];
+
+            if (config.qty === 2) {
+                items = ["Nachos Caseros", "Fideos de Presa", "Tarta Payoyo"];
+                if(config.pref === 'fish') items = ["Tartar de Atún", "Pulpo a la Brasa", "Postre"];
+            } else if (config.qty === 4) {
+                items = ["Torreznos (x2)", "Fritura Variada", "Fideos con Entrecot", "2 Tartas"];
+                if(config.pref === 'meat') items = ["Croquetas", "Ensaladilla", "Fideos de Presa", "Pluma Ibérica"];
+            } else {
+                items = ["Ronda de Entrantes", "Fideos de Presa (x2)", "Fritura Malagueña", "Surtido de Postres"];
+            }
+
+            proposal = `<strong>¡MENÚ CONFIGURADO!</strong><br><br>
+                        Basado en vuestro grupo de ${config.qty} y preferencia de ${config.pref}, os sugiero:<br>
+                        <ul class="mt-2 space-y-1 text-rose-400 font-bold">
+                            ${items.map(i => `<li>• ${i}</li>`).join('')}
+                        </ul><br>
+                        Es la cantidad justa para que salgáis contentos sin quedar pesados.`;
+
+            addMessage(proposal, 'ai');
+            document.getElementById("options-container").innerHTML = `
+                <button onclick="location.reload()" class="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold uppercase transition-all border border-white/10">Reiniciar Consulta 🔄</button>
+                <a href="https://wa.me/34744660685" class="px-6 py-3 bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all shadow-lg shadow-rose-900/40">Reservar Mesa Ahora</a>
+            `;
+        }
+    </script>
+</body>
+</html>
