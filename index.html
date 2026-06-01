@@ -123,11 +123,12 @@
                 <span class="font-title text-2xl tracking-tighter uppercase font-black">TABERNA</span>
                 <span class="font-title text-2xl tracking-tighter uppercase text-[--deskaro-red] ml-4 font-black">DES<span class="text-white">K</span>ARO</span>
             </div>
-            <div class="hidden md:flex space-x-8 text-[11px] font-black uppercase tracking-[0.25em]">
+            <div class="hidden lg:flex space-x-8 text-[11px] font-black uppercase tracking-[0.25em]">
                 <a href="#inicio" class="hover:text-rose-500 transition-colors">Inicio</a>
                 <a href="#ia-section" class="text-rose-400 hover:text-rose-300 transition-colors"><i class="fas fa-robot mr-1"></i> Diseñador Menú</a>
                 <a href="#carta" class="hover:text-rose-500 transition-colors">La Carta</a>
                 <a href="#opiniones" class="hover:text-rose-500 transition-colors">Opiniones</a>
+                <a href="#ubicacion" class="hover:text-rose-500 transition-colors">Cómo Llegar</a>
                 <a href="#contacto" class="hover:text-rose-500 transition-colors">Contacto</a>
             </div>
             <a href="https://wa.me/34744660685" class="px-6 py-3 bg-[--deskaro-red] text-white rounded-full text-xs font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(225,29,72,0.3)]">
@@ -446,7 +447,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN OPINIONES (NUEVO CARRUSEL INTERACTIVO) -->
+    <!-- SECCIÓN OPINIONES -->
     <section id="opiniones" class="py-24 px-6 bg-[#050505] relative overflow-hidden">
         <div class="absolute top-1/2 left-0 w-80 h-80 bg-rose-950/10 blur-[120px] rounded-full pointer-events-none"></div>
         <div class="max-w-6xl mx-auto">
@@ -572,6 +573,41 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN UBICACIÓN (CÓMO LLEGAR) -->
+    <section id="ubicacion" class="py-24 px-6 bg-[#070707] relative overflow-hidden">
+        <div class="absolute bottom-0 right-0 w-80 h-80 bg-rose-950/10 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12 reveal">
+                <span class="text-[--deskaro-red] font-bold text-xs uppercase tracking-[0.4em] block mb-2">Google Maps</span>
+                <h2 class="font-title text-4xl md:text-6xl uppercase tracking-tighter">📍 CÓMO LLEGAR</h2>
+                <div class="h-1.5 w-24 bg-[--deskaro-red] mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="reveal max-w-3xl mx-auto">
+                <!-- Contenedor del Mapa Embebido con efecto de neón y borde redondeado premium -->
+                <div class="rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl neon-glow-red bg-black/60 p-2">
+                    <iframe
+                        src="https://www.google.com/maps?q=Taberna+Deskaro+Malaga&output=embed"
+                        width="100%"
+                        height="400"
+                        class="border-0 rounded-2xl w-full"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+                <div class="mt-8 text-center">
+                    <a href="https://www.google.com/maps/place/Taberna+Deskaro/"
+                       target="_blank"
+                       class="px-8 py-4 bg-[--deskaro-red] text-white rounded-full text-xs font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(225,29,72,0.3)] inline-flex items-center gap-2">
+                        <i class="fas fa-route"></i> Ver ruta en Google Maps
+                    </a>
                 </div>
             </div>
         </div>
