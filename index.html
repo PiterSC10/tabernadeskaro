@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taberna Deskaro | Carta Completa e IA</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Oswald:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;600;700;800&family=Oswald:wght=500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -112,6 +112,18 @@
         .neon-glow-red {
             box-shadow: 0 0 30px rgba(225, 29, 72, 0.1);
         }
+
+        /* Estilo de la Barra de Desplazamiento de los Popups Legales */
+        .modal-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .modal-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .modal-scroll::-webkit-scrollbar-thumb {
+            background: var(--deskaro-red);
+            border-radius: 99px;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-rose-600 selection:text-white">
@@ -119,11 +131,13 @@
     <!-- MENÚ DE NAVEGACIÓN -->
     <nav class="fixed top-0 w-full z-[100] glass-header px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex flex-col leading-none cursor-default select-none">
+            <!-- Enlace corregido al id de Inicio -->
+            <a href="#inicio" class="flex flex-col leading-none cursor-pointer select-none">
                 <span class="font-title text-2xl tracking-tighter uppercase font-black">TABERNA</span>
                 <span class="font-title text-2xl tracking-tighter uppercase text-[--deskaro-red] ml-4 font-black">DES<span class="text-white">K</span>ARO</span>
-            </div>
+            </a>
             <div class="hidden lg:flex space-x-8 text-[11px] font-black uppercase tracking-[0.25em]">
+                <!-- Enlace de inicio corregido -->
                 <a href="#inicio" class="hover:text-rose-500 transition-colors">Inicio</a>
                 <a href="#ia-section" class="text-rose-400 hover:text-rose-300 transition-colors"><i class="fas fa-robot mr-1"></i> Diseñador Menú</a>
                 <a href="#carta" class="hover:text-rose-500 transition-colors">La Carta</a>
@@ -131,7 +145,8 @@
                 <a href="#ubicacion" class="hover:text-rose-500 transition-colors">Cómo Llegar</a>
                 <a href="#contacto" class="hover:text-rose-500 transition-colors">Contacto</a>
             </div>
-            <a href="https://wa.me/34744660685" class="px-6 py-3 bg-[--deskaro-red] text-white rounded-full text-xs font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(225,29,72,0.3)]">
+            <!-- Botón de reserva con número directo o enlace tradicional -->
+            <a href="https://wa.me/34744660685" target="_blank" class="px-6 py-3 bg-[--deskaro-red] text-white rounded-full text-xs font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(225,29,72,0.3)]">
                 RESERVAR MESA
             </a>
         </div>
@@ -623,21 +638,27 @@
             
             <div class="flex justify-center space-x-10 text-3xl mb-12">
                 <a href="https://instagram.com/tabernadeskaro" target="_blank" class="text-white hover:text-[--deskaro-red] hover:scale-125 transition-all"><i class="fab fa-instagram"></i></a>
-                <a href="tel:744660685" class="text-white hover:text-[--deskaro-red] hover:scale-125 transition-all"><i class="fas fa-phone"></i></a>
+                <!-- Enlace telefónico totalmente funcional -->
+                <a href="tel:+34744660685" class="text-white hover:text-[--deskaro-red] hover:scale-125 transition-all"><i class="fas fa-phone"></i></a>
                 <a href="https://wa.me/34744660685" target="_blank" class="text-[#25D366] hover:scale-125 transition-all"><i class="fab fa-whatsapp"></i></a>
             </div>
             
             <p class="text-[9px] text-gray-700 uppercase tracking-[0.4em] mb-4">&copy; 2026 TABERNA DESKARO • TODOS LOS DERECHOS RESERVADOS</p>
 
             <!-- CRÉDITOS SOLICITADOS -->
-            <div class="text-[10px] text-gray-600 uppercase tracking-[0.2em]">
-                <p>powered by <a href="https://pitersc10.github.io/textosporencargo/" class="hover:text-rose-500 transition-colors underline">YOURDESIGNGPT</a></p>
+            <div class="text-[10px] text-gray-600 uppercase tracking-[0.2em] mb-4">
+                <p>creada por <a href="https://pitersc10.github.io/textosporencargo/" target="_blank" class="hover:text-rose-500 transition-colors underline font-bold">YOURDESIGNGPT</a></p>
+                <p class="mt-1">powered by <a href="https://pitersc10.github.io/textosporencargo/" target="_blank" class="hover:text-rose-500 transition-colors underline font-bold">YOURDESIGNGPT</a></p>
             </div>
         </div>
     </footer>
 
     <!-- BOTÓN DE CONTACTO RÁPIDO FLOTANTE -->
-    <div class="fixed bottom-6 right-6 z-[100]">
+    <div class="fixed bottom-6 right-6 z-[100] flex flex-col gap-3">
+        <!-- Flecha flotante para volver arriba integrada armónicamente -->
+        <a href="#inicio" class="w-14 h-14 bg-black/80 border border-rose-600/30 rounded-full flex items-center justify-center text-white text-xl shadow-2xl hover:scale-110 active:scale-95 hover:bg-rose-600 hover:text-white transition-all">
+            <i class="fas fa-chevron-up"></i>
+        </a>
         <a href="https://wa.me/34744660685" target="_blank" class="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white text-2xl shadow-2xl hover:scale-110 active:scale-95 transition-all">
             <i class="fab fa-whatsapp"></i>
         </a>
@@ -647,8 +668,47 @@
     <script>
         let state = {
             qty: 0,
-            prefs: [],
+            format: '',
             style: '',
+        };
+
+        // Platos reales clasificados para recomendaciones dinámicas inteligentes
+        const cartaPlatos = {
+            entrantesLigeros: [
+                "Ensaladilla Rusa (Media 5€ / Ración 8€)",
+                "Tomate picado con ajitos (7.00€)",
+                "Pimientos asados con melva (8.00€)"
+            ],
+            entrantesContundentes: [
+                "Nachos Caseros Deskarados con guacamole y queso (Ración 14€)",
+                "Choricitos picantes a la sidra (5.00€)",
+                "Huevos Rotos con Jamón o Langostinos (12.00€)",
+                "Ventresca Paco con Tomate y Melba (9.00€)"
+            ],
+            pescadosLigeros: [
+                "Medias de pescado / Gambas a la plancha (Med. 7.50€ / Rac. 15€)",
+                "Tartar de Atún y Aguacate (20.00€)"
+            ],
+            pescadosContundentes: [
+                "Chanquetes con pimiento y huevo (14.00€)",
+                "Fritura de Rosada en Buchones (Media 8€ / Ración 14€)",
+                "Jibia Frita / Pulpo Frito (Media 8€ / Ración 14€)"
+            ],
+            carnesLigeras: [
+                "Plumilla Ibérica a la brasa (14.00€)"
+            ],
+            carnesContundentes: [
+                "Hamburguesa 3 Caracoles con su salsa deskarada (12.00€)",
+                "Cachopo 'Deskaro' con jamón y queso manchego (25.00€)",
+                "Entrecot de Ternera Simmental (20.00€)",
+                "Secreto Ibérico a baja temperatura con cajún (16.00€)",
+                "Fideos Tostados con Presa Ibérica (30.00€)",
+                "Fideos Tostados con Entrecot (30.00€)"
+            ],
+            postres: [
+                "Tarta de Queso cremosa casera (5.00€)",
+                "Brownie Helado (5.00€)"
+            ]
         };
 
         function addMessage(text, side) {
@@ -666,122 +726,124 @@
         function nextStep(type, val, label) {
             addMessage(label, 'user');
             const controls = document.getElementById("controls");
+            
+            // Indicador de escritura animado
             controls.innerHTML = `<div class="flex space-x-2 py-2"><div class="w-2 h-2 bg-rose-600 rounded-full animate-bounce"></div><div class="w-2 h-2 bg-rose-600 rounded-full animate-bounce [animation-delay:0.2s]"></div><div class="w-2 h-2 bg-rose-600 rounded-full animate-bounce [animation-delay:0.4s]"></div></div>`;
 
             setTimeout(() => {
                 if (type === 'qty') {
                     state.qty = val;
-                    addMessage("¡Perfecto! Ahora dime, <strong>¿qué os apetece hoy?</strong> Podéis marcar varias si queréis mezclar gustos.", 'ai');
+                    addMessage("¡De categoría! Decidme, ¿cómo preferís organizar el festín hoy?<br><br><strong>¿Queréis todo al centro para compartir, preferís que cada uno tenga su plato principal, o tiramos por una mezcla descarada de ambas?</strong>", 'ai');
                     controls.innerHTML = `
-                        <button onclick="togglePref('Carne 🥩', 'meat')" class="btn-option pref-btn" id="btn-meat">Carne</button>
-                        <button onclick="togglePref('Pescado 🐟', 'fish')" class="btn-option pref-btn" id="btn-fish">Pescado</button>
-                        <button onclick="togglePref('Entrantes/Varios 🌀', 'mix')" class="btn-option pref-btn" id="btn-mix">Varios</button>
-                        <button onclick="confirmPrefs()" class="btn-option bg-rose-600 text-white font-black mt-2">CONTINUAR →</button>
+                        <button onclick="nextStep('format', 'compartir', 'Todo para el centro 🌀')" class="btn-option">Todo a compartir</button>
+                        <button onclick="nextStep('format', 'individual', 'Platos individuales 🍽️')" class="btn-option">Individuales</button>
+                        <button onclick="nextStep('format', 'mezcla', 'Una mezcla guapa de ambos 🤝')" class="btn-option">Mezcla (Compartir + Principal)</button>
                     `;
-                } else if (type === 'confirm') {
-                    addMessage("Última pregunta: ¿Queréis salir rodando (Vara fuerte 💪) o preferís picoteear (Ligerito 🥗)?", 'ai');
+                } else if (type === 'format') {
+                    state.format = val;
+                    addMessage("¡Oído cocina! ¿Y qué cuerpo tenéis hoy para la manduca?<br><br><strong>¿Os apetece un tapeo más ligero, preferís algo contundente y graso para salir rodando de Huelin, o buscáis un término medio equilibrado?</strong>", 'ai');
                     controls.innerHTML = `
-                        <button onclick="generateFinal('Vara Fuerte 💪', 'heavy')" class="btn-option bg-rose-600 text-white">VARA FUERTE</button>
-                        <button onclick="generateFinal('Ligerito 🥗', 'light')" class="btn-option">ALGO LIGERO</button>
+                        <button onclick="nextStep('style', 'ligero', 'Algo ligero 🥗')" class="btn-option">Algo ligero</button>
+                        <button onclick="nextStep('style', 'contundente', 'Contundente / Graso 🥩')" class="btn-option">Contundente</button>
+                        <button onclick="nextStep('style', 'equilibrado', 'Equilibrado y variado ⚖️')" class="btn-option">Equilibrado</button>
                     `;
+                } else if (type === 'style') {
+                    state.style = val;
+                    generateFinalProposal();
                 }
             }, 800);
         }
 
-        function togglePref(label, val) {
-            if (state.prefs.includes(val)) {
-                state.prefs = state.prefs.filter(p => p !== val);
-                document.getElementById('btn-'+val).classList.remove('bg-rose-600');
-            } else {
-                state.prefs.push(val);
-                document.getElementById('btn-'+val).classList.add('bg-rose-600');
-            }
-        }
+        // Generador inteligente y dinámico de menús basados en la carta real
+        function generateFinalProposal() {
+            const controls = document.getElementById("controls");
+            let listadoMenu = [];
+            let explicacion = "";
 
-        function confirmPrefs() {
-            if (state.prefs.length === 0) return;
-            nextStep('confirm', null, "Tengo claras las preferencias.");
-        }
+            // Helper para mezclar aleatoriamente arreglos y dar frescura
+            const randomPick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+            const shuffle = (arr) => [...arr].sort(() => 0.5 - Math.random());
 
-        function generateFinal(label, style) {
-            addMessage(label, 'user');
-            state.style = style;
-            
-            setTimeout(() => {
-                let proposal = "";
-                let dishes = [];
-                
-                if (state.qty <= 2) {
-                    if (state.style === 'heavy') {
-                        dishes = [
-                            "1 Media de Ensaladilla Rusa (5.00€)",
-                            "1 Fideos Tostados con Presa (30.00€)",
-                            "1 Tarta de Queso (5.00€)"
-                        ];
-                        proposal = "Para 2 hambrientos, la combinación reina de Huelin: la cremosidad de la ensaladilla y el sabor imbatible de los fideos tostados.";
-                    } else {
-                        dishes = [
-                            "1 Media de Ensaladilla (5.00€)",
-                            "2 Croquetas de la Abuela (2.40€)",
-                            "1 Tartar de Atún y Aguacate (20.00€)",
-                            "1 Mini de Serranito (6.00€)"
-                        ];
-                        proposal = "Un picoteo selecto y variado para disfrutar de la frescura del atún sin saturar el paladar.";
-                    }
-                } else if (state.qty <= 4) {
-                    if (state.prefs.includes('meat') && state.prefs.includes('fish')) {
-                        dishes = [
-                            "1 Ración de Nachos Caseros (14.00€)",
-                            "1 Tartar de Atún (20.00€)",
-                            "1 Fideos Tostados con Presa (30.00€)",
-                            "2 Croquetas (2.40€)",
-                            "2 Postres variados (10.00€)"
-                        ];
-                        proposal = "Equilibrio perfecto de mar y montaña ideal para compartir en el centro de la mesa.";
-                    } else {
-                        dishes = [
-                            "1 Ración de Nachos Caseros (14.00€)",
-                            "1 Huevos Rotos con Jamón (12.00€)",
-                            "1 Cachopo Deskaro (25.00€)",
-                            "2 Tarta de Queso Payoyo (10.00€)"
-                        ];
-                        proposal = "Propuesta tabernera de pura cepa. Potencia y sabor directos al centro.";
-                    }
-                } else {
-                    dishes = [
-                        "2 Raciones de Nachos Caseros (28.00€)",
-                        "Ronda de Croquetas individuales (1.20€/u)",
-                        "1 Ración de Fritura Variada (14.00€)",
-                        "1 Fideos con Presa (30.00€)",
-                        "1 Presa Ibérica a la brasa (20.00€)"
-                    ];
-                    proposal = "Para un grupo, la regla de oro es llenar la mesa con platos fáciles de repartir y degustar juntos.";
+            const dEntrantesLigeros = shuffle(cartaPlatos.entrantesLigeros);
+            const dEntrantesContundentes = shuffle(cartaPlatos.entrantesContundentes);
+            const dPescadosLigeros = shuffle(cartaPlatos.pescadosLigeros);
+            const dPescadosContundentes = shuffle(cartaPlatos.pescadosContundentes);
+            const dCarnesContundentes = shuffle(cartaPlatos.carnesContundentes);
+            const dPostres = shuffle(cartaPlatos.postres);
+
+            if (state.format === 'compartir') {
+                if (state.style === 'ligero') {
+                    listadoMenu.push(dEntrantesLigeros[0]);
+                    listadoMenu.push(dEntrantesLigeros[1] || dEntrantesLigeros[0]);
+                    listadoMenu.push(dPescadosLigeros[0]);
+                    explicacion = "Os he preparado una ronda de raciones ligeras ideales para picotear fresco en el centro de la mesa, disfrutando del mar sin empacharse.";
+                } else if (state.style === 'contundente') {
+                    listadoMenu.push(dEntrantesContundentes[0]);
+                    listadoMenu.push(randomPick(["Chanquetes con pimiento y huevo (14.00€)", "Torreznos fritos crujientes (6.00€)"]));
+                    listadoMenu.push(dCarnesContundentes[0]); // P.ej. Fideos o Hamburguesa 3 Caracoles
+                    explicacion = "Mesa llena y manduca de la buena. Platos sabrosos al centro para meter tenedor sin compasión.";
+                } else { // Equilibrado
+                    listadoMenu.push(dEntrantesLigeros[0]);
+                    listadoMenu.push(dEntrantesContundentes[0]);
+                    listadoMenu.push(dPescadosContundentes[0]);
+                    explicacion = "Un balance ideal. Empezamos con frescura y rematamos con raciones calientes irresistibles.";
                 }
+            } else if (state.format === 'individual') {
+                if (state.style === 'ligero') {
+                    listadoMenu.push("Croqueta casera de la Abuela de bienvenida (1.20€/ud)");
+                    listadoMenu.push(randomPick(["Medias de pescado del día (Med. 7.50€)", "Tartar de Atún y Aguacate (20.00€)"]));
+                    explicacion = "Entrante individual fino y un principal fresco directo del mar.";
+                } else if (state.style === 'contundente') {
+                    listadoMenu.push("Croqueta casera de la Abuela de bienvenida (1.20€/ud)");
+                    listadoMenu.push(randomPick(["Hamburguesa 3 Caracoles (12.00€)", "Cachopo 'Deskaro' crujiente (25.00€)", "Secreto Ibérico (16.00€)"]));
+                    explicacion = "Preparad el apetito para un principal de carne a la parrilla de nivel.";
+                } else { // Equilibrado
+                    listadoMenu.push("Croqueta casera de la Abuela de bienvenida (1.20€/ud)");
+                    listadoMenu.push(randomPick(["Plumilla Ibérica a la brasa (14.00€)", "Medias de pescado fresco (7.50€)", "Presa Ibérica (20.00€)"]));
+                    explicacion = "Un menú completo y balanceado con un toque clásico de la taberna.";
+                }
+            } else { // Mezcla (Mezcla de Compartir + Principal)
+                if (state.style === 'ligero') {
+                    listadoMenu.push(dEntrantesLigeros[0] + " (Al centro)");
+                    listadoMenu.push("Medias de pescado fresco del día para cada uno (7.50€/ud)");
+                    explicacion = "Un entrante ligero para compartir y luego vuestro pescado preferido de plato individual.";
+                } else if (state.style === 'contundente') {
+                    listadoMenu.push("Ración de Ventresca Paco con Tomate y Melba (Para compartir - 9.00€)");
+                    listadoMenu.push("Hamburguesa 3 Caracoles individual (12.00€/ud) u Oferta de Fideos Tostados");
+                    explicacion = "Compartimos un entrante lleno de sabor y cerramos con un principal potente.";
+                } else { // Equilibrado
+                    listadoMenu.push("Ensaladilla Rusa templada para abrir boca (Al centro - Med. 5.00€)");
+                    listadoMenu.push("Secreto Ibérico o Medias de pescado como principal individual");
+                    explicacion = "Un tapeo compartido clásico de Huelin seguido de un principal a vuestro gusto.";
+                }
+            }
 
-                let html = `
-                    <div class='space-y-4'>
-                        <p class='text-[--deskaro-red] font-black text-xs uppercase tracking-widest font-title'><i class='fas fa-utensils mr-1'></i> Propuesta de Menú:</p>
-                        <div class='space-y-2 border-l-2 border-rose-600 pl-4 text-xs font-bold text-gray-200'>
-                `;
-                dishes.forEach(d => html += `<div class='flex justify-between py-1'><span>• ${d}</span></div>`);
-                html += `
-                        </div>
-                        <p class='text-[11px] italic text-gray-400 mt-4 leading-relaxed'>${proposal}</p>
+            // Añadir siempre un postre variado y sorprendente
+            listadoMenu.push(dPostres[0] + " (Para poner el broche final)");
+
+            let htmlOutput = `
+                <div class='space-y-4'>
+                    <p class='text-[--deskaro-red] font-black text-xs uppercase tracking-widest font-title'><i class='fas fa-utensils mr-1'></i> Propuesta de Menú Confeccionada:</p>
+                    <div class='space-y-2 border-l-2 border-rose-600 pl-4 text-xs font-bold text-gray-200'>
+            `;
+            listadoMenu.forEach(plato => htmlOutput += `<div class='flex justify-between py-1'><span>• ${plato}</span></div>`);
+            htmlOutput += `
                     </div>
-                `;
-                
-                addMessage(html, 'ai');
-                document.getElementById("controls").innerHTML = `
-                    <button onclick="location.reload()" class="btn-option border-rose-600 text-rose-500">RECONFIGURAR 🔄</button>
-                    <a href="https://wa.me/34744660685" target="_blank" class="btn-option bg-rose-600 text-white shadow-[0_4px_15px_rgba(225,29,72,0.3)]">RESERVAR ESTE MENÚ</a>
-                `;
-            }, 1000);
+                    <p class='text-[11px] italic text-gray-400 mt-4 leading-relaxed'>${explicacion}</p>
+                </div>
+            `;
+            
+            addMessage(htmlOutput, 'ai');
+            controls.innerHTML = `
+                <button onclick="location.reload()" class="btn-option border-rose-600 text-rose-500">RECONFIGURAR 🔄</button>
+                <a href="https://wa.me/34744660685" target="_blank" class="btn-option bg-rose-600 text-white shadow-[0_4px_15px_rgba(225,29,72,0.3)]">RESERVAR ESTE MENÚ</a>
+            `;
         }
 
         // Desplazamiento del Carrusel de Opiniones
         function scrollCarousel(direction) {
             const carousel = document.getElementById("carousel");
-            const cardWidth = carousel.firstElementChild.offsetWidth + 24; // Card width + gap (6 in Tailwind = 24px)
+            const cardWidth = carousel.firstElementChild.offsetWidth + 24; // Card width + gap (24px)
             carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
         }
 
