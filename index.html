@@ -1,222 +1,466 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taberna Deskaro | Menú Personalizado IA</title>
-    <meta name="robots" content="noindex, nofollow">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Oswald:wght@500;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root { --deskaro-red:#e11d48; --deskaro-dark:#050505; --deskaro-card:#0f0f0f; }
-        body { font-family:'Plus Jakarta Sans',sans-serif; background-color:var(--deskaro-dark); color:#fff; overflow-x:hidden; }
-        .font-title { font-family:'Oswald',sans-serif; }
-        .reveal { opacity:0; transform:translateY(30px); transition:all .8s cubic-bezier(.16,1,.3,1); }
-        .reveal.active { opacity:1; transform:translateY(0); }
-        .glass-header { background:rgba(5,5,5,.85); backdrop-filter:blur(15px); border-bottom:1px solid rgba(255,255,255,.05); }
-        .neon-border { border:1px solid rgba(225,29,72,.2); box-shadow:0 0 25px rgba(225,29,72,.05); transition:all .4s ease; }
-        .menu-row { border-bottom:1px dashed rgba(255,255,255,.1); }
-        .scroll-hide::-webkit-scrollbar { display:none; }
-        .chat-bubble-ai { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.05); border-radius:1.5rem 1.5rem 1.5rem 0; }
-        .chat-bubble-user { background:var(--deskaro-red); border-radius:1.5rem 1.5rem 0 1.5rem; font-weight:600; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="theme-color" content="#050505" />
+  <meta name="description" content="Vista previa privada de Taberna Deskaro en Huelin, Málaga. Carta completa, Chef Virtual, ubicación e Instagram oficial." />
+  <title>Taberna Deskaro | Vista previa privada</title>
 
-        /* Marca de agua elegante para la demo */
-        .demo-watermark {
-            position:fixed;
-            top:50%; left:50%;
-            transform:translate(-50%,-50%) rotate(-18deg);
-            z-index:99999;
-            pointer-events:none;
-            user-select:none;
-            white-space:nowrap;
-            text-align:center;
-            opacity:.095;
-            filter:blur(.3px);
-            mix-blend-mode:screen;
-        }
-        .demo-watermark .main {
-            font-family:'Oswald',sans-serif;
-            font-size:clamp(4rem,12vw,11rem);
-            font-weight:800;
-            line-height:.82;
-            letter-spacing:-.04em;
-            text-transform:uppercase;
-            color:#fff;
-            text-shadow:0 0 30px rgba(225,29,72,.25);
-        }
-        .demo-watermark .sub {
-            margin-top:1.2rem;
-            font-size:clamp(.65rem,1.2vw,1rem);
-            font-weight:800;
-            letter-spacing:.55em;
-            text-transform:uppercase;
-            color:#fff;
-        }
-        .preview-chip {
-            position:fixed;
-            right:18px; bottom:18px;
-            z-index:99998;
-            pointer-events:none;
-            user-select:none;
-            padding:10px 15px;
-            border-radius:999px;
-            background:rgba(5,5,5,.72);
-            border:1px solid rgba(225,29,72,.28);
-            backdrop-filter:blur(12px);
-            color:rgba(255,255,255,.68);
-            font-size:9px;
-            font-weight:800;
-            letter-spacing:.18em;
-            text-transform:uppercase;
-            box-shadow:0 12px 40px rgba(0,0,0,.35);
-        }
-        @media (max-width:640px) {
-            .demo-watermark { transform:translate(-50%,-50%) rotate(-24deg); opacity:.085; }
-            .preview-chip { right:12px; bottom:12px; font-size:8px; padding:9px 12px; }
-        }
-    </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Oswald:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root{
+      --deskaro-red:#e11d48;
+      --deskaro-dark:#050505;
+      --deskaro-card:#0f0f0f;
+      --deskaro-soft:#151515;
+      --deskaro-line:rgba(255,255,255,.08);
+    }
+    *{box-sizing:border-box}
+    html{background:var(--deskaro-dark)}
+    body{
+      margin:0;
+      font-family:'Plus Jakarta Sans',sans-serif;
+      background:var(--deskaro-dark);
+      color:#fff;
+      overflow-x:hidden;
+    }
+    .font-title{font-family:'Oswald',sans-serif}
+    .glass-header{
+      background:rgba(5,5,5,.80);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.05);
+    }
+    .neon-border{
+      border:1px solid rgba(225,29,72,.22);
+      box-shadow:0 0 30px rgba(225,29,72,.05);
+    }
+    .section-kicker{letter-spacing:.34em;text-transform:uppercase;color:#fb7185;font-size:.7rem;font-weight:800}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+    .reveal.active{opacity:1;transform:translateY(0)}
+    .scroll-hide::-webkit-scrollbar{display:none}
+    .menu-row{border-bottom:1px dashed rgba(255,255,255,.10)}
+    .chat-bubble-ai{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.055);border-radius:1.5rem 1.5rem 1.5rem 0}
+    .chat-bubble-user{background:var(--deskaro-red);border-radius:1.5rem 1.5rem 0 1.5rem;font-weight:700}
+
+    /* DEMO */
+    .demo-watermark{
+      position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-18deg);
+      z-index:99999;pointer-events:none;user-select:none;white-space:nowrap;text-align:center;
+      opacity:.085;filter:blur(.25px);mix-blend-mode:screen;
+    }
+    .demo-watermark .main{font-family:'Oswald',sans-serif;font-size:clamp(4rem,11vw,10rem);font-weight:800;line-height:.82;letter-spacing:-.04em;text-transform:uppercase}
+    .demo-watermark .sub{margin-top:1rem;font-size:clamp(.62rem,1.1vw,.9rem);font-weight:800;letter-spacing:.48em;text-transform:uppercase}
+    .preview-chip{position:fixed;right:16px;bottom:16px;z-index:99998;pointer-events:none;padding:10px 14px;border-radius:999px;background:rgba(5,5,5,.76);border:1px solid rgba(225,29,72,.28);backdrop-filter:blur(10px);font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.68)}
+
+    /* HERO SCROLL */
+    .hero-track{height:155vh;position:relative}
+    .hero-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#050505}
+    .hero-sticky::before{
+      content:"";position:absolute;inset:-20%;
+      background:
+        radial-gradient(circle at 50% 48%,rgba(225,29,72,.18),transparent 27%),
+        radial-gradient(circle at 18% 18%,rgba(225,29,72,.08),transparent 25%),
+        linear-gradient(135deg,#0a0204 0%,#050505 42%,#020202 100%);
+      transform:scale(1.05);z-index:0;
+    }
+    .hero-grid{position:absolute;inset:0;opacity:.08;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(to bottom,transparent,black 20%,black 75%,transparent)}
+    .hero-content{position:relative;z-index:2;width:100%;text-align:center;padding:0 18px}
+    .hero-eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.42em;color:#9ca3af;font-weight:800;margin-bottom:28px;transition:opacity .25s linear,transform .25s linear}
+    .hero-word{font-family:'Oswald',sans-serif;font-weight:800;font-size:clamp(5rem,17vw,14rem);line-height:.76;letter-spacing:-.075em;text-transform:uppercase;white-space:nowrap;display:flex;justify-content:center;align-items:center;will-change:transform,opacity}
+    .hero-letter{display:inline-block;will-change:transform,opacity;text-shadow:0 0 60px rgba(225,29,72,.06)}
+    .hero-letter.k{color:var(--deskaro-red);text-shadow:0 0 42px rgba(225,29,72,.36)}
+    .hero-sub{margin-top:28px;text-transform:uppercase;letter-spacing:.34em;color:#9ca3af;font-size:clamp(.72rem,1.6vw,1.05rem);font-weight:400;will-change:transform,opacity}
+    .hero-reveal-copy{margin:25px auto 0;max-width:720px;opacity:0;transform:translateY(24px);font-size:clamp(1.05rem,2.4vw,1.65rem);font-weight:300;color:#ddd;will-change:transform,opacity}
+    .hero-actions{margin-top:30px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;will-change:transform,opacity}
+    .scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:3;text-align:center;color:#777;font-size:9px;font-weight:800;letter-spacing:.32em;text-transform:uppercase;transition:opacity .2s linear}
+    .scroll-cue i{display:block;margin-top:8px;color:#fb7185;font-size:15px;animation:bounceY 1.6s infinite}
+    @keyframes bounceY{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+    .btn-main{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.95rem 1.45rem;border-radius:999px;background:var(--deskaro-red);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;transition:.25s ease}
+    .btn-main:hover{transform:translateY(-2px);box-shadow:0 0 35px rgba(225,29,72,.30)}
+    .btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.95rem 1.45rem;border-radius:999px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.035);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;transition:.25s ease}
+    .btn-ghost:hover{border-color:rgba(225,29,72,.55);background:rgba(225,29,72,.08)}
+
+    .feature-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);border-radius:1.5rem;overflow:hidden}
+    .feature-strip>div{background:#0a0a0a;padding:22px 18px}
+
+    .filter-btn{padding:.65rem 1rem;border-radius:999px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.03);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.11em;color:#c8c8c8;transition:.2s ease}
+    .filter-btn:hover,.filter-btn.active{background:var(--deskaro-red);border-color:var(--deskaro-red);color:#fff}
+    .menu-card{background:linear-gradient(180deg,#111,#0b0b0b);border:1px solid rgba(255,255,255,.06);border-radius:1.75rem;padding:1.6rem;transition:.25s ease}
+    .menu-card:hover{border-color:rgba(225,29,72,.25);transform:translateY(-2px)}
+    .price-pill{display:inline-flex;gap:.35rem;align-items:center;padding:.38rem .58rem;border-radius:999px;background:rgba(225,29,72,.08);border:1px solid rgba(225,29,72,.16);font-size:.68rem;color:#fda4af;font-weight:800}
+    .menu-item{padding:1rem 0;border-bottom:1px dashed rgba(255,255,255,.09)}
+    .menu-item:last-child{border-bottom:0}
+
+    .original-card{position:relative;overflow:hidden;border-radius:2rem;min-height:360px;border:1px solid rgba(255,255,255,.07);background:#0c0c0c;cursor:pointer}
+    .original-card img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;filter:brightness(.42) saturate(.75);transition:transform .55s cubic-bezier(.16,1,.3,1),filter .4s ease}
+    .original-card:hover img{transform:scale(1.035);filter:brightness(.50) saturate(.9)}
+    .original-card .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.96),rgba(5,5,5,.12) 72%)}
+    .original-card .copy{position:absolute;left:24px;right:24px;bottom:24px;z-index:2}
+
+    .modal{position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.92);backdrop-filter:blur(14px);display:none;align-items:center;justify-content:center;padding:26px}
+    .modal.open{display:flex}
+    .modal img{max-width:min(92vw,1100px);max-height:88vh;object-fit:contain;border-radius:1rem;box-shadow:0 30px 100px rgba(0,0,0,.7)}
+    .modal-close{position:absolute;right:22px;top:20px;width:44px;height:44px;border-radius:999px;background:#171717;border:1px solid rgba(255,255,255,.1);display:grid;place-items:center;font-size:20px}
+
+    .floating-social{position:fixed;right:18px;bottom:66px;z-index:90;width:52px;height:52px;border-radius:999px;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);display:grid;place-items:center;font-size:24px;box-shadow:0 12px 35px rgba(225,29,72,.25);transition:.2s ease}
+    .floating-social:hover{transform:scale(1.06)}
+
+    @media(max-width:900px){
+      .feature-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .hero-word{font-size:clamp(4.4rem,20vw,9rem)}
+    }
+    @media(max-width:640px){
+      .hero-track{height:145vh}
+      .hero-word{font-size:clamp(4rem,21vw,7rem);letter-spacing:-.08em}
+      .hero-sub{letter-spacing:.23em}
+      .feature-strip{grid-template-columns:1fr 1fr}
+      .demo-watermark{transform:translate(-50%,-50%) rotate(-24deg);opacity:.07}
+      .preview-chip{right:10px;bottom:10px;font-size:7.5px}
+      .floating-social{right:12px;bottom:55px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.hero-letter,.hero-sub,.hero-reveal-copy,.hero-actions{transform:none!important;opacity:1!important}.scroll-cue{display:none}
+    }
+  </style>
 </head>
 <body class="antialiased selection:bg-rose-600 selection:text-white">
 
-    <div class="demo-watermark" aria-hidden="true">
-        <div class="main">DEMO PRIVADA</div>
-        <div class="sub">TABERNA DESKARO · VERSIÓN PREVIA</div>
+  <div class="demo-watermark" aria-hidden="true">
+    <div class="main">DEMO PRIVADA</div>
+    <div class="sub">TABERNA DESKARO · VERSIÓN PREVIA</div>
+  </div>
+  <div class="preview-chip" aria-hidden="true">Propuesta visual · No versión final</div>
+
+  <nav class="fixed top-0 w-full z-[100] glass-header px-5 md:px-6 py-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center gap-4">
+      <a href="#inicio" class="flex flex-col leading-none shrink-0">
+        <span class="font-title text-xl md:text-2xl tracking-tighter uppercase">TABERNA</span>
+        <span class="font-title text-xl md:text-2xl tracking-tighter uppercase text-rose-500 ml-4">DESKARO</span>
+      </a>
+      <div class="hidden lg:flex items-center space-x-7 text-[10px] font-bold uppercase tracking-[.16em] text-gray-300">
+        <a href="#chef" class="hover:text-rose-400 transition-colors">Chef Deskaro</a>
+        <a href="#carta" class="hover:text-rose-400 transition-colors">La Carta</a>
+        <a href="#bebidas" class="hover:text-rose-400 transition-colors">Bebidas</a>
+        <a href="#original" class="hover:text-rose-400 transition-colors">Carta original</a>
+        <a href="#contacto" class="hover:text-rose-400 transition-colors">Ubicación</a>
+      </div>
+      <a href="https://www.instagram.com/tabernadeskaro/" target="_blank" rel="noopener" class="px-5 py-2.5 bg-rose-600 text-white rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all shrink-0"><i class="fab fa-instagram mr-1.5"></i> Instagram</a>
     </div>
-    <div class="preview-chip" aria-hidden="true">Propuesta visual · No versión final</div>
+  </nav>
 
-    <nav class="fixed top-0 w-full z-[100] glass-header px-6 py-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="#inicio" class="flex flex-col leading-none">
-                <span class="font-title text-2xl tracking-tighter uppercase">TABERNA</span>
-                <span class="font-title text-2xl tracking-tighter uppercase text-[--deskaro-red] ml-4">DESKARO</span>
-            </a>
-            <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest">
-                <a href="#ia-section" class="text-rose-400 flex items-center gap-2"><i class="fas fa-magic animate-pulse"></i> Diseñador de Menú</a>
-                <a href="#carta" class="hover:text-rose-500 transition-colors">La Carta</a>
-                <a href="#contacto" class="hover:text-rose-500 transition-colors">Ubicación</a>
-            </div>
-            <a href="https://wa.me/34744660685" class="px-5 py-2.5 bg-[--deskaro-red] text-white rounded-full text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all">RESERVAR</a>
+  <section id="inicio" class="hero-track">
+    <div class="hero-sticky">
+      <div class="hero-grid"></div>
+      <div class="hero-content">
+        <div id="heroEyebrow" class="hero-eyebrow">Huelin · Málaga · Sabor con actitud</div>
+        <h1 id="heroWord" class="hero-word" aria-label="DESKARO">
+          <span class="hero-letter">D</span><span class="hero-letter">E</span><span class="hero-letter">S</span><span class="hero-letter k">K</span><span class="hero-letter">A</span><span class="hero-letter">R</span><span class="hero-letter">O</span>
+        </h1>
+        <div id="heroSub" class="hero-sub">Taberna · Mar · Carne · Vinos</div>
+        <p id="heroRevealCopy" class="hero-reveal-copy">Una carta con personalidad, pensada para compartir y volver a pedir.</p>
+        <div id="heroActions" class="hero-actions">
+          <a href="#carta" class="btn-main"><i class="fa-solid fa-utensils"></i> Ver carta completa</a>
+          <a href="#chef" class="btn-ghost"><i class="fa-solid fa-wand-magic-sparkles"></i> Chef Virtual</a>
         </div>
-    </nav>
+      </div>
+      <div id="scrollCue" class="scroll-cue">Scroll<i class="fa-solid fa-arrow-down"></i></div>
+    </div>
+  </section>
 
-    <section id="inicio" class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-rose-950/20 via-black to-black"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-rose-600/5 blur-[120px] rounded-full"></div>
-        <div class="relative z-10 text-center px-6">
-            <h1 class="reveal font-title text-7xl md:text-[12rem] font-black uppercase tracking-tighter leading-[0.8] mb-6">DES<span class="text-[--deskaro-red]">K</span>ARO</h1>
-            <p class="reveal text-lg md:text-2xl font-light tracking-[0.4em] uppercase text-gray-400 mb-12 italic">Huelin, Málaga. Sabor con actitud.</p>
-            <div class="reveal"><a href="#ia-section" class="px-10 py-5 bg-[--deskaro-red] rounded-full font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_40px_rgba(225,29,72,0.4)] transition-all">Configurar mi menú ahora</a></div>
-        </div>
+  <main>
+    <section class="px-6 -mt-6 relative z-10">
+      <div class="max-w-6xl mx-auto feature-strip reveal">
+        <div><div class="text-rose-500 text-xl mb-2"><i class="fa-solid fa-burger"></i></div><div class="font-title text-xl uppercase">3 Caracoles</div><div class="text-xs text-gray-500 mt-1">Miniburguer Deskaro · 6€</div></div>
+        <div><div class="text-rose-500 text-xl mb-2"><i class="fa-solid fa-seedling"></i></div><div class="font-title text-xl uppercase">Tomate Paco</div><div class="text-xs text-gray-500 mt-1">Con ajitos y AOVE · 9,5€</div></div>
+        <div><div class="text-rose-500 text-xl mb-2"><i class="fa-solid fa-bowl-food"></i></div><div class="font-title text-xl uppercase">Fideos tostados</div><div class="text-xs text-gray-500 mt-1">Gambón, presa o entrecot</div></div>
+        <div><div class="text-rose-500 text-xl mb-2"><i class="fa-solid fa-fire-flame-curved"></i></div><div class="font-title text-xl uppercase">Del mar</div><div class="text-xs text-gray-500 mt-1">Pulpo, calamar, fritura y más</div></div>
+      </div>
     </section>
 
-    <section id="ia-section" class="py-24 px-6 bg-[#080808]">
-        <div class="max-w-3xl mx-auto">
-            <div class="text-center mb-12 reveal">
-                <span class="text-[--deskaro-red] font-bold text-xs uppercase tracking-[0.4em] block mb-2">Asistente Inteligente</span>
-                <h2 class="font-title text-4xl md:text-6xl uppercase tracking-tighter">TU COMIDA A MEDIDA</h2>
-                <p class="text-gray-500 text-sm mt-3">Dime qué buscas y diseñaré la propuesta perfecta de platos y cantidades.</p>
-            </div>
-            <div class="reveal neon-border bg-[#0c0c0c] rounded-[2.5rem] overflow-hidden min-h-[500px] flex flex-col">
-                <div class="bg-black/40 px-8 py-5 border-b border-white/5 flex items-center justify-between">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-full bg-rose-600/10 flex items-center justify-center border border-rose-600/30"><i class="fas fa-robot text-[--deskaro-red] animate-bounce"></i></div>
-                        <div><h4 class="font-bold text-sm">Chef Virtual Deskaro</h4><span class="text-[10px] text-emerald-400">En línea • Especialista en Huelin</span></div>
-                    </div>
-                </div>
-                <div id="chat-window" class="flex-grow p-8 space-y-6 overflow-y-auto max-h-[400px] scroll-hide">
-                    <div class="flex items-start gap-3 max-w-[90%]"><div class="chat-bubble-ai p-5 text-sm leading-relaxed text-gray-300">¡Hola! Soy el Chef Virtual de Deskaro. Vamos a diseñar tu menú perfecto para que no sobre ni falte nada. <br><br>Para empezar, <strong>¿Cuántos comensales vais a ser hoy?</strong></div></div>
-                </div>
-                <div class="p-8 bg-black/40 border-t border-white/5">
-                    <div id="options-container" class="flex flex-wrap gap-3 justify-center">
-                        <button onclick="handleStep('quantity','Somos 2',2)" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Somos 2</button>
-                        <button onclick="handleStep('quantity','Somos 3 o 4',4)" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Somos 3 o 4</button>
-                        <button onclick="handleStep('quantity','Grupo Grande (+5)',6)" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Grupo Grande</button>
-                    </div>
-                </div>
-            </div>
+    <section id="chef" class="py-28 px-6 bg-[#080808]">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12 reveal">
+          <span class="section-kicker block mb-3">Asistente inteligente</span>
+          <h2 class="font-title text-5xl md:text-7xl uppercase tracking-tighter">TU COMIDA A MEDIDA</h2>
+          <p class="text-gray-500 text-sm mt-4 max-w-2xl mx-auto">Elige grupo, hambre, estilo y presupuesto. El Chef Deskaro combina platos de la carta real y calcula una propuesta aproximada.</p>
         </div>
+
+        <div class="reveal neon-border bg-[#0c0c0c] rounded-[2.3rem] overflow-hidden min-h-[520px] flex flex-col">
+          <div class="bg-black/40 px-7 py-5 border-b border-white/5 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 rounded-full bg-rose-600/10 flex items-center justify-center border border-rose-600/30"><i class="fas fa-robot text-rose-500"></i></div>
+              <div><h4 class="font-bold text-sm">Chef Virtual Deskaro</h4><span class="text-[10px] text-emerald-400">En línea · Carta real cargada</span></div>
+            </div>
+            <button onclick="restartChef()" class="text-[10px] text-gray-500 uppercase tracking-widest hover:text-white"><i class="fa-solid fa-rotate-right mr-1"></i> Reiniciar</button>
+          </div>
+
+          <div id="chat-window" class="flex-grow p-6 md:p-8 space-y-5 overflow-y-auto max-h-[430px] scroll-hide">
+            <div class="flex items-start gap-3 max-w-[92%]"><div class="chat-bubble-ai p-5 text-sm leading-relaxed text-gray-300">¡Hola! Soy el Chef Virtual de Deskaro. Vamos a montar una propuesta para compartir. <br><br><strong>¿Cuántos vais a ser?</strong></div></div>
+          </div>
+          <div class="p-6 md:p-8 bg-black/40 border-t border-white/5"><div id="options-container" class="flex flex-wrap gap-3 justify-center"></div></div>
+        </div>
+      </div>
     </section>
 
-    <section id="carta" class="py-24 px-6 max-w-5xl mx-auto">
-        <div class="text-center reveal mb-20"><h2 class="font-title text-6xl uppercase tracking-tighter">LA CARTA</h2><div class="h-1 w-20 bg-[--deskaro-red] mx-auto mt-4"></div></div>
-        <div class="grid md:grid-cols-2 gap-16">
-            <div class="reveal">
-                <h3 class="font-title text-3xl uppercase tracking-tighter mb-8 text-rose-500">Entrantes</h3>
-                <div class="space-y-4">
-                    <div class="flex justify-between menu-row pb-2"><span>Nachos Caseros Deskaro</span><span>7.00€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Torreznos Crujientes</span><span>5.00€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Croquetas del Chef (ud)</span><span>1.50€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Ensaladilla Rusa</span><span>5.00€</span></div>
-                </div>
-            </div>
-            <div class="reveal">
-                <h3 class="font-title text-3xl uppercase tracking-tighter mb-8 text-rose-500">Los Virales</h3>
-                <div class="space-y-4">
-                    <div class="flex justify-between menu-row pb-2"><span>Fideos Tostados con Presa</span><span>25.00€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Fideos Tostados con Entrecot</span><span>30.00€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Pata de Pulpo a la Brasa</span><span>20.00€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Tartar de Atún y Aguacate</span><span>20.00€</span></div>
-                </div>
-            </div>
+    <section id="carta" class="py-28 px-6 bg-[#050505]">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center reveal mb-12">
+          <span class="section-kicker block mb-3">Carta actual</span>
+          <h2 class="font-title text-6xl md:text-8xl uppercase tracking-tighter">LA CARTA ENTERA</h2>
+          <p class="text-gray-500 text-sm mt-4 max-w-3xl mx-auto">Carta completa trasladada desde la carta física: Entrantes, Del Mar, Bocaditos, Rincón Carnívoro, Platazos Deskarados, Peques y Postres, con sus formatos y precios.</p>
         </div>
+
+        <div class="reveal sticky top-[76px] z-40 py-3 mb-10 bg-[#050505]/90 backdrop-blur-xl border-y border-white/5">
+          <div class="max-w-5xl mx-auto flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
+            <div class="relative flex-1 max-w-md"><i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-600 text-xs"></i><input id="menuSearch" type="search" placeholder="Buscar plato..." class="w-full rounded-full bg-white/5 border border-white/10 py-3 pl-10 pr-4 text-sm outline-none focus:border-rose-600/50" /></div>
+            <div id="foodFilters" class="flex gap-2 overflow-x-auto scroll-hide pb-1 md:pb-0"></div>
+          </div>
+        </div>
+
+        <div id="foodMenu" class="grid lg:grid-cols-2 gap-6"></div>
+      </div>
     </section>
 
-    <section id="contacto" class="py-24 px-6 bg-black">
-        <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 reveal">
-            <div class="p-10 bg-[#0f0f0f] rounded-[3rem] border border-white/5">
-                <h4 class="font-title text-3xl uppercase mb-6 text-[--deskaro-red]">Ubicación</h4>
-                <p class="text-gray-400 mb-6 leading-relaxed">Estamos en el corazón de Huelin, donde el sabor tradicional se encuentra con la actitud moderna.</p>
-                <div class="space-y-4 text-sm font-bold uppercase tracking-widest">
-                    <div class="flex items-center gap-3"><i class="fas fa-map-marker-alt text-rose-600"></i> Calle Princesa 34, Málaga</div>
-                    <div class="flex items-center gap-3"><i class="fas fa-phone-alt text-rose-600"></i> 744 66 06 85</div>
-                </div>
-            </div>
-            <div class="flex flex-col justify-center space-y-4">
-                <a href="https://wa.me/34744660685" class="w-full p-6 bg-emerald-600 rounded-3xl text-center font-black uppercase tracking-[0.2em] hover:bg-emerald-500 transition-all flex items-center justify-center gap-3"><i class="fab fa-whatsapp text-2xl"></i> Hablar por WhatsApp</a>
-                <a href="https://instagram.com/tabernadeskaro" class="w-full p-6 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl text-center font-black uppercase tracking-[0.2em] hover:opacity-90 transition-all flex items-center justify-center gap-3"><i class="fab fa-instagram text-2xl"></i> DM en Instagram</a>
-            </div>
-        </div>
+    <section id="bebidas" class="py-28 px-6 bg-[#090909]">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center reveal mb-14"><span class="section-kicker block mb-3">Bar & bodega</span><h2 class="font-title text-6xl md:text-8xl uppercase tracking-tighter">BEBIDAS, VINOS Y COPAS</h2><p class="text-gray-500 text-sm mt-4 max-w-3xl mx-auto">Cervezas, refrescos, zumos, vinos blancos, tintos y copas de la carta original, con precios de copa y botella cuando corresponde.</p></div>
+        <div id="drinksMenu" class="grid lg:grid-cols-2 gap-6"></div>
+      </div>
     </section>
 
-    <footer class="py-12 text-center text-[10px] text-gray-700 uppercase tracking-[0.5em]">TABERNA DESKARO &copy; 2026 • HUELIN • MÁLAGA</footer>
+    <section id="original" class="py-28 px-6 bg-[#050505]">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center reveal mb-14"><span class="section-kicker block mb-3">Comprobación visual</span><h2 class="font-title text-5xl md:text-7xl uppercase tracking-tighter">CARTA ORIGINAL</h2><p class="text-gray-500 text-sm mt-4">Pulsa para verla a pantalla completa.</p></div>
+        <div class="grid md:grid-cols-2 gap-6">
+          <button class="original-card reveal text-left" onclick="openCarta('carta-comida.jpg','Carta de comida')"><img src="carta-comida.jpg" alt="Carta original de comida de Taberna Deskaro" /><span class="overlay"></span><span class="copy"><span class="section-kicker block mb-2">Original</span><span class="font-title text-4xl uppercase">Carta de comida</span><span class="block text-sm text-gray-400 mt-2">Entrantes, mar, bocaditos, carnes, platazos, peques y postres.</span></span></button>
+          <button class="original-card reveal text-left" onclick="openCarta('carta-bebidas.jpg','Carta de bebidas')"><img src="carta-bebidas.jpg" alt="Carta original de bebidas de Taberna Deskaro" /><span class="overlay"></span><span class="copy"><span class="section-kicker block mb-2">Original</span><span class="font-title text-4xl uppercase">Bebidas y vinos</span><span class="block text-sm text-gray-400 mt-2">Cervezas, refrescos, blancos, tintos y copas.</span></span></button>
+        </div>
+      </div>
+    </section>
 
-    <script>
-        function checkReveal(){ document.querySelectorAll('.reveal').forEach(el=>{ if(el.getBoundingClientRect().top < window.innerHeight*.9) el.classList.add('active'); }); }
-        window.addEventListener('scroll',checkReveal); window.addEventListener('load',checkReveal);
-        let config={qty:0,drink:'',pref:'',step:'quantity'};
-        function addMessage(text,side){
-            const chat=document.getElementById('chat-window');
-            const bubbleClass=side==='ai'?'chat-bubble-ai text-gray-300':'chat-bubble-user text-white self-end ml-auto';
-            const icon=side==='ai'?'🤖':'👤';
-            chat.innerHTML+=`<div class="flex items-start gap-3 ${side==='user'?'justify-end':''} max-w-full">${side==='ai'?`<div class="text-xs mt-4">${icon}</div>`:''}<div class="${bubbleClass} p-5 text-sm leading-relaxed">${text}</div></div>`;
-            chat.scrollTop=chat.scrollHeight;
-        }
-        function handleStep(currentStep,label,value){
-            addMessage(label,'user');
-            const container=document.getElementById('options-container');
-            container.innerHTML='<span class="text-xs text-gray-500 animate-pulse uppercase font-black tracking-widest">El Chef está anotando...</span>';
-            setTimeout(()=>{
-                if(currentStep==='quantity'){
-                    config.qty=value;
-                    addMessage('¡Perfecto! Un buen grupo. Ahora, <strong>¿Qué os apetece beber para empezar?</strong>','ai');
-                    container.innerHTML=`<button onclick="handleStep('drink','Cervezas bien frías 🍻','beer')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Cervezas</button><button onclick="handleStep('drink','Vinito de la tierra 🍷','wine')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Vino</button><button onclick="handleStep('drink','Refrescos / Agua 💧','soft')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Refrescos</button>`;
-                }else if(currentStep==='drink'){
-                    config.drink=value;
-                    addMessage('Marchando la bebida. Vamos a lo importante: <strong>¿Qué tipo de comida preferís hoy?</strong>','ai');
-                    container.innerHTML=`<button onclick="handleStep('pref','Carne y Brasa 🥩','meat')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Carne / Brasa</button><button onclick="handleStep('pref','Pescado y Mar 🐟','fish')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Pescado / Mar</button><button onclick="handleStep('pref','Un poco de todo 🌀','all')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Variado</button>`;
-                }else if(currentStep==='pref'){ config.pref=value; generateMenu(); }
-            },800);
-        }
-        function generateMenu(){
-            let items=[];
-            if(config.qty===2){ items=['Nachos Caseros','Fideos de Presa','Tarta Payoyo']; if(config.pref==='fish') items=['Tartar de Atún','Pulpo a la Brasa','Postre']; }
-            else if(config.qty===4){ items=['Torreznos (x2)','Fritura Variada','Fideos con Entrecot','2 Tartas']; if(config.pref==='meat') items=['Croquetas','Ensaladilla','Fideos de Presa','Pluma Ibérica']; }
-            else { items=['Ronda de Entrantes','Fideos de Presa (x2)','Fritura Malagueña','Surtido de Postres']; }
-            const proposal=`<strong>¡MENÚ CONFIGURADO!</strong><br><br>Basado en vuestro grupo de ${config.qty} y preferencia de ${config.pref}, os sugiero:<br><ul class="mt-2 space-y-1 text-rose-400 font-bold">${items.map(i=>`<li>• ${i}</li>`).join('')}</ul><br>Es la cantidad justa para que salgáis contentos sin quedar pesados.`;
-            addMessage(proposal,'ai');
-            document.getElementById('options-container').innerHTML=`<button onclick="location.reload()" class="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold uppercase transition-all border border-white/10">Reiniciar Consulta 🔄</button><a href="https://wa.me/34744660685" class="px-6 py-3 bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all shadow-lg shadow-rose-900/40">Reservar Mesa Ahora</a>`;
-        }
-    </script>
+    <section id="contacto" class="py-28 px-6 bg-black">
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-7 items-stretch">
+        <div class="reveal p-8 md:p-10 bg-[#0f0f0f] rounded-[2.4rem] border border-white/5">
+          <span class="section-kicker block mb-3">Huelin · Málaga</span>
+          <h3 class="font-title text-5xl uppercase tracking-tighter mb-6">VEN A DESKARO</h3>
+          <p class="text-gray-400 mb-8 leading-relaxed">Sabor tradicional con una puesta en escena muy Deskaro. Reserva, llega y decide si vienes de mar, carne o a mezclarlo todo.</p>
+          <div class="space-y-5 text-sm font-bold uppercase tracking-widest">
+            <div class="flex items-start gap-3"><i class="fas fa-map-marker-alt text-rose-600 mt-1"></i><span>Calle Princesa 34, Málaga</span></div>
+            <div class="flex items-center gap-3"><i class="fas fa-phone-alt text-rose-600"></i><span>Teléfono · <span class="text-rose-400">Próximamente</span></span></div>
+            <div class="flex items-center gap-3"><i class="fab fa-instagram text-rose-600"></i><a href="https://www.instagram.com/tabernadeskaro/" target="_blank" rel="noopener" class="hover:text-rose-400 normal-case tracking-normal font-semibold">@tabernadeskaro</a></div>
+          </div>
+        </div>
+        <div class="reveal flex flex-col justify-center gap-4">
+          <div class="w-full p-6 bg-[#121212] border border-rose-500/20 rounded-[1.7rem] text-center font-black uppercase tracking-[.15em] text-gray-400 flex items-center justify-center gap-3"><i class="fa-solid fa-phone text-rose-500 text-xl"></i> Teléfono · Próximamente</div>
+          <a href="https://www.google.com/maps/search/?api=1&query=Calle+Princesa+34+Malaga" target="_blank" rel="noopener" class="w-full p-6 bg-[#151515] border border-white/7 rounded-[1.7rem] text-center font-black uppercase tracking-[.15em] hover:border-rose-600/40 transition-all flex items-center justify-center gap-3"><i class="fa-solid fa-location-arrow text-rose-500 text-xl"></i> Cómo llegar</a>
+          <a href="https://www.instagram.com/tabernadeskaro/" target="_blank" rel="noopener" class="w-full p-6 bg-gradient-to-r from-purple-600 to-pink-600 rounded-[1.7rem] text-center font-black uppercase tracking-[.15em] hover:opacity-90 transition-all flex items-center justify-center gap-3"><i class="fab fa-instagram text-2xl"></i> Instagram</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-12 px-6 border-t border-white/5 text-center"><div class="font-title text-2xl uppercase tracking-tight">Taberna <span class="text-rose-500">Deskaro</span></div><div class="mt-3 text-[9px] text-gray-700 uppercase tracking-[.38em]">© 2026 · Huelin · Málaga · Vista previa privada</div></footer>
+
+  <a class="floating-social" href="https://www.instagram.com/tabernadeskaro/" target="_blank" rel="noopener" aria-label="Instagram de Taberna Deskaro"><i class="fab fa-instagram"></i></a>
+
+  <div id="cartaModal" class="modal" role="dialog" aria-modal="true" aria-label="Carta original">
+    <button class="modal-close" onclick="closeCarta()" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+    <img id="cartaModalImg" alt="Carta original" />
+  </div>
+
+  <script>
+    const foodSections = [
+      {id:'entrantes',title:'Entrantes',icon:'fa-leaf',items:[
+        {n:'Ensaladilla Rusa',p:[['Tapa','4,5€'],['Media','6€'],['Ración','9€']]},
+        {n:'Ensalada mixta con melva',p:[['Ración','12€']]},
+        {n:'Ensalada de pimientos asados',p:[['Ración','6€']]},
+        {n:'Ensalada de pimientos asados con melva',p:[['Ración','9€']]},
+        {n:'Tomate Paco con ajitos y AOVE',d:'Mejor tomate del mercado',p:[['Ración','9,5€']]},
+        {n:'Tomate Paco con anchoas / melva',d:'Mejor tomate del mercado',p:[['Ración','12€']]},
+        {n:'Tomate Paco con aguacate y AOVE',d:'Mejor tomate del mercado',p:[['Ración','12€']]},
+        {n:'Queso Curado',p:[['Media','6€'],['Ración','10€']]},
+        {n:'Torreznos',p:[['Ración','8€']]},
+        {n:'Nuestros nachos caseros',d:'Tomate, guacamole, crema agria y queso',p:[['Media','8€'],['Ración','14€']]},
+        {n:'Papas Fritas',p:[['Media','4€'],['Ración','6€']]},
+        {n:'Papas Bravas',d:'Con mayo kimchee',p:[['Media','5€'],['Ración','8€']]},
+        {n:'Papas Deskaro',d:'Papas bravas gratinadas con huevo frito',p:[['Ración','10€']]},
+        {n:'Albóndigas en salsa de almendras',p:[['Media','7€'],['Ración','12€']]},
+        {n:'Huevos rotos',d:'Chorizo picante / jamón ibérico / gambas pil-pil',p:[['Ración','13€']]},
+        {n:'Pincho de Langostinos',p:[['Unidad','5€']]},
+        {n:'Croquetón de la abuela',p:[['Unidad','2,5€']]},
+        {n:'Tortillita Camarón / Bacalao',p:[['Unidad','3,5€']]}
+      ]},
+      {id:'mar',title:'Del Mar',icon:'fa-fish-fins',items:[
+        {n:'Gambas a la plancha',d:'300 g aprox.',p:[['Media','S/M'],['Ración','S/M']]},
+        {n:'Langostinos pil-pil',p:[['Ración','9€']]},
+        {n:'Boquerones',d:'Aprox. 300 g',p:[['Media','6€'],['Ración','10€']]},
+        {n:'Jibia frita o plancha',d:'Aprox. 300 g',p:[['Media','6€'],['Ración','10€']]},
+        {n:'Buchones de rosada',d:'Aprox. 300 g',p:[['Media','6€'],['Ración','10€']]},
+        {n:'Calamar Nacional',d:'El mejor sabor indiscutible',p:[['Media','8€'],['Ración','14€']]},
+        {n:'Pulpo frito',p:[['Media','8€'],['Ración','14€']]},
+        {n:'Fritura de la huerta',d:'Con langostinos',p:[['Media','9€'],['Ración','13€']]},
+        {n:'Tartar de atún y aguacate',d:'Aprox. 200 g',p:[['Ración','19,5€']]},
+        {n:'Pulpo gallega',d:'Auténtico pulpo gallego 300/350 g',p:[['Ración','24€']]},
+        {n:'Pata de pulpo Deskaro XL',d:'Con mayo kimchee sobre cama de papas · 300/350 g',p:[['Ración','24€']]},
+        {n:'Chanquetes',d:'Con huevo o pimiento 12€ · con huevo y pimiento 14€',p:[['Base','9€']]}
+      ]},
+      {id:'bocaditos',title:'Bocaditos',icon:'fa-burger',items:[
+        {n:'Miniburguer “Vareta”',d:'Ternera vaca simmental, tomate, lechuga y cebolla',p:[['Unidad','5,5€']]},
+        {n:'Miniburguer “Tres caracoles”',d:'Ternera vaca simmental, cheddar, lechuga, cebolla caramelizada y salsa burguer',p:[['Unidad','6€']]},
+        {n:'Miniburguer “Queso de cabra”',d:'Ternera vaca simmental, queso de cabra, lechuga y mostaza miel',p:[['Unidad','6€']]},
+        {n:'Bocata de calamares',d:'Calamar nacional con ali-oli',p:[['Unidad','7€']]},
+        {n:'Serranito mini premium',d:'Con pluma ibérica',p:[['Unidad','7€']]},
+        {n:'Minicresta Deskaro',d:'Lechuga, tomate y mostaza',p:[['Unidad','6€']]},
+        {n:'Extra de patatas con tu burger',p:[['Extra','2€']]}
+      ]},
+      {id:'carnivoro',title:'Rincón Carnívoro',icon:'fa-drumstick-bite',items:[
+        {n:'Entrecote',d:'Aprox. 300 g · vaca rubia gallega',p:[['Ración','24€']]},
+        {n:'Presa Ibérica',d:'Aprox. 300 g',p:[['Ración','22€']]},
+        {n:'Pluma Ibérica',d:'Aprox. 300 g',p:[['Ración','18€']]},
+        {n:'Guarnición incluida',d:'Patatas fritas, pimiento o patatas asadas',p:[['Incluida','—']]},
+        {n:'Patata asada extra',p:[['Extra','3€']]},
+        {n:'Concha de Ali Oli',p:[['Extra','0,5€']]}
+      ]},
+      {id:'platazos',title:'Platazos Deskarados',icon:'fa-fire-flame-curved',items:[
+        {n:'Cachopo',d:'Ternera hembra, queso manchego, pimiento asado y jamón reserva. Patatas fritas y 3 huevos',p:[['Ración','30€']]},
+        {n:'Fideos tostados con gambón',p:[['Ración','25€']]},
+        {n:'Fideos tostados presa / entrecot',p:[['Ración','30€']]},
+        {n:'Fideos tostados estilo Antonio',p:[['Ración','30€']]},
+        {n:'Chuletón de vaca',p:[['Precio','70€/kg']]}
+      ]},
+      {id:'peques',title:'Para los Peques',icon:'fa-child-reaching',items:[
+        {n:'Menú miniburguer',d:'Hamburguesa con queso y patatas',p:[['Menú','7€']]},
+        {n:'Menú croqueta',d:'Croquetas de puchero y patatas',p:[['Menú','7€']]},
+        {n:'Lagrimitas con patatas',p:[['Menú','7€']]}
+      ]},
+      {id:'postres',title:'Postres',icon:'fa-ice-cream',items:[
+        {n:'Brownie de la casa',p:[['Ración','5,5€']]},
+        {n:'Tartas de queso variadas',d:'Pregunte por la variedad de la semana',p:[['Ración','5,5€']]}
+      ]}
+    ];
+
+    const drinksSections = [
+      {title:'Bebidas',icon:'fa-beer-mug-empty',items:[
+        ['Caña','1,9€'],['Copa','3€'],['Pinta','3,8€'],['Copa tinto verano','2,5€'],['Pinta tinto verano','3,5€'],['Alhambra especial','2,7€'],['Radler','2,7€'],['Alhambra verde','3,5€'],['Corona','3€'],['Mahou','2,7€'],['San Miguel','2,5€'],['San Miguel sin gluten','2,7€'],['Alhambra roja','3,5€'],['San Miguel 0,0','2,5€'],['Brutus','3,5€'],['IPA Mahou','2,5€'],['Mahou Reserva','3,5€'],['Mahou tostada 0,0','2,5€'],['Coca-Cola','2,2€'],['Coca-Cola Zero','2,2€'],['Fanta naranja','2,2€'],['Fanta limón','2,2€'],['Fuze Tea limón','2,5€'],['Fuze Tea maracuyá','2,5€'],['Aquarius','2,4€'],['Zumo de piña','2,2€'],['Zumo de naranja','2,2€'],['Agua','2,2€']
+      ]},
+      {title:'Vinos Blancos',icon:'fa-wine-glass',items:[
+        ['Viña Tempero','Copa 2€ · Botella 14€','Verdejo · DO Rueda'],['Rippa Dori','Botella 16,5€','Verdejo · DO Rueda · Crianza sobre lías'],['Entrechuelos','Botella 18€','Chardonnay · DO Cádiz · Crianza sobre lías'],['Frizzante','Botella 13€',''],['Benizar semi dulce','Copa 2€ · Botella 13€','']
+      ]},
+      {title:'Vinos Tintos',icon:'fa-wine-bottle',items:[
+        ['Serna Imperial','Copa 2,5€ · Botella 17€','DO Rioja · Tempranillo'],['Rippa Dori Roble','Copa 3€ · Botella 18€','DO Rioja'],['Rubén Ramos','Botella 22€','DO Ribera del Duero'],['Entrechuelos Roble','Botella 16€','DO Cádiz'],['Antología Crianza','Botella 20,5€','DO Rioja'],['Valcercacín Crianza','Botella 22,5€','DO Ribera del Duero']
+      ]},
+      {title:'Copas',icon:'fa-martini-glass-citrus',items:[
+        ['Ginebra','Larios, Larios 12, Beefeater, Tanqueray, Seagram · 6€','Premium: Bombay Shafire / Martin Miller · 8€'],['Ron','Barceló, Bacardi, Brugal, Cacique, Legendario · 6€','Premium: Cacique 500 / Matusalem · 8€'],['Vodka','Absolut, Smirnoff · 6€','Premium: Belvedere / Ciroc · 8€'],['Whisky','Ballantines, J&B, White Label, Jhony Walker · 6€','Premium: Jhony Walker Black / Jack Daniels · 8€'],['Licores','Baileys, Amaretto, Jagger, Licor hierbas, Pacharán · 6€','Copa: Terry, Anís · 8€'],['Con Red Bull','+1€','Todas las copas con Red Bull cuestan 1€ más']
+      ]}
+    ];
+
+    const filters = [{id:'all',label:'Todo'},...foodSections.map(s=>({id:s.id,label:s.title}))];
+    const foodFilters = document.getElementById('foodFilters');
+    let activeFilter = 'all';
+
+    function renderFilters(){
+      foodFilters.innerHTML = filters.map(f=>`<button class="filter-btn ${f.id===activeFilter?'active':''}" data-filter="${f.id}">${f.label}</button>`).join('');
+      foodFilters.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>{activeFilter=btn.dataset.filter;renderFilters();renderFood();}));
+    }
+
+    function foodCard(section){
+      return `<article class="menu-card reveal" data-section="${section.id}">
+        <div class="flex items-center justify-between gap-4 mb-5"><div><span class="section-kicker block mb-2">Carta Deskaro</span><h3 class="font-title text-3xl md:text-4xl uppercase tracking-tight">${section.title}</h3></div><div class="w-12 h-12 rounded-full bg-rose-600/10 border border-rose-600/20 grid place-items-center text-rose-500"><i class="fa-solid ${section.icon}"></i></div></div>
+        <div>${section.items.map(item=>`<div class="menu-item" data-search="${(item.n+' '+(item.d||'')+' '+section.title).toLowerCase()}"><div class="flex gap-4 justify-between items-start"><div class="min-w-0"><div class="font-semibold text-[15px]">${item.n}</div>${item.d?`<div class="text-xs text-gray-500 mt-1 leading-relaxed">${item.d}</div>`:''}</div><div class="flex flex-wrap gap-1.5 justify-end shrink-0 max-w-[48%]">${item.p.map(p=>`<span class="price-pill"><span class="text-gray-500 font-semibold">${p[0]}</span> ${p[1]}</span>`).join('')}</div></div></div>`).join('')}</div>
+      </article>`;
+    }
+
+    function renderFood(){
+      const q=(document.getElementById('menuSearch').value||'').trim().toLowerCase();
+      const sections=foodSections.filter(s=>activeFilter==='all'||s.id===activeFilter).map(s=>({...s,items:s.items.filter(i=>(i.n+' '+(i.d||'')+' '+s.title).toLowerCase().includes(q))})).filter(s=>s.items.length);
+      document.getElementById('foodMenu').innerHTML=sections.length?sections.map(foodCard).join(''):`<div class="lg:col-span-2 text-center py-20 text-gray-600"><i class="fa-solid fa-magnifying-glass text-2xl mb-3"></i><div>No encontramos ese plato.</div></div>`;
+      requestAnimationFrame(checkReveal);
+    }
+
+    function renderDrinks(){
+      document.getElementById('drinksMenu').innerHTML=drinksSections.map(s=>`<article class="menu-card reveal"><div class="flex items-center justify-between mb-5"><div><span class="section-kicker block mb-2">Bar Deskaro</span><h3 class="font-title text-3xl md:text-4xl uppercase">${s.title}</h3></div><div class="w-12 h-12 rounded-full bg-rose-600/10 border border-rose-600/20 grid place-items-center text-rose-500"><i class="fa-solid ${s.icon}"></i></div></div><div>${s.items.map(row=>`<div class="menu-item"><div class="flex justify-between gap-4"><div><div class="font-semibold text-sm">${row[0]}</div>${row[2]?`<div class="text-xs text-gray-500 mt-1">${row[2]}</div>`:''}</div><div class="text-right text-sm font-bold text-rose-300 max-w-[58%]">${row[1]}</div></div></div>`).join('')}</div></article>`).join('');
+    }
+
+    document.getElementById('menuSearch').addEventListener('input',renderFood);
+    renderFilters();renderFood();renderDrinks();
+
+    function checkReveal(){
+      document.querySelectorAll('.reveal:not(.active)').forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight*.91)el.classList.add('active')});
+    }
+    window.addEventListener('scroll',checkReveal,{passive:true});window.addEventListener('load',checkReveal);
+
+    // Scroll-linked hero: letters open and move away while the next message appears.
+    const heroTrack=document.querySelector('.hero-track');
+    const letters=[...document.querySelectorAll('.hero-letter')];
+    const heroSub=document.getElementById('heroSub');
+    const heroCopy=document.getElementById('heroRevealCopy');
+    const heroActions=document.getElementById('heroActions');
+    const heroEyebrow=document.getElementById('heroEyebrow');
+    const scrollCue=document.getElementById('scrollCue');
+    let ticking=false;
+    function clamp(v,min=0,max=1){return Math.min(max,Math.max(min,v))}
+    function heroScroll(){
+      const r=heroTrack.getBoundingClientRect();
+      const range=Math.max(1,heroTrack.offsetHeight-window.innerHeight);
+      const p=clamp(-r.top/range);
+      letters.forEach((l,i)=>{
+        const d=i-3;
+        const x=d*p*(18+Math.abs(d)*6);
+        const y=Math.abs(d)*p*1.5;
+        const rot=d*p*1.05;
+        l.style.transform=`translate3d(${x}px,${y}px,0) rotate(${rot}deg) scale(${1-p*.035})`;
+        l.style.opacity=String(1-p*.20);
+      });
+      heroEyebrow.style.opacity=String(1-p*.9);heroEyebrow.style.transform=`translateY(${-p*18}px)`;
+      heroSub.style.transform=`translateY(${-p*14}px)`;heroSub.style.opacity=String(1-p*.55);
+      const cp=clamp((p-.22)/.42);heroCopy.style.opacity=String(cp);heroCopy.style.transform=`translateY(${24-cp*24}px)`;
+      const ap=clamp((p-.34)/.36);heroActions.style.opacity=String(.42+ap*.58);heroActions.style.transform=`translateY(${12-ap*12}px)`;
+      scrollCue.style.opacity=String(1-clamp(p/.20));
+      ticking=false;
+    }
+    window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(heroScroll);ticking=true}},{passive:true});heroScroll();
+
+    function openCarta(src,label){const m=document.getElementById('cartaModal');const im=document.getElementById('cartaModalImg');im.src=src;im.alt=label;m.classList.add('open');document.body.style.overflow='hidden'}
+    function closeCarta(){document.getElementById('cartaModal').classList.remove('open');document.body.style.overflow=''}
+    document.getElementById('cartaModal').addEventListener('click',e=>{if(e.target.id==='cartaModal')closeCarta()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCarta()});
+
+    // Chef Virtual
+    let chef={qty:0,hunger:'',pref:'',budget:0,step:'qty'};
+    const chat=document.getElementById('chat-window');const options=document.getElementById('options-container');
+    function addMessage(text,side='ai'){chat.insertAdjacentHTML('beforeend',`<div class="flex items-start gap-3 ${side==='user'?'justify-end':''} max-w-full"><div class="${side==='ai'?'chat-bubble-ai text-gray-300':'chat-bubble-user text-white ml-auto'} p-5 text-sm leading-relaxed max-w-[92%]">${text}</div></div>`);chat.scrollTop=chat.scrollHeight}
+    function setOptions(arr){options.innerHTML=arr.map(o=>`<button class="px-5 py-3 bg-white/5 hover:bg-rose-600 rounded-full text-[11px] font-bold uppercase transition-all border border-white/10" onclick="chefStep('${o.value}','${o.label.replaceAll("'","\\'")}')">${o.label}</button>`).join('')}
+    function restartChef(){chef={qty:0,hunger:'',pref:'',budget:0,step:'qty'};chat.innerHTML=`<div class="flex items-start gap-3 max-w-[92%]"><div class="chat-bubble-ai p-5 text-sm leading-relaxed text-gray-300">¡Hola! Soy el Chef Virtual de Deskaro. Vamos a montar una propuesta para compartir. <br><br><strong>¿Cuántos vais a ser?</strong></div></div>`;setOptions([{value:'2',label:'Somos 2'},{value:'4',label:'Somos 3 o 4'},{value:'6',label:'Grupo +5'}])}
+    function chefStep(value,label){addMessage(label,'user');options.innerHTML=`<span class="text-[10px] text-gray-500 animate-pulse uppercase font-black tracking-widest">El Chef está cuadrando la mesa...</span>`;setTimeout(()=>{
+      if(chef.step==='qty'){chef.qty=+value;chef.step='hunger';addMessage('Perfecto. <strong>¿Con qué nivel de hambre venís?</strong>');setOptions([{value:'light',label:'Picoteo'},{value:'normal',label:'Hambre normal'},{value:'strong',label:'Venimos fuertes'}]);}
+      else if(chef.step==='hunger'){chef.hunger=value;chef.step='pref';addMessage('Anotado. Ahora decidid el terreno de juego.');setOptions([{value:'meat',label:'Carne'},{value:'fish',label:'Mar'},{value:'mixed',label:'Variado'}]);}
+      else if(chef.step==='pref'){chef.pref=value;chef.step='budget';addMessage('Último dato: <strong>presupuesto aproximado por persona, sin contar copas</strong>.');setOptions([{value:'15',label:'Hasta 15€'},{value:'22',label:'15–22€'},{value:'30',label:'22–30€'},{value:'40',label:'Sin miedo'}]);}
+      else if(chef.step==='budget'){chef.budget=+value;chef.step='done';generateChefProposal();}
+    },520)}
+    function generateChefProposal(){
+      const q=chef.qty;const strong=chef.hunger==='strong';let picks=[];
+      if(chef.pref==='fish'){
+        picks=q<=2?[['Ensaladilla Rusa',6],['Calamar Nacional',14],['Tartar de atún y aguacate',19.5]]:[['Ensaladilla Rusa',9],['Fritura de la huerta',13],['Pata de pulpo Deskaro XL',24],['Chanquetes',12]];
+      }else if(chef.pref==='meat'){
+        picks=q<=2?[['Croquetón de la abuela x2',5],['Torreznos',8],['Pluma Ibérica',18]]:[['Ensaladilla Rusa',9],['Torreznos',8],['Fideos tostados presa / entrecot',30],['Miniburguer “Tres caracoles” x2',12]];
+      }else{
+        picks=q<=2?[['Ensaladilla Rusa',6],['Torreznos',8],['Calamar Nacional',14],['Miniburguer “Tres caracoles”',6]]:[['Ensaladilla Rusa',9],['Nuestros nachos caseros',14],['Calamar Nacional',14],['Fideos tostados con gambón',25]];
+      }
+      if(strong){picks.push(chef.pref==='fish'?['Pulpo frito',14]:chef.pref==='meat'?['Miniburguer “Queso de cabra” x2',12]:['Croquetón de la abuela x4',10]);}
+      let total=picks.reduce((s,p)=>s+p[1],0);const max=chef.budget*q;
+      while(total>max&&picks.length>2){total-=picks.pop()[1]}
+      const per=total/q;
+      addMessage(`<strong class="text-white">PROPUESTA DESKARO PARA ${q} ${q===1?'PERSONA':'PERSONAS'}</strong><br><br><div class="space-y-1 text-rose-300 font-bold">${picks.map(p=>`• ${p[0]} <span class="text-gray-500 font-normal">${String(p[1]).replace('.',',')}€</span>`).join('<br>')}</div><br><div class="border-t border-white/10 pt-3"><strong>Total aprox.: ${String(total.toFixed(1)).replace('.0','').replace('.',',')}€</strong><br><span class="text-gray-400">≈ ${String(per.toFixed(2)).replace('.',',')}€ por persona · sin bebidas</span></div><br><span class="text-xs text-gray-500">Propuesta orientativa; disponibilidad y cantidades finales pueden variar.</span>`);
+      options.innerHTML=`<a href="#carta" class="px-5 py-3 bg-white/10 hover:bg-white/20 rounded-full text-[11px] font-bold uppercase border border-white/10">Ver carta completa</a><a href="https://www.instagram.com/tabernadeskaro/" target="_blank" rel="noopener" class="px-5 py-3 bg-rose-600 rounded-full text-[11px] font-bold uppercase"><i class="fab fa-instagram mr-1"></i> Instagram</a>`;
+    }
+    restartChef();
+  </script>
 </body>
 </html>
