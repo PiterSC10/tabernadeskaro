@@ -38,10 +38,12 @@
 
 
     /* GUÍAS DE INTERACCIÓN · misma estética Deskaro */
-    .device-scroll-hint{position:absolute;right:12px;top:50%;transform:translateY(-50%);z-index:12;display:flex;flex-direction:column;align-items:center;gap:7px;padding:10px 7px;border-radius:999px;background:rgba(5,5,5,.72);border:1px solid rgba(251,113,133,.22);backdrop-filter:blur(10px);box-shadow:0 10px 26px rgba(0,0,0,.34);pointer-events:none;transition:opacity .45s ease,transform .45s ease}
-    .device-scroll-hint span{font-size:7px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.72);writing-mode:vertical-rl;transform:rotate(180deg)}
+    .device-scroll-hint{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:12;display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(5,5,5,.78);border:1px solid rgba(251,113,133,.24);backdrop-filter:blur(10px);box-shadow:0 10px 26px rgba(0,0,0,.34);pointer-events:none;transition:opacity .45s ease,transform .45s ease}
+    .device-scroll-hint span{font-size:8px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.78)}
     .device-scroll-hint i{font-size:10px;color:#fb7185;animation:hintVertical 1.45s ease-in-out infinite}
-    .desktop-shell.interacted .device-scroll-hint,.phone-shell.interacted .device-scroll-hint{opacity:.18;transform:translateY(-50%) translateX(5px)}
+    .desktop-shell.interacted .device-scroll-hint,.phone-shell.interacted .device-scroll-hint{opacity:.15;transform:translateX(-50%) translateY(4px)}
+    .phone-shell .device-scroll-hint{bottom:14px;padding:6px 9px;gap:6px}
+    .phone-shell .device-scroll-hint span{font-size:7px;letter-spacing:.13em}
     @keyframes hintVertical{0%,100%{transform:translateY(-3px);opacity:.45}50%{transform:translateY(5px);opacity:1}}
     .interaction-guide{width:min(780px,92vw);margin:20px auto 4px;display:flex;align-items:center;gap:14px;color:#8a8a92;user-select:none}
     .interaction-guide .label{white-space:nowrap;font-size:8px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#9ca3af}
@@ -54,8 +56,8 @@
     .carousel-guide .mini-line:after{content:"";position:absolute;left:-25%;top:0;width:25%;height:100%;background:#fb7185;box-shadow:0 0 12px rgba(225,29,72,.8);animation:guideSweep 2.1s ease-in-out infinite}
     .carousel-guide b{font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#9ca3af}
     .mock-carousel{cursor:grab}.mock-carousel.dragging{cursor:grabbing;scroll-behavior:auto}
-    @media(max-width:900px){.device-scroll-hint{right:8px;padding:8px 6px}.interaction-guide{margin-top:16px}}
-    @media(max-width:600px){.device-scroll-hint{right:4px;padding:6px 4px;gap:5px}.device-scroll-hint span{font-size:5px}.device-scroll-hint i{font-size:8px}.interaction-guide{gap:8px;margin-top:12px}.interaction-guide .label{font-size:6px;letter-spacing:.12em}.carousel-guide b{font-size:6px}.carousel-guide{gap:8px}}
+    @media(max-width:900px){.device-scroll-hint{bottom:10px;padding:7px 10px;gap:7px}.interaction-guide{margin-top:16px}}
+    @media(max-width:600px){.device-scroll-hint{bottom:8px;padding:5px 8px;gap:5px}.device-scroll-hint span{font-size:6px}.device-scroll-hint i{font-size:8px}.phone-shell .device-scroll-hint{bottom:10px;padding:4px 6px;gap:4px}.phone-shell .device-scroll-hint span{font-size:5px}.interaction-guide{gap:8px;margin-top:12px}.interaction-guide .label{font-size:6px;letter-spacing:.12em}.carousel-guide b{font-size:6px}.carousel-guide{gap:8px}}
 
     /* RECORRIDO VISUAL · más mockups, misma sintonía Deskaro */
     .mock-tour{margin-top:54px;padding-top:38px;border-top:1px solid var(--line)}
@@ -139,19 +141,82 @@
   const mc=document.getElementById('mockCarousel');
   document.getElementById('mockPrev')?.addEventListener('click',()=>mc.scrollBy({left:-Math.min(580,innerWidth*.82),behavior:'smooth'}));
   document.getElementById('mockNext')?.addEventListener('click',()=>mc.scrollBy({left:Math.min(580,innerWidth*.82),behavior:'smooth'}));
-  document.querySelectorAll('.desktop-shell,.phone-shell').forEach(device=>{
+  function bindDevice(device){
     const frame=device.querySelector('iframe');
+    if(!frame) return;
     const mark=()=>device.classList.add('interacted');
-    device.addEventListener('pointerdown',mark,{passive:true});
-    device.addEventListener('wheel',mark,{passive:true});
-    frame?.addEventListener('load',()=>{
+    let startY=0,lastY=0,dragging=false,loaded=false,raf=false,delta=0;
+
+    function getWin(){
+      try{return frame.contentWindow}catch(e){return null}
+    }
+    function flushScroll(){
+      raf=false;
+      const w=getWin();
+      if(w && delta){ w.scrollBy(0, delta); delta=0; }
+    }
+    function queueScroll(amount){
+      delta += amount;
+      if(!raf){ raf=true; requestAnimationFrame(flushScroll); }
+    }
+
+    frame.addEventListener('load',()=>{
+      loaded=true;
       try{
         frame.contentWindow.addEventListener('scroll',mark,{passive:true});
         frame.contentDocument.addEventListener('pointerdown',mark,{passive:true});
         frame.contentDocument.addEventListener('touchstart',mark,{passive:true});
       }catch(e){}
     });
-  });
+
+    device.addEventListener('wheel',e=>{
+      if(!loaded) return;
+      mark();
+      e.preventDefault();
+      queueScroll(e.deltaY);
+    },{passive:false});
+
+    device.addEventListener('touchstart',e=>{
+      if(!loaded || !e.touches[0]) return;
+      dragging=true;
+      startY=lastY=e.touches[0].clientY;
+      mark();
+    },{passive:true});
+
+    device.addEventListener('touchmove',e=>{
+      if(!dragging || !loaded || !e.touches[0]) return;
+      const y=e.touches[0].clientY;
+      const move=Math.abs(y-startY);
+      if(move>4){
+        e.preventDefault();
+        queueScroll((lastY-y)*1.15);
+        lastY=y;
+      }
+    },{passive:false});
+
+    device.addEventListener('touchend',()=>{dragging=false},{passive:true});
+    device.addEventListener('touchcancel',()=>{dragging=false},{passive:true});
+
+    // allow mouse drag scrolling inside mockup too
+    let mouseDown=false, mouseY=0;
+    device.addEventListener('pointerdown',e=>{
+      if(e.pointerType==='mouse'){
+        mouseDown=true; mouseY=e.clientY; mark();
+      }
+    });
+    window.addEventListener('pointermove',e=>{
+      if(!mouseDown || e.pointerType!=='mouse' || !loaded) return;
+      const diff=e.clientY-mouseY;
+      if(Math.abs(diff)>2){
+        queueScroll(-diff*1.2);
+        mouseY=e.clientY;
+      }
+    });
+    window.addEventListener('pointerup',()=>{mouseDown=false});
+    window.addEventListener('pointercancel',()=>{mouseDown=false});
+  }
+
+  document.querySelectorAll('.desktop-shell,.phone-shell').forEach(bindDevice);
   let dragging=false,startX=0,startScroll=0;
   mc?.addEventListener('pointerdown',e=>{dragging=true;startX=e.clientX;startScroll=mc.scrollLeft;mc.classList.add('dragging');mc.setPointerCapture?.(e.pointerId)});
   mc?.addEventListener('pointermove',e=>{if(!dragging)return;mc.scrollLeft=startScroll-(e.clientX-startX)});
