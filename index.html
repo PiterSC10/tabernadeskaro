@@ -1,643 +1,105 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex,nofollow" />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
   <meta name="theme-color" content="#050505" />
-  <meta name="description" content="Taberna Deskaro en Huelin, Málaga. Carta completa, platos deskarados, Chef Virtual, fotos, reseñas, ubicación e Instagram." />
+  <meta name="description" content="Vista previa privada del proyecto web de Taberna Deskaro." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_ES" />
-  <meta property="og:title" content="Taberna Deskaro | Huelin · Málaga" />
-  <meta property="og:description" content="Sabor con actitud. Carta completa, fotos, reseñas y cómo llegar a Taberna Deskaro." />
+  <meta property="og:title" content="Taberna Deskaro · Vista previa privada" />
+  <meta property="og:description" content="Presentación privada del proyecto web de Taberna Deskaro · Huelin, Málaga." />
   <meta property="og:image" content="og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Taberna Deskaro · Huelin · Málaga" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Taberna Deskaro | Huelin · Málaga" />
-  <meta name="twitter:description" content="Carta completa, fotos, reseñas y cómo llegar." />
   <meta name="twitter:image" content="og-image.jpg" />
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-  <link rel="manifest" href="site.webmanifest" />
-  <title>Taberna Deskaro | Huelin · Málaga</title>
-
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Acceso privado · Taberna Deskaro</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Oswald:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
   <style>
-    :root{
-      --deskaro-red:#e11d48;
-      --deskaro-dark:#050505;
-      --deskaro-card:#0f0f0f;
-      --deskaro-soft:#151515;
-      --deskaro-line:rgba(255,255,255,.08);
-    }
-    *{box-sizing:border-box}
-    html{background:var(--deskaro-dark)}
-    body{
-      margin:0;
-      font-family:'Plus Jakarta Sans',sans-serif;
-      background:var(--deskaro-dark);
-      color:#fff;
-      overflow-x:hidden;
-    }
-    .font-title{font-family:'Oswald',sans-serif}
-    .glass-header{
-      background:rgba(5,5,5,.80);
-      backdrop-filter:blur(18px);
-      -webkit-backdrop-filter:blur(18px);
-      border-bottom:1px solid rgba(255,255,255,.05);
-    }
-    .neon-border{
-      border:1px solid rgba(225,29,72,.22);
-      box-shadow:0 0 30px rgba(225,29,72,.05);
-    }
-    .section-kicker{letter-spacing:.34em;text-transform:uppercase;color:#fb7185;font-size:.7rem;font-weight:800}
-    .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-    .reveal.active{opacity:1;transform:translateY(0)}
-    .scroll-hide::-webkit-scrollbar{display:none}
-    .menu-row{border-bottom:1px dashed rgba(255,255,255,.10)}
-    .chat-bubble-ai{background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.055);border-radius:1.5rem 1.5rem 1.5rem 0}
-    .chat-bubble-user{background:var(--deskaro-red);border-radius:1.5rem 1.5rem 0 1.5rem;font-weight:700}
-
-    /* DEMO */
-    .demo-watermark{
-      position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-18deg);
-      z-index:99999;pointer-events:none;user-select:none;white-space:nowrap;text-align:center;
-      opacity:.085;filter:blur(.25px);mix-blend-mode:screen;
-    }
-    .demo-watermark .main{font-family:'Oswald',sans-serif;font-size:clamp(4rem,11vw,10rem);font-weight:800;line-height:.82;letter-spacing:-.04em;text-transform:uppercase}
-    .demo-watermark .sub{margin-top:1rem;font-size:clamp(.62rem,1.1vw,.9rem);font-weight:800;letter-spacing:.48em;text-transform:uppercase}
-    .preview-chip{position:fixed;right:16px;bottom:16px;z-index:99998;pointer-events:none;padding:10px 14px;border-radius:999px;background:rgba(5,5,5,.76);border:1px solid rgba(225,29,72,.28);backdrop-filter:blur(10px);font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.68)}
-
-    /* HERO SCROLL */
-    .hero-track{height:155vh;position:relative}
-    .hero-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#050505}
-    .hero-sticky::before{
-      content:"";position:absolute;inset:-20%;
-      background:
-        radial-gradient(circle at 50% 48%,rgba(225,29,72,.18),transparent 27%),
-        radial-gradient(circle at 18% 18%,rgba(225,29,72,.08),transparent 25%),
-        linear-gradient(135deg,#0a0204 0%,#050505 42%,#020202 100%);
-      transform:scale(1.05);z-index:0;
-    }
-    .hero-grid{position:absolute;inset:0;opacity:.08;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(to bottom,transparent,black 20%,black 75%,transparent)}
-    .hero-content{position:relative;z-index:2;width:100%;text-align:center;padding:0 18px}
-    .hero-eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.42em;color:#9ca3af;font-weight:800;margin-bottom:28px;transition:opacity .25s linear,transform .25s linear}
-    .hero-word{font-family:'Oswald',sans-serif;font-weight:800;font-size:clamp(5rem,17vw,14rem);line-height:.76;letter-spacing:-.075em;text-transform:uppercase;white-space:nowrap;display:flex;justify-content:center;align-items:center;will-change:transform,opacity}
-    .hero-letter{display:inline-block;will-change:transform,opacity;text-shadow:0 0 60px rgba(225,29,72,.06)}
-    .hero-letter.k{color:var(--deskaro-red);text-shadow:0 0 42px rgba(225,29,72,.36)}
-    .hero-sub{margin-top:28px;text-transform:uppercase;letter-spacing:.34em;color:#9ca3af;font-size:clamp(.72rem,1.6vw,1.05rem);font-weight:400;will-change:transform,opacity}
-    .hero-reveal-copy{margin:25px auto 0;max-width:720px;opacity:0;transform:translateY(24px);font-size:clamp(1.05rem,2.4vw,1.65rem);font-weight:300;color:#ddd;will-change:transform,opacity}
-    .hero-actions{margin-top:30px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;will-change:transform,opacity}
-    .scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:3;text-align:center;color:#777;font-size:9px;font-weight:800;letter-spacing:.32em;text-transform:uppercase;transition:opacity .2s linear}
-    .scroll-cue i{display:block;margin-top:8px;color:#fb7185;font-size:15px;animation:bounceY 1.6s infinite}
-    @keyframes bounceY{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
-
-    .btn-main{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.95rem 1.45rem;border-radius:999px;background:var(--deskaro-red);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;transition:.25s ease}
-    .btn-main:hover{transform:translateY(-2px);box-shadow:0 0 35px rgba(225,29,72,.30)}
-    .btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:.95rem 1.45rem;border-radius:999px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.035);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;transition:.25s ease}
-    .btn-ghost:hover{border-color:rgba(225,29,72,.55);background:rgba(225,29,72,.08)}
-
-    .feature-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.06);border-radius:1.5rem;overflow:hidden}
-    .feature-strip>div{background:#0a0a0a;padding:22px 18px}
-
-    .filter-btn{padding:.65rem 1rem;border-radius:999px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.03);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.11em;color:#c8c8c8;transition:.2s ease}
-    .filter-btn:hover,.filter-btn.active{background:var(--deskaro-red);border-color:var(--deskaro-red);color:#fff}
-    .menu-card{background:linear-gradient(180deg,#111,#0b0b0b);border:1px solid rgba(255,255,255,.06);border-radius:1.75rem;padding:1.6rem;transition:.25s ease}
-    .menu-card:hover{border-color:rgba(225,29,72,.25);transform:translateY(-2px)}
-    .price-pill{display:inline-flex;gap:.35rem;align-items:center;padding:.38rem .58rem;border-radius:999px;background:rgba(225,29,72,.08);border:1px solid rgba(225,29,72,.16);font-size:.68rem;color:#fda4af;font-weight:800}
-    .menu-item{padding:1rem 0;border-bottom:1px dashed rgba(255,255,255,.09)}
-    .menu-item:last-child{border-bottom:0}
-
-    .original-card{position:relative;overflow:hidden;border-radius:2rem;min-height:360px;border:1px solid rgba(255,255,255,.07);background:#0c0c0c;cursor:pointer}
-    .original-card img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;filter:brightness(.42) saturate(.75);transition:transform .55s cubic-bezier(.16,1,.3,1),filter .4s ease}
-    .original-card:hover img{transform:scale(1.035);filter:brightness(.50) saturate(.9)}
-    .original-card .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.96),rgba(5,5,5,.12) 72%)}
-    .original-card .copy{position:absolute;left:24px;right:24px;bottom:24px;z-index:2}
-
-    .modal{position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.92);backdrop-filter:blur(14px);display:none;align-items:center;justify-content:center;padding:26px}
-    .modal.open{display:flex}
-    .modal img{max-width:min(92vw,1100px);max-height:88vh;object-fit:contain;border-radius:1rem;box-shadow:0 30px 100px rgba(0,0,0,.7)}
-    .modal-close{position:absolute;right:22px;top:20px;width:44px;height:44px;border-radius:999px;background:#171717;border:1px solid rgba(255,255,255,.1);display:grid;place-items:center;font-size:20px}
-
-    .floating-social{position:fixed;right:18px;bottom:66px;z-index:90;width:52px;height:52px;border-radius:999px;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);display:grid;place-items:center;font-size:24px;box-shadow:0 12px 35px rgba(225,29,72,.25);transition:.2s ease}
-    .floating-social:hover{transform:scale(1.06)}
-
-    @media(max-width:900px){
-      .feature-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .hero-word{font-size:clamp(4.4rem,20vw,9rem)}
-    }
-    @media(max-width:640px){
-      .hero-track{height:145vh}
-      .hero-word{font-size:clamp(4rem,21vw,7rem);letter-spacing:-.08em}
-      .hero-sub{letter-spacing:.23em}
-      .feature-strip{grid-template-columns:1fr 1fr}
-      .demo-watermark{transform:translate(-50%,-50%) rotate(-24deg);opacity:.07}
-      .preview-chip{right:10px;bottom:10px;font-size:7.5px}
-      .floating-social{right:12px;bottom:55px}
-    }
-    @media(prefers-reduced-motion:reduce){
-      html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.hero-letter,.hero-sub,.hero-reveal-copy,.hero-actions{transform:none!important;opacity:1!important}.scroll-cue{display:none}
-    }
-
-
-    /* BRAND + INTRO */
-    .brand-wordmark{height:34px;width:auto;max-width:210px;object-fit:contain;filter:drop-shadow(0 6px 16px rgba(0,0,0,.35))}
-    .hero-brand-badge{width:74px;height:74px;object-fit:contain;margin:0 auto 18px;filter:drop-shadow(0 10px 32px rgba(225,29,72,.15));opacity:.96}
-    .intro-active .hero-letter{opacity:0;transform:translate3d(var(--ix),var(--iy),0) rotate(var(--ir)) scale(.68);animation:deskaroCrash .86s cubic-bezier(.16,.9,.27,1.23) forwards;animation-delay:var(--id)}
-    @keyframes deskaroCrash{0%{opacity:0;transform:translate3d(var(--ix),var(--iy),0) rotate(var(--ir)) scale(.68)}68%{opacity:1;transform:translate3d(calc(var(--ix)*-.035),calc(var(--iy)*-.035),0) rotate(0deg) scale(1.035)}100%{opacity:1;transform:translate3d(0,0,0) rotate(0) scale(1)}}
-    .hero-word.intro-impact{animation:deskaroImpact .30s ease-out}
-    @keyframes deskaroImpact{0%{filter:blur(0);transform:scale(1)}40%{filter:blur(.25px);transform:scale(1.018)}100%{filter:blur(0);transform:scale(1)}}
-    .beer-bubbles{position:absolute;left:50%;top:49%;width:min(88vw,980px);height:180px;transform:translate(-50%,-50%);pointer-events:none;z-index:4;overflow:visible}
-    .beer-bubble{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.75);background:rgba(255,255,255,.13);box-shadow:0 0 14px rgba(255,255,255,.12);opacity:0;animation:bubbleUp 1.15s ease-out forwards}
-    @keyframes bubbleUp{0%{opacity:0;transform:translateY(40px) scale(.5)}20%{opacity:.75}100%{opacity:0;transform:translateY(-100px) scale(1.25)}}
-
-    /* TOP DESKARO */
-    .editorial-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:240px;gap:14px}
-    .dish-shot{position:relative;overflow:hidden;border-radius:1.8rem;border:1px solid rgba(255,255,255,.07);background:#0d0d0d;isolation:isolate}
-    .dish-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1),filter .5s ease;filter:saturate(.94) contrast(1.02)}
-    .dish-shot:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92),rgba(0,0,0,.03) 67%);z-index:1}
-    .dish-shot:hover img{transform:scale(1.045);filter:saturate(1.05) contrast(1.05)}
-    .dish-shot .dish-copy{position:absolute;left:22px;right:22px;bottom:20px;z-index:2}
-    .dish-shot.primary{grid-column:span 7;grid-row:span 2}.dish-shot.secondary{grid-column:span 5}.dish-shot.tertiary{grid-column:span 4}.dish-shot.wide{grid-column:span 8}
-    .dish-tag{display:inline-flex;padding:.35rem .65rem;border-radius:999px;background:rgba(225,29,72,.88);font-size:9px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.55rem}
-
-    /* PHOTO GALLERY */
-    .photo-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:210px;gap:12px}
-    .photo-cell{position:relative;overflow:hidden;border-radius:1.45rem;border:1px solid rgba(255,255,255,.06);background:#0d0d0d;cursor:pointer}
-    .photo-cell img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1),filter .4s ease}.photo-cell:hover img{transform:scale(1.04);filter:brightness(.82)}
-    .photo-cell:nth-child(1){grid-column:span 5;grid-row:span 2}.photo-cell:nth-child(2){grid-column:span 4}.photo-cell:nth-child(3){grid-column:span 3}.photo-cell:nth-child(4){grid-column:span 3}.photo-cell:nth-child(5){grid-column:span 4}.photo-cell:nth-child(6){grid-column:span 7}
-
-    /* REVIEWS CAROUSEL */
-    .reviews-shell{position:relative}
-    .reviews-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:6px 2px 18px;scrollbar-width:thin;scrollbar-color:rgba(225,29,72,.6) rgba(255,255,255,.05)}
-    .reviews-track::-webkit-scrollbar{height:5px}.reviews-track::-webkit-scrollbar-thumb{background:rgba(225,29,72,.6);border-radius:999px}.reviews-track::-webkit-scrollbar-track{background:rgba(255,255,255,.04)}
-    .review-card{flex:0 0 min(420px,86vw);scroll-snap-align:start;background:linear-gradient(180deg,#121212,#0b0b0b);border:1px solid rgba(255,255,255,.075);border-radius:1.8rem;padding:24px;min-height:300px;display:flex;flex-direction:column;justify-content:space-between}
-    .stars{color:#fbbf24;letter-spacing:.08em;font-size:.92rem}.review-source{font-size:9px;text-transform:uppercase;letter-spacing:.16em;color:#71717a;font-weight:800}
-    .review-arrows{display:flex;gap:8px}.review-arrow{width:44px;height:44px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:#111;display:grid;place-items:center;transition:.2s}.review-arrow:hover{background:var(--deskaro-red);border-color:var(--deskaro-red)}
-    .drag-hint{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.15em;color:#71717a}
-
-    /* LOCATION / 3D MAP */
-    .map-stage{position:relative;perspective:1200px}
-    .map-frame{position:relative;height:520px;border-radius:2.2rem;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#101010;transform:rotateX(2.8deg) rotateZ(-.2deg);transform-origin:50% 100%;box-shadow:0 35px 80px rgba(0,0,0,.45);transition:transform .55s cubic-bezier(.16,1,.3,1)}
-    .map-frame:hover{transform:rotateX(0) rotateZ(0)}
-    .map-frame iframe{width:100%;height:100%;border:0;filter:saturate(.85) contrast(1.02)}
-    .map-topline{position:absolute;left:18px;right:18px;top:18px;z-index:3;display:flex;justify-content:space-between;align-items:center;gap:12px;pointer-events:none}
-    .map-chip{padding:10px 14px;border-radius:999px;background:rgba(5,5,5,.78);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.1);font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.13em;box-shadow:0 12px 30px rgba(0,0,0,.3)}
-    .contact-panel{background:linear-gradient(160deg,#111,#090909);border:1px solid rgba(255,255,255,.07);border-radius:2rem;padding:28px}
-    .contact-line{display:flex;gap:14px;align-items:flex-start;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.06)}.contact-line:last-child{border:0}
-
-    /* MOBILE DOCK */
-    .mobile-dock{display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:9990;background:rgba(8,8,8,.88);border:1px solid rgba(255,255,255,.09);backdrop-filter:blur(18px);border-radius:1.2rem;padding:7px;box-shadow:0 20px 55px rgba(0,0,0,.48)}
-    .mobile-dock a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 4px;border-radius:.85rem;font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:#aaa;font-weight:800}.mobile-dock i{font-size:15px;color:#fb7185}.mobile-dock a:active{background:rgba(225,29,72,.12);color:#fff}
-
-    .footer-brand{width:min(390px,80vw);height:auto;margin:0 auto 18px;opacity:.92}
-    .powered-link{color:#9ca3af;transition:.2s}.powered-link:hover{color:#fb7185}
-
-    @media(max-width:900px){
-      .brand-wordmark{height:28px;max-width:165px}.editorial-grid{grid-auto-rows:210px}.dish-shot.primary{grid-column:span 12}.dish-shot.secondary{grid-column:span 6}.dish-shot.tertiary{grid-column:span 6}.dish-shot.wide{grid-column:span 12}
-      .photo-grid{grid-auto-rows:180px}.photo-cell:nth-child(n){grid-column:span 6;grid-row:span 1}.photo-cell:nth-child(1){grid-column:span 12;grid-row:span 2}.photo-cell:nth-child(6){grid-column:span 12}
-    }
-    @media(max-width:640px){
-      body{padding-bottom:76px}.mobile-dock{display:flex}.hero-brand-badge{width:60px;height:60px}.editorial-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}.dish-shot,.dish-shot.primary,.dish-shot.secondary,.dish-shot.tertiary,.dish-shot.wide{flex:0 0 84vw;height:420px;scroll-snap-align:center}.photo-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}.photo-cell,.photo-cell:nth-child(n){flex:0 0 82vw;height:360px;scroll-snap-align:center}.map-frame{height:430px;transform:none}.preview-chip{bottom:88px}.floating-social{bottom:92px}.review-card{min-height:320px}
-    }
-
+    :root{--red:#e11d48;--bg:#050505;--card:#0e0e0e;--line:rgba(255,255,255,.08)}
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:#fff;font-family:'Plus Jakarta Sans',sans-serif}
+    body{min-height:100vh;overflow-x:hidden;background:radial-gradient(circle at 22% 38%,rgba(225,29,72,.16),transparent 27%),radial-gradient(circle at 83% 20%,rgba(225,29,72,.07),transparent 24%),#050505}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:58px 58px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 88%)}
+    .watermark{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-16deg);font-family:'Oswald';font-weight:800;font-size:clamp(5rem,14vw,13rem);white-space:nowrap;opacity:.035;letter-spacing:-.04em;pointer-events:none;user-select:none}
+    .shell{position:relative;z-index:2;min-height:100vh;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(390px,.75fr);gap:36px;padding:28px;max-width:1500px;margin:auto;align-items:center}
+    .showcase{position:relative;min-height:740px;display:flex;align-items:center;justify-content:center}
+    .glow{position:absolute;width:560px;height:560px;border-radius:50%;background:rgba(225,29,72,.11);filter:blur(110px)}
+    .monitor{position:relative;width:min(780px,78vw);aspect-ratio:16/10;border-radius:24px;background:#101010;border:1px solid rgba(255,255,255,.12);box-shadow:0 45px 110px rgba(0,0,0,.65);overflow:hidden;transform:perspective(1400px) rotateY(7deg) rotateX(1.8deg)}
+    .monitor-bar{height:38px;background:#111;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:6px;padding:0 14px}.dot{width:8px;height:8px;border-radius:50%;background:#2d2d2d}.monitor img{width:100%;height:calc(100% - 38px);object-fit:cover;object-position:center}
+    .phone{position:absolute;right:2%;bottom:4%;width:220px;aspect-ratio:9/19;border:8px solid #111;border-radius:34px;background:#090909;box-shadow:0 28px 70px rgba(0,0,0,.62);overflow:hidden;transform:rotate(4deg)}
+    .phone:before{content:"";position:absolute;z-index:3;left:50%;top:7px;transform:translateX(-50%);width:72px;height:18px;border-radius:999px;background:#050505}.phone img{width:100%;height:100%;object-fit:cover;object-position:48% center;filter:brightness(.88)}
+    .badge{position:absolute;left:4%;bottom:12%;padding:12px 16px;border-radius:999px;background:rgba(8,8,8,.78);border:1px solid rgba(225,29,72,.26);backdrop-filter:blur(14px);font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#fda4af;box-shadow:0 15px 40px rgba(0,0,0,.35)}
+    .login{max-width:520px;width:100%;justify-self:center;background:linear-gradient(180deg,rgba(18,18,18,.96),rgba(8,8,8,.96));border:1px solid var(--line);border-radius:32px;padding:34px;box-shadow:0 40px 100px rgba(0,0,0,.55);backdrop-filter:blur(20px)}
+    .brand{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:34px}.brand img.word{max-width:245px;height:52px;object-fit:contain}.brand img.round{width:62px;height:62px;object-fit:contain;filter:drop-shadow(0 10px 20px rgba(225,29,72,.12))}
+    .kicker{color:#fb7185;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.28em;margin-bottom:10px}.title{font-family:'Oswald';font-size:clamp(2.7rem,6vw,4.8rem);line-height:.88;text-transform:uppercase;letter-spacing:-.045em;margin:0}.copy{color:#8d8d95;line-height:1.65;font-size:14px;margin:18px 0 28px}
+    .field{margin:14px 0}.field label{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.18em;font-weight:800;color:#777;margin:0 0 8px}.input-wrap{position:relative}.input-wrap i{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:#666}.input-wrap input{width:100%;border:1px solid rgba(255,255,255,.09);background:#090909;color:white;border-radius:16px;padding:16px 48px 16px 44px;outline:none;font:inherit;transition:.2s}.input-wrap input:focus{border-color:rgba(225,29,72,.65);box-shadow:0 0 0 4px rgba(225,29,72,.08)}.eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:42px;height:42px;border:0;background:transparent;color:#777;cursor:pointer}
+    .submit{width:100%;margin-top:8px;border:0;border-radius:999px;background:var(--red);color:#fff;padding:16px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;font-size:11px;cursor:pointer;transition:.25s}.submit:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(225,29,72,.3)}
+    .error{min-height:22px;color:#fb7185;font-size:11px;margin-top:13px;text-align:center}.small{margin-top:18px;text-align:center;color:#56565d;font-size:9px;line-height:1.6;text-transform:uppercase;letter-spacing:.12em}
+    .powered{text-align:center;margin-top:26px;color:#64646b;font-size:10px}.powered a{color:#9ca3af;text-decoration:none}.powered a:hover{color:#fb7185}
+    @media(max-width:1000px){.shell{grid-template-columns:1fr;padding:22px;gap:0}.showcase{min-height:430px;order:2}.login{order:1;margin-top:16px}.monitor{width:min(760px,92vw)}.phone{width:150px;right:4%;bottom:1%}.badge{left:2%;bottom:7%}}
+    @media(max-width:560px){.shell{padding:14px}.login{padding:25px 20px;border-radius:26px}.brand img.word{max-width:200px;height:44px}.brand img.round{width:52px;height:52px}.showcase{min-height:330px}.monitor{width:94vw;border-radius:18px;transform:none}.phone{width:110px;border-width:5px;border-radius:22px}.badge{display:none}.watermark{font-size:6rem}}
   </style>
 </head>
-<body class="antialiased selection:bg-rose-600 selection:text-white intro-active">
-
-  <div class="demo-watermark" aria-hidden="true">
-    <div class="main">DEMO PRIVADA</div>
-    <div class="sub">TABERNA DESKARO · VERSIÓN PREVIA</div>
-  </div>
-  <div class="preview-chip" aria-hidden="true">Propuesta visual · No versión final</div>
-
-  <nav class="fixed top-0 w-full z-[100] glass-header px-5 md:px-6 py-4">
-    <div class="max-w-7xl mx-auto flex justify-between items-center gap-4">
-      <a href="#inicio" class="flex items-center shrink-0" aria-label="Taberna Deskaro">
-        <img src="logo-deskaro.png" alt="Taberna Deskaro" class="brand-wordmark" />
-      </a>
-      <div class="hidden lg:flex items-center space-x-7 text-[10px] font-bold uppercase tracking-[.16em] text-gray-300">
-        <a href="#chef" class="hover:text-rose-400 transition-colors">Chef Deskaro</a>
-        <a href="#carta" class="hover:text-rose-400 transition-colors">La Carta</a>
-        <a href="#bebidas" class="hover:text-rose-400 transition-colors">Bebidas</a>
-        <a href="#original" class="hover:text-rose-400 transition-colors">Carta original</a>
-        <a href="#contacto" class="hover:text-rose-400 transition-colors">Ubicación</a>
+<body>
+  <div class="watermark">DEMO PRIVADA</div>
+  <main class="shell">
+    <section class="showcase" aria-hidden="true">
+      <div class="glow"></div>
+      <div class="monitor">
+        <div class="monitor-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <img src="og-image.jpg" alt="" />
       </div>
-      <a href="https://www.instagram.com/tabernadeskaro/" target="_blank" rel="noopener" class="px-5 py-2.5 bg-rose-600 text-white rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all shrink-0"><i class="fab fa-instagram mr-1.5"></i> Instagram</a>
-    </div>
-  </nav>
-
-  <section id="inicio" class="hero-track">
-    <div class="hero-sticky">
-      <div class="hero-grid"></div>
-      <div class="hero-content">
-        <img src="logo-circular.png" alt="Logo circular de Taberna Deskaro" class="hero-brand-badge" />
-        <div id="heroEyebrow" class="hero-eyebrow">Huelin · Málaga · Sabor con actitud</div>
-        <h1 id="heroWord" class="hero-word" aria-label="DESKARO">
-          <span class="hero-letter" style="--ix:-220px;--iy:-45px;--ir:-14deg;--id:.04s">D</span><span class="hero-letter" style="--ix:-165px;--iy:85px;--ir:-9deg;--id:.10s">E</span><span class="hero-letter" style="--ix:-95px;--iy:-125px;--ir:-6deg;--id:.16s">S</span><span class="hero-letter k" style="--ix:0px;--iy:175px;--ir:0deg;--id:.34s">K</span><span class="hero-letter" style="--ix:95px;--iy:-120px;--ir:6deg;--id:.20s">A</span><span class="hero-letter" style="--ix:165px;--iy:82px;--ir:9deg;--id:.14s">R</span><span class="hero-letter" style="--ix:225px;--iy:-42px;--ir:14deg;--id:.08s">O</span>
-        </h1>
-        <div id="beerBubbles" class="beer-bubbles" aria-hidden="true"></div>
-        <div id="heroSub" class="hero-sub">Taberna · Mar · Carne · Vinos</div>
-        <p id="heroRevealCopy" class="hero-reveal-copy">Una carta con personalidad, pensada para compartir y volver a pedir.</p>
-        <div id="heroActions" class="hero-actions">
-          <a href="#carta" class="btn-main"><i class="fa-solid fa-utensils"></i> Ver carta completa</a>
-          <a href="#chef" class="btn-ghost"><i class="fa-solid fa-wand-magic-sparkles"></i> Chef Virtual</a>
-        </div>
-      </div>
-      <div id="scrollCue" class="scroll-cue">Scroll<i class="fa-solid fa-arrow-down"></i></div>
-    </div>
-  </section>
-
-  <main>
-    <section class="px-6 -mt-6 relative z-10">
-      <div class="max-w-6xl mx-auto feature-strip reveal">
-        <div><div class="text-rose-500 text-xl mb-2"><i class="fa-solid fa-burger"></i></div><div class="font-title text-xl uppercase">3 Caracoles</div><div class="text-xs text-gray-500 mt-1">Miniburguer Deskaro · 6€</div></div>
-        <div><div class="text-rose-500 text-xl mb-2"><i class="fa-solid fa-seedling"></i></div><div class="font-title text-xl uppercase">Tomate Paco</div><div class="text-xs text-gray-500 mt-1">Con ajitos y AOVE · 9,5€</div></div>
-        <div><div class="text-rose-500 text-xl mb-2"><i class="fa-solid fa-bowl-food"></i></div><div class="font-title text-xl uppercase">Fideos tostados</div><div class="text-xs text-gray-500 mt-1">Gambón, presa o entrecot</div></div>
-        <div><div class="text-rose-500 text-xl mb-2"><i class="fa-solid fa-fire-flame-curved"></i></div><div class="font-title text-xl uppercase">Del mar</div><div class="text-xs text-gray-500 mt-1">Pulpo, calamar, fritura y más</div></div>
-      </div>
+      <div class="phone"><img src="foto-fideos-gambon.jpg" alt="" /></div>
+      <div class="badge"><i class="fas fa-lock" style="margin-right:7px"></i> Presentación protegida</div>
     </section>
 
-
-    <section id="top-deskaro" class="py-28 px-6 bg-[#070707]">
-      <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 reveal mb-12">
-          <div><span class="section-kicker block mb-3">Lo más Deskaro</span><h2 class="font-title text-6xl md:text-8xl uppercase tracking-tighter">PLATOS QUE HABLAN SOLOS</h2><p class="text-gray-500 text-sm mt-4 max-w-2xl">Fotos reales del local. Un vistazo rápido a algunos de los platos que definen la casa.</p></div>
-          <a href="#carta" class="btn-ghost shrink-0"><i class="fa-solid fa-book-open"></i> Ver carta completa</a>
-        </div>
-        <div class="editorial-grid reveal">
-          <article class="dish-shot primary"><img src="foto-fideos-entrecot.jpg" alt="Fideos tostados con entrecot de Taberna Deskaro" loading="lazy"><div class="dish-copy"><span class="dish-tag">Platazo Deskaro</span><h3 class="font-title text-4xl md:text-5xl uppercase">Fideos con entrecot</h3><p class="text-sm text-gray-300 mt-1">Fideos tostados · Ración 30€</p></div></article>
-          <article class="dish-shot secondary"><img src="foto-fideos-gambon.jpg" alt="Fideos tostados con gambón" loading="lazy"><div class="dish-copy"><span class="dish-tag">Del mar</span><h3 class="font-title text-3xl uppercase">Fideos con gambón</h3><p class="text-sm text-gray-300 mt-1">Ración 25€</p></div></article>
-          <article class="dish-shot secondary"><img src="foto-pulpo.jpg" alt="Pulpo de Taberna Deskaro" loading="lazy"><div class="dish-copy"><span class="dish-tag">Deskaro</span><h3 class="font-title text-3xl uppercase">Pulpo</h3><p class="text-sm text-gray-300 mt-1">Pulpo gallega / Pata XL · 24€</p></div></article>
-          <article class="dish-shot tertiary"><img src="foto-croquetas.jpg" alt="Croquetas de la abuela" loading="lazy"><div class="dish-copy"><span class="dish-tag">Clásico</span><h3 class="font-title text-3xl uppercase">Croquetón de la abuela</h3><p class="text-sm text-gray-300 mt-1">2,5€ / unidad</p></div></article>
-          <article class="dish-shot wide"><img src="foto-tomate.jpg" alt="Tomate Paco" loading="lazy"><div class="dish-copy"><span class="dish-tag">Producto</span><h3 class="font-title text-3xl uppercase">Tomate Paco</h3><p class="text-sm text-gray-300 mt-1">Desde 9,5€ · con ajitos, AOVE y variantes</p></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="chef" class="py-28 px-6 bg-[#080808]">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-12 reveal">
-          <span class="section-kicker block mb-3">Asistente inteligente</span>
-          <h2 class="font-title text-5xl md:text-7xl uppercase tracking-tighter">TU COMIDA A MEDIDA</h2>
-          <p class="text-gray-500 text-sm mt-4 max-w-2xl mx-auto">Elige grupo, hambre, estilo y presupuesto. El Chef Deskaro combina platos de la carta real y calcula una propuesta aproximada.</p>
-        </div>
-
-        <div class="reveal neon-border bg-[#0c0c0c] rounded-[2.3rem] overflow-hidden min-h-[520px] flex flex-col">
-          <div class="bg-black/40 px-7 py-5 border-b border-white/5 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-              <div class="w-10 h-10 rounded-full bg-rose-600/10 flex items-center justify-center border border-rose-600/30"><i class="fas fa-robot text-rose-500"></i></div>
-              <div><h4 class="font-bold text-sm">Chef Virtual Deskaro</h4><span class="text-[10px] text-emerald-400">En línea · Carta real cargada</span></div>
-            </div>
-            <button onclick="restartChef()" class="text-[10px] text-gray-500 uppercase tracking-widest hover:text-white"><i class="fa-solid fa-rotate-right mr-1"></i> Reiniciar</button>
-          </div>
-
-          <div id="chat-window" class="flex-grow p-6 md:p-8 space-y-5 overflow-y-auto max-h-[430px] scroll-hide">
-            <div class="flex items-start gap-3 max-w-[92%]"><div class="chat-bubble-ai p-5 text-sm leading-relaxed text-gray-300">¡Hola! Soy el Chef Virtual de Deskaro. Vamos a montar una propuesta para compartir. <br><br><strong>¿Cuántos vais a ser?</strong></div></div>
-          </div>
-          <div class="p-6 md:p-8 bg-black/40 border-t border-white/5"><div id="options-container" class="flex flex-wrap gap-3 justify-center"></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="carta" class="py-28 px-6 bg-[#050505]">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center reveal mb-12">
-          <span class="section-kicker block mb-3">Carta actual</span>
-          <h2 class="font-title text-6xl md:text-8xl uppercase tracking-tighter">LA CARTA ENTERA</h2>
-          <p class="text-gray-500 text-sm mt-4 max-w-3xl mx-auto">Carta completa trasladada desde la carta física: Entrantes, Del Mar, Bocaditos, Rincón Carnívoro, Platazos Deskarados, Peques y Postres, con sus formatos y precios.</p>
-        </div>
-
-        <div class="reveal sticky top-[76px] z-40 py-3 mb-10 bg-[#050505]/90 backdrop-blur-xl border-y border-white/5">
-          <div class="max-w-5xl mx-auto flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
-            <div class="relative flex-1 max-w-md"><i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-600 text-xs"></i><input id="menuSearch" type="search" placeholder="Buscar plato..." class="w-full rounded-full bg-white/5 border border-white/10 py-3 pl-10 pr-4 text-sm outline-none focus:border-rose-600/50" /></div>
-            <div id="foodFilters" class="flex gap-2 overflow-x-auto scroll-hide pb-1 md:pb-0"></div>
-          </div>
-        </div>
-
-        <div id="foodMenu" class="grid lg:grid-cols-2 gap-6"></div>
-      </div>
-    </section>
-
-    <section id="bebidas" class="py-28 px-6 bg-[#090909]">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center reveal mb-14"><span class="section-kicker block mb-3">Bar & bodega</span><h2 class="font-title text-6xl md:text-8xl uppercase tracking-tighter">BEBIDAS, VINOS Y COPAS</h2><p class="text-gray-500 text-sm mt-4 max-w-3xl mx-auto">Cervezas, refrescos, zumos, vinos blancos, tintos y copas de la carta original, con precios de copa y botella cuando corresponde.</p></div>
-        <div id="drinksMenu" class="grid lg:grid-cols-2 gap-6"></div>
-      </div>
-    </section>
-
-    <section id="original" class="py-28 px-6 bg-[#050505]">
-      <div class="max-w-6xl mx-auto">
-        <div class="text-center reveal mb-14"><span class="section-kicker block mb-3">Comprobación visual</span><h2 class="font-title text-5xl md:text-7xl uppercase tracking-tighter">CARTA ORIGINAL</h2><p class="text-gray-500 text-sm mt-4">Pulsa para verla a pantalla completa.</p></div>
-        <div class="grid md:grid-cols-2 gap-6">
-          <button class="original-card reveal text-left" onclick="openCarta('carta-comida.jpg','Carta de comida')"><img src="carta-comida.jpg" alt="Carta original de comida de Taberna Deskaro" /><span class="overlay"></span><span class="copy"><span class="section-kicker block mb-2">Original</span><span class="font-title text-4xl uppercase">Carta de comida</span><span class="block text-sm text-gray-400 mt-2">Entrantes, mar, bocaditos, carnes, platazos, peques y postres.</span></span></button>
-          <button class="original-card reveal text-left" onclick="openCarta('carta-bebidas.jpg','Carta de bebidas')"><img src="carta-bebidas.jpg" alt="Carta original de bebidas de Taberna Deskaro" /><span class="overlay"></span><span class="copy"><span class="section-kicker block mb-2">Original</span><span class="font-title text-4xl uppercase">Bebidas y vinos</span><span class="block text-sm text-gray-400 mt-2">Cervezas, refrescos, blancos, tintos y copas.</span></span></button>
-        </div>
-      </div>
-    </section>
-
-
-    <section id="galeria" class="py-28 px-6 bg-[#080808]">
-      <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5 reveal mb-12">
-          <div><span class="section-kicker block mb-3">Deskaro en imágenes</span><h2 class="font-title text-6xl md:text-8xl uppercase tracking-tighter">ASÍ SE VIVE DESKARO</h2><p class="text-gray-500 text-sm mt-4 max-w-2xl">Platos, terraza y tapeo real. Pulsa cualquier foto para verla en grande.</p></div>
-          <a href="https://www.instagram.com/tabernadeskaro/" target="_blank" rel="noopener" class="btn-main"><i class="fab fa-instagram"></i> @tabernadeskaro</a>
-        </div>
-        <div class="photo-grid reveal">
-          <button class="photo-cell" onclick="openPhoto('foto-fachada.jpg','Fachada de Taberna Deskaro')"><img src="foto-fachada.jpg" alt="Fachada y terraza de Taberna Deskaro" loading="lazy"></button>
-          <button class="photo-cell" onclick="openPhoto('foto-fideos-entrecot.jpg','Fideos con entrecot')"><img src="foto-fideos-entrecot.jpg" alt="Fideos con entrecot" loading="lazy"></button>
-          <button class="photo-cell" onclick="openPhoto('foto-croquetas.jpg','Croquetas de la abuela')"><img src="foto-croquetas.jpg" alt="Croquetas de la abuela" loading="lazy"></button>
-          <button class="photo-cell" onclick="openPhoto('foto-tapeo.jpg','Tapeo y cerveza')"><img src="foto-tapeo.jpg" alt="Tapeo con cerveza en Deskaro" loading="lazy"></button>
-          <button class="photo-cell" onclick="openPhoto('foto-pulpo.jpg','Pulpo Deskaro')"><img src="foto-pulpo.jpg" alt="Pulpo Deskaro" loading="lazy"></button>
-          <button class="photo-cell" onclick="openPhoto('foto-fideos-gambon.jpg','Fideos con gambón')"><img src="foto-fideos-gambon.jpg" alt="Fideos con gambón" loading="lazy"></button>
-        </div>
-      </div>
-    </section>
-
-    <section id="resenas" class="py-28 px-6 bg-[#050505]">
-      <div class="max-w-7xl mx-auto reviews-shell">
-        <div class="flex items-end justify-between gap-5 reveal mb-10">
-          <div><span class="section-kicker block mb-3">Reseñas reales</span><h2 class="font-title text-6xl md:text-8xl uppercase tracking-tighter">LO DICEN ELLOS</h2><div class="drag-hint mt-4"><i class="fa-solid fa-left-right"></i> Desliza de izquierda a derecha</div></div>
-          <div class="review-arrows"><button class="review-arrow" onclick="moveReviews(-1)" aria-label="Reseñas anteriores"><i class="fa-solid fa-arrow-left"></i></button><button class="review-arrow" onclick="moveReviews(1)" aria-label="Siguientes reseñas"><i class="fa-solid fa-arrow-right"></i></button></div>
-        </div>
-        <div id="reviewsTrack" class="reviews-track reveal">
-          <article class="review-card"><div><div class="flex items-start justify-between gap-4"><div><h3 class="font-semibold">Sonia Salguero</h3><div class="review-source mt-1">Google · hace 4 meses</div></div><div class="stars">★★★★★</div></div><p class="mt-6 text-gray-300 leading-relaxed">“Hemos ido por primera vez y fantástico todo. Pedimos los fideos con entrecot y buenísimos; también salmorejo fuera de carta que estaba exquisito.”</p></div><div class="text-xs text-gray-600 mt-6">Comida · 10–20€</div></article>
-          <article class="review-card"><div><div class="flex items-start justify-between gap-4"><div><h3 class="font-semibold">Daniel Salvador (Salva)</h3><div class="review-source mt-1">Google Local Guide · reciente</div></div><div class="stars">★★★★★</div></div><p class="mt-6 text-gray-300 leading-relaxed">“Era mi primera vez y me ha encantado. No me extraña que siempre esté lleno; recomiendo reservar o ir de los primeros. Buena relación calidad…”</p></div><div class="text-xs text-gray-600 mt-6">Comida · 20–30€</div></article>
-          <article class="review-card"><div><div class="flex items-start justify-between gap-4"><div><h3 class="font-semibold">Jorge Moya Prades</h3><div class="review-source mt-1">Google Local Guide · hace 3 semanas</div></div><div class="stars">★★★★★</div></div><p class="mt-6 text-gray-300 leading-relaxed">“Lugar top de Huelin, visita obligada cada vez que visito Málaga.”</p></div><div class="text-xs text-gray-500 mt-6">Comida 5 · Servicio 5 · Ambiente 5</div></article>
-          <article class="review-card"><div><div class="flex items-start justify-between gap-4"><div><h3 class="font-semibold">Jon Pérez</h3><div class="review-source mt-1">Google Local Guide · hace 1 mes</div></div><div class="stars">★★★★★</div></div><p class="mt-6 text-gray-300 leading-relaxed">“Nos superó las expectativas con creces. Gildas, tomate con melva, aguacate y anchoas y los fideos con gambones…”</p></div><div class="text-xs text-gray-600 mt-6">Cena · 20–30€</div></article>
-          <article class="review-card"><div><div class="flex items-start justify-between gap-4"><div><h3 class="font-semibold">Alain Chaboche</h3><div class="review-source mt-1">Google Local Guide · reciente</div></div><div class="stars">★★★★★</div></div><p class="mt-6 text-gray-300 leading-relaxed">Valoración especialmente alta en comida y servicio, con espera indicada de menos de 10 minutos.</p></div><div class="text-xs text-gray-500 mt-6">Comida 5 · Servicio 5 · Ambiente 4</div></article>
-          <article class="review-card"><div><div class="flex items-start justify-between gap-4"><div><h3 class="font-semibold">Anali Lopez</h3><div class="review-source mt-1">Google · reciente</div></div><div class="stars">★★★★★</div></div><p class="mt-6 text-gray-300 leading-relaxed">Una valoración completa de cinco estrellas en comida, servicio y ambiente.</p></div><div class="text-xs text-gray-500 mt-6">Comida 5 · Servicio 5 · Ambiente 5</div></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contacto" class="py-28 px-6 bg-black">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center reveal mb-14"><span class="section-kicker block mb-3">Huelin · Málaga</span><h2 class="font-title text-6xl md:text-8xl uppercase tracking-tighter">ENCUÉNTRANOS</h2><p class="text-gray-500 text-sm mt-4 max-w-2xl mx-auto">C. Princesa, 34 · Carretera de Cádiz · 29002 Málaga. Muy cerca del paseo marítimo y la playa de Huelin.</p></div>
-        <div class="grid lg:grid-cols-[1.45fr_.75fr] gap-7 items-stretch">
-          <div class="map-stage reveal">
-            <div class="map-frame">
-              <div class="map-topline"><span class="map-chip"><i class="fa-solid fa-location-dot text-rose-500 mr-2"></i>Taberna Deskaro</span><span class="map-chip hidden sm:inline-flex"><i class="fa-solid fa-umbrella-beach text-rose-500 mr-2"></i>Huelin · junto al mar</span></div>
-              <iframe title="Mapa de Taberna Deskaro" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Calle%20Princesa%2034%2C%2029002%20M%C3%A1laga&z=16&output=embed"></iframe>
-            </div>
-          </div>
-          <aside class="contact-panel reveal">
-            <img src="logo-circular.png" alt="Taberna Deskaro" class="w-20 h-20 object-contain mb-5">
-            <h3 class="font-title text-4xl uppercase tracking-tighter">VEN A DESKARO</h3>
-            <p class="text-gray-500 text-sm mt-3 mb-5 leading-relaxed">Cocina tradicional con un toque actual, en Huelin. Consulta la carta, síguenos y encuentra la ruta directa.</p>
-            <div class="contact-line"><i class="fa-solid fa-location-dot text-rose-500 mt-1"></i><div><div class="text-[10px] uppercase tracking-widest text-gray-600 font-bold">Dirección</div><div class="text-sm mt-1">C. Princesa, 34, 29002 Málaga</div></div></div>
-            <div class="contact-line"><i class="fa-solid fa-phone text-rose-500 mt-1"></i><div><div class="text-[10px] uppercase tracking-widest text-gray-600 font-bold">Teléfono</div><div class="text-sm mt-1 text-rose-300">Próximamente</div></div></div>
-            <div class="contact-line"><i class="fa-solid fa-envelope text-rose-500 mt-1"></i><div><div class="text-[10px] uppercase tracking-widest text-gray-600 font-bold">Email</div><a href="mailto:info@tabernadeskaro.com" class="text-sm mt-1 block hover:text-rose-400">info@tabernadeskaro.com</a></div></div>
-            <div class="contact-line"><i class="fab fa-instagram text-rose-500 mt-1"></i><div><div class="text-[10px] uppercase tracking-widest text-gray-600 font-bold">Instagram</div><a href="https://www.instagram.com/tabernadeskaro/" target="_blank" rel="noopener" class="text-sm mt-1 block hover:text-rose-400">@tabernadeskaro</a></div></div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 mt-6"><a href="https://www.google.com/maps/dir/?api=1&destination=Calle+Princesa+34,+29002+Malaga" target="_blank" rel="noopener" class="btn-main"><i class="fa-solid fa-location-arrow"></i> Cómo llegar</a><a href="https://www.instagram.com/tabernadeskaro/" target="_blank" rel="noopener" class="btn-ghost"><i class="fab fa-instagram"></i> Instagram</a></div>
-          </aside>
-        </div>
-      </div>
+    <section class="login">
+      <div class="brand"><img src="logo-deskaro.png" class="word" alt="Taberna Deskaro" /><img src="logo-circular.png" class="round" alt="" /></div>
+      <div class="kicker">Vista previa privada</div>
+      <h1 class="title">Acceso<br><span style="color:#e11d48">cliente</span></h1>
+      <p class="copy">Esta presentación contiene una propuesta web privada de Taberna Deskaro. Introduce las credenciales facilitadas para acceder al mockup y a la web completa.</p>
+      <form id="loginForm" autocomplete="off">
+        <div class="field"><label for="user">Usuario</label><div class="input-wrap"><i class="fas fa-user"></i><input id="user" name="user" autocomplete="username" required placeholder="Usuario" /></div></div>
+        <div class="field"><label for="pass">Contraseña</label><div class="input-wrap"><i class="fas fa-key"></i><input id="pass" name="pass" type="password" autocomplete="current-password" required placeholder="Contraseña" /><button class="eye" type="button" id="togglePass" aria-label="Mostrar contraseña"><i class="fas fa-eye"></i></button></div></div>
+        <button class="submit" type="submit"><i class="fas fa-lock-open" style="margin-right:8px"></i> Entrar a la preview</button>
+        <div class="error" id="error" role="alert"></div>
+      </form>
+      <div class="small">Acceso temporal por sesión · La sesión se cierra al cerrar la pestaña</div>
+      <div class="powered">Powered by <a href="https://yourdesigngpt.netlify.app" target="_blank" rel="noopener">YourDesignGPT</a></div>
     </section>
   </main>
 
-  <footer class="py-14 px-6 border-t border-white/5 text-center bg-[#050505]">
-    <img src="logo-deskaro.png" alt="Taberna Deskaro" class="footer-brand" />
-    <div class="text-[9px] text-gray-700 uppercase tracking-[.32em]">© 2026 · Huelin · Málaga · Vista previa privada</div>
-    <div class="mt-4 text-[10px] uppercase tracking-[.18em] text-gray-700">Powered by <a class="powered-link font-bold" href="https://yourdesigngpt.netlify.app" target="_blank" rel="noopener">YourDesignGPT</a></div>
-  </footer>
-
-  <a class="floating-social" href="https://www.instagram.com/tabernadeskaro/" target="_blank" rel="noopener" aria-label="Instagram de Taberna Deskaro"><i class="fab fa-instagram"></i></a>
-
-
-  <nav class="mobile-dock" aria-label="Accesos rápidos">
-    <a href="#carta"><i class="fa-solid fa-utensils"></i><span>Carta</span></a>
-    <a href="#resenas"><i class="fa-solid fa-star"></i><span>Reseñas</span></a>
-    <a href="https://www.instagram.com/tabernadeskaro/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i><span>Instagram</span></a>
-    <a href="https://www.google.com/maps/dir/?api=1&destination=Calle+Princesa+34,+29002+Malaga" target="_blank" rel="noopener"><i class="fa-solid fa-location-arrow"></i><span>Cómo llegar</span></a>
-  </nav>
-
-  <div id="photoModal" class="modal" role="dialog" aria-modal="true" aria-label="Galería de Taberna Deskaro">
-    <button class="modal-close" onclick="closePhoto()" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
-    <img id="photoModalImg" alt="Foto de Taberna Deskaro" />
-  </div>
-
-  <div id="cartaModal" class="modal" role="dialog" aria-modal="true" aria-label="Carta original">
-    <button class="modal-close" onclick="closeCarta()" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
-    <img id="cartaModalImg" alt="Carta original" />
-  </div>
-
-  <script>
-
-    // Entrada Deskaro: letras chocan y un toque de "espuma" aparece una sola vez.
-    let introDone=false;
-    const introWord=document.getElementById('heroWord');
-    const bubbleLayer=document.getElementById('beerBubbles');
-    function foamBurst(){
-      const bubbles=[
-        [12,18,10,.00],[20,45,7,.08],[28,28,14,.03],[36,58,8,.12],[43,32,11,.06],[49,52,16,.00],[55,25,8,.10],[61,58,12,.04],[68,34,9,.14],[76,54,14,.07],[84,22,8,.11],
-        [16,68,6,.18],[31,72,9,.16],[47,74,7,.21],[58,70,10,.17],[72,73,6,.22],[89,62,9,.19]
-      ];
-      bubbleLayer.innerHTML=bubbles.map(([x,y,s,d])=>`<span class="beer-bubble" style="left:${x}%;top:${y}%;width:${s}px;height:${s}px;animation-delay:${d}s"></span>`).join('');
-      setTimeout(()=>bubbleLayer.innerHTML='',1500);
+<script>
+  function fnv1a(str){let h=0x811c9dc5;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,0x01000193)>>>0;}return h>>>0;}
+  const form=document.getElementById('loginForm');
+  const error=document.getElementById('error');
+  const pass=document.getElementById('pass');
+  document.getElementById('togglePass').addEventListener('click',()=>{pass.type=pass.type==='password'?'text':'password';});
+  form.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    const u=document.getElementById('user').value.trim().toLowerCase();
+    const p=pass.value;
+    if(fnv1a(u+'|'+p)===0xe0c1d39e){
+      sessionStorage.setItem('deskaro_auth','ok');
+      sessionStorage.setItem('deskaro_auth_until',String(Date.now()+4*60*60*1000));
+      error.textContent='Acceso correcto. Abriendo presentación…';
+      setTimeout(()=>location.href='preview.html',280);
+    }else{
+      error.textContent='Usuario o contraseña incorrectos.';
+      form.animate([{transform:'translateX(0)'},{transform:'translateX(-7px)'},{transform:'translateX(7px)'},{transform:'translateX(0)'}],{duration:280});
     }
-    window.addEventListener('load',()=>{
-      setTimeout(()=>{introWord.classList.add('intro-impact');foamBurst()},930);
-      setTimeout(()=>{document.body.classList.remove('intro-active');introWord.classList.remove('intro-impact');introDone=true;heroScroll()},1320);
-    });
-
-    function moveReviews(dir){const t=document.getElementById('reviewsTrack');t.scrollBy({left:dir*Math.min(440,t.clientWidth*.88),behavior:'smooth'})}
-    function openPhoto(src,label){const m=document.getElementById('photoModal');const im=document.getElementById('photoModalImg');im.src=src;im.alt=label;m.classList.add('open');document.body.style.overflow='hidden'}
-    function closePhoto(){document.getElementById('photoModal').classList.remove('open');document.body.style.overflow=''}
-
-    const foodSections = [
-      {id:'entrantes',title:'Entrantes',icon:'fa-leaf',items:[
-        {n:'Ensaladilla Rusa',p:[['Tapa','4,5€'],['Media','6€'],['Ración','9€']]},
-        {n:'Ensalada mixta con melva',p:[['Ración','12€']]},
-        {n:'Ensalada de pimientos asados',p:[['Ración','6€']]},
-        {n:'Ensalada de pimientos asados con melva',p:[['Ración','9€']]},
-        {n:'Tomate Paco con ajitos y AOVE',d:'Mejor tomate del mercado',p:[['Ración','9,5€']]},
-        {n:'Tomate Paco con anchoas / melva',d:'Mejor tomate del mercado',p:[['Ración','12€']]},
-        {n:'Tomate Paco con aguacate y AOVE',d:'Mejor tomate del mercado',p:[['Ración','12€']]},
-        {n:'Queso Curado',p:[['Media','6€'],['Ración','10€']]},
-        {n:'Torreznos',p:[['Ración','8€']]},
-        {n:'Nuestros nachos caseros',d:'Tomate, guacamole, crema agria y queso',p:[['Media','8€'],['Ración','14€']]},
-        {n:'Papas Fritas',p:[['Media','4€'],['Ración','6€']]},
-        {n:'Papas Bravas',d:'Con mayo kimchee',p:[['Media','5€'],['Ración','8€']]},
-        {n:'Papas Deskaro',d:'Papas bravas gratinadas con huevo frito',p:[['Ración','10€']]},
-        {n:'Albóndigas en salsa de almendras',p:[['Media','7€'],['Ración','12€']]},
-        {n:'Huevos rotos',d:'Chorizo picante / jamón ibérico / gambas pil-pil',p:[['Ración','13€']]},
-        {n:'Pincho de Langostinos',p:[['Unidad','5€']]},
-        {n:'Croquetón de la abuela',p:[['Unidad','2,5€']]},
-        {n:'Tortillita Camarón / Bacalao',p:[['Unidad','3,5€']]}
-      ]},
-      {id:'mar',title:'Del Mar',icon:'fa-fish-fins',items:[
-        {n:'Gambas a la plancha',d:'300 g aprox.',p:[['Media','S/M'],['Ración','S/M']]},
-        {n:'Langostinos pil-pil',p:[['Ración','9€']]},
-        {n:'Boquerones',d:'Aprox. 300 g',p:[['Media','6€'],['Ración','10€']]},
-        {n:'Jibia frita o plancha',d:'Aprox. 300 g',p:[['Media','6€'],['Ración','10€']]},
-        {n:'Buchones de rosada',d:'Aprox. 300 g',p:[['Media','6€'],['Ración','10€']]},
-        {n:'Calamar Nacional',d:'El mejor sabor indiscutible',p:[['Media','8€'],['Ración','14€']]},
-        {n:'Pulpo frito',p:[['Media','8€'],['Ración','14€']]},
-        {n:'Fritura de la huerta',d:'Con langostinos',p:[['Media','9€'],['Ración','13€']]},
-        {n:'Tartar de atún y aguacate',d:'Aprox. 200 g',p:[['Ración','19,5€']]},
-        {n:'Pulpo gallega',d:'Auténtico pulpo gallego 300/350 g',p:[['Ración','24€']]},
-        {n:'Pata de pulpo Deskaro XL',d:'Con mayo kimchee sobre cama de papas · 300/350 g',p:[['Ración','24€']]},
-        {n:'Chanquetes',d:'Con huevo o pimiento 12€ · con huevo y pimiento 14€',p:[['Base','9€']]}
-      ]},
-      {id:'bocaditos',title:'Bocaditos',icon:'fa-burger',items:[
-        {n:'Miniburguer “Vareta”',d:'Ternera vaca simmental, tomate, lechuga y cebolla',p:[['Unidad','5,5€']]},
-        {n:'Miniburguer “Tres caracoles”',d:'Ternera vaca simmental, cheddar, lechuga, cebolla caramelizada y salsa burguer',p:[['Unidad','6€']]},
-        {n:'Miniburguer “Queso de cabra”',d:'Ternera vaca simmental, queso de cabra, lechuga y mostaza miel',p:[['Unidad','6€']]},
-        {n:'Bocata de calamares',d:'Calamar nacional con ali-oli',p:[['Unidad','7€']]},
-        {n:'Serranito mini premium',d:'Con pluma ibérica',p:[['Unidad','7€']]},
-        {n:'Minicresta Deskaro',d:'Lechuga, tomate y mostaza',p:[['Unidad','6€']]},
-        {n:'Extra de patatas con tu burger',p:[['Extra','2€']]}
-      ]},
-      {id:'carnivoro',title:'Rincón Carnívoro',icon:'fa-drumstick-bite',items:[
-        {n:'Entrecote',d:'Aprox. 300 g · vaca rubia gallega',p:[['Ración','24€']]},
-        {n:'Presa Ibérica',d:'Aprox. 300 g',p:[['Ración','22€']]},
-        {n:'Pluma Ibérica',d:'Aprox. 300 g',p:[['Ración','18€']]},
-        {n:'Guarnición incluida',d:'Patatas fritas, pimiento o patatas asadas',p:[['Incluida','—']]},
-        {n:'Patata asada extra',p:[['Extra','3€']]},
-        {n:'Concha de Ali Oli',p:[['Extra','0,5€']]}
-      ]},
-      {id:'platazos',title:'Platazos Deskarados',icon:'fa-fire-flame-curved',items:[
-        {n:'Cachopo',d:'Ternera hembra, queso manchego, pimiento asado y jamón reserva. Patatas fritas y 3 huevos',p:[['Ración','30€']]},
-        {n:'Fideos tostados con gambón',p:[['Ración','25€']]},
-        {n:'Fideos tostados presa / entrecot',p:[['Ración','30€']]},
-        {n:'Fideos tostados estilo Antonio',p:[['Ración','30€']]},
-        {n:'Chuletón de vaca',p:[['Precio','70€/kg']]}
-      ]},
-      {id:'peques',title:'Para los Peques',icon:'fa-child-reaching',items:[
-        {n:'Menú miniburguer',d:'Hamburguesa con queso y patatas',p:[['Menú','7€']]},
-        {n:'Menú croqueta',d:'Croquetas de puchero y patatas',p:[['Menú','7€']]},
-        {n:'Lagrimitas con patatas',p:[['Menú','7€']]}
-      ]},
-      {id:'postres',title:'Postres',icon:'fa-ice-cream',items:[
-        {n:'Brownie de la casa',p:[['Ración','5,5€']]},
-        {n:'Tartas de queso variadas',d:'Pregunte por la variedad de la semana',p:[['Ración','5,5€']]}
-      ]}
-    ];
-
-    const drinksSections = [
-      {title:'Bebidas',icon:'fa-beer-mug-empty',items:[
-        ['Caña','1,9€'],['Copa','3€'],['Pinta','3,8€'],['Copa tinto verano','2,5€'],['Pinta tinto verano','3,5€'],['Alhambra especial','2,7€'],['Radler','2,7€'],['Alhambra verde','3,5€'],['Corona','3€'],['Mahou','2,7€'],['San Miguel','2,5€'],['San Miguel sin gluten','2,7€'],['Alhambra roja','3,5€'],['San Miguel 0,0','2,5€'],['Brutus','3,5€'],['IPA Mahou','2,5€'],['Mahou Reserva','3,5€'],['Mahou tostada 0,0','2,5€'],['Coca-Cola','2,2€'],['Coca-Cola Zero','2,2€'],['Fanta naranja','2,2€'],['Fanta limón','2,2€'],['Fuze Tea limón','2,5€'],['Fuze Tea maracuyá','2,5€'],['Aquarius','2,4€'],['Zumo de piña','2,2€'],['Zumo de naranja','2,2€'],['Agua','2,2€']
-      ]},
-      {title:'Vinos Blancos',icon:'fa-wine-glass',items:[
-        ['Viña Tempero','Copa 2€ · Botella 14€','Verdejo · DO Rueda'],['Rippa Dori','Botella 16,5€','Verdejo · DO Rueda · Crianza sobre lías'],['Entrechuelos','Botella 18€','Chardonnay · DO Cádiz · Crianza sobre lías'],['Frizzante','Botella 13€',''],['Benizar semi dulce','Copa 2€ · Botella 13€','']
-      ]},
-      {title:'Vinos Tintos',icon:'fa-wine-bottle',items:[
-        ['Serna Imperial','Copa 2,5€ · Botella 17€','DO Rioja · Tempranillo'],['Rippa Dori Roble','Copa 3€ · Botella 18€','DO Rioja'],['Rubén Ramos','Botella 22€','DO Ribera del Duero'],['Entrechuelos Roble','Botella 16€','DO Cádiz'],['Antología Crianza','Botella 20,5€','DO Rioja'],['Valcercacín Crianza','Botella 22,5€','DO Ribera del Duero']
-      ]},
-      {title:'Copas',icon:'fa-martini-glass-citrus',items:[
-        ['Ginebra','Larios, Larios 12, Beefeater, Tanqueray, Seagram · 6€','Premium: Bombay Shafire / Martin Miller · 8€'],['Ron','Barceló, Bacardi, Brugal, Cacique, Legendario · 6€','Premium: Cacique 500 / Matusalem · 8€'],['Vodka','Absolut, Smirnoff · 6€','Premium: Belvedere / Ciroc · 8€'],['Whisky','Ballantines, J&B, White Label, Jhony Walker · 6€','Premium: Jhony Walker Black / Jack Daniels · 8€'],['Licores','Baileys, Amaretto, Jagger, Licor hierbas, Pacharán · 6€','Copa: Terry, Anís · 8€'],['Con Red Bull','+1€','Todas las copas con Red Bull cuestan 1€ más']
-      ]}
-    ];
-
-    const filters = [{id:'all',label:'Todo'},...foodSections.map(s=>({id:s.id,label:s.title}))];
-    const foodFilters = document.getElementById('foodFilters');
-    let activeFilter = 'all';
-
-    function renderFilters(){
-      foodFilters.innerHTML = filters.map(f=>`<button class="filter-btn ${f.id===activeFilter?'active':''}" data-filter="${f.id}">${f.label}</button>`).join('');
-      foodFilters.querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>{activeFilter=btn.dataset.filter;renderFilters();renderFood();}));
-    }
-
-    function foodCard(section){
-      return `<article class="menu-card reveal" data-section="${section.id}">
-        <div class="flex items-center justify-between gap-4 mb-5"><div><span class="section-kicker block mb-2">Carta Deskaro</span><h3 class="font-title text-3xl md:text-4xl uppercase tracking-tight">${section.title}</h3></div><div class="w-12 h-12 rounded-full bg-rose-600/10 border border-rose-600/20 grid place-items-center text-rose-500"><i class="fa-solid ${section.icon}"></i></div></div>
-        <div>${section.items.map(item=>`<div class="menu-item" data-search="${(item.n+' '+(item.d||'')+' '+section.title).toLowerCase()}"><div class="flex gap-4 justify-between items-start"><div class="min-w-0"><div class="font-semibold text-[15px]">${item.n}</div>${item.d?`<div class="text-xs text-gray-500 mt-1 leading-relaxed">${item.d}</div>`:''}</div><div class="flex flex-wrap gap-1.5 justify-end shrink-0 max-w-[48%]">${item.p.map(p=>`<span class="price-pill"><span class="text-gray-500 font-semibold">${p[0]}</span> ${p[1]}</span>`).join('')}</div></div></div>`).join('')}</div>
-      </article>`;
-    }
-
-    function renderFood(){
-      const q=(document.getElementById('menuSearch').value||'').trim().toLowerCase();
-      const sections=foodSections.filter(s=>activeFilter==='all'||s.id===activeFilter).map(s=>({...s,items:s.items.filter(i=>(i.n+' '+(i.d||'')+' '+s.title).toLowerCase().includes(q))})).filter(s=>s.items.length);
-      document.getElementById('foodMenu').innerHTML=sections.length?sections.map(foodCard).join(''):`<div class="lg:col-span-2 text-center py-20 text-gray-600"><i class="fa-solid fa-magnifying-glass text-2xl mb-3"></i><div>No encontramos ese plato.</div></div>`;
-      requestAnimationFrame(checkReveal);
-    }
-
-    function renderDrinks(){
-      document.getElementById('drinksMenu').innerHTML=drinksSections.map(s=>`<article class="menu-card reveal"><div class="flex items-center justify-between mb-5"><div><span class="section-kicker block mb-2">Bar Deskaro</span><h3 class="font-title text-3xl md:text-4xl uppercase">${s.title}</h3></div><div class="w-12 h-12 rounded-full bg-rose-600/10 border border-rose-600/20 grid place-items-center text-rose-500"><i class="fa-solid ${s.icon}"></i></div></div><div>${s.items.map(row=>`<div class="menu-item"><div class="flex justify-between gap-4"><div><div class="font-semibold text-sm">${row[0]}</div>${row[2]?`<div class="text-xs text-gray-500 mt-1">${row[2]}</div>`:''}</div><div class="text-right text-sm font-bold text-rose-300 max-w-[58%]">${row[1]}</div></div></div>`).join('')}</div></article>`).join('');
-    }
-
-    document.getElementById('menuSearch').addEventListener('input',renderFood);
-    renderFilters();renderFood();renderDrinks();
-
-    function checkReveal(){
-      document.querySelectorAll('.reveal:not(.active)').forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight*.91)el.classList.add('active')});
-    }
-    window.addEventListener('scroll',checkReveal,{passive:true});window.addEventListener('load',checkReveal);
-
-    // Scroll-linked hero: letters open and move away while the next message appears.
-    const heroTrack=document.querySelector('.hero-track');
-    const letters=[...document.querySelectorAll('.hero-letter')];
-    const heroSub=document.getElementById('heroSub');
-    const heroCopy=document.getElementById('heroRevealCopy');
-    const heroActions=document.getElementById('heroActions');
-    const heroEyebrow=document.getElementById('heroEyebrow');
-    const scrollCue=document.getElementById('scrollCue');
-    let ticking=false;
-    function clamp(v,min=0,max=1){return Math.min(max,Math.max(min,v))}
-    function heroScroll(){
-      if(!introDone) return;
-      const r=heroTrack.getBoundingClientRect();
-      const range=Math.max(1,heroTrack.offsetHeight-window.innerHeight);
-      const p=clamp(-r.top/range);
-      letters.forEach((l,i)=>{
-        const d=i-3;
-        const x=d*p*(18+Math.abs(d)*6);
-        const y=Math.abs(d)*p*1.5;
-        const rot=d*p*1.05;
-        l.style.transform=`translate3d(${x}px,${y}px,0) rotate(${rot}deg) scale(${1-p*.035})`;
-        l.style.opacity=String(1-p*.20);
-      });
-      heroEyebrow.style.opacity=String(1-p*.9);heroEyebrow.style.transform=`translateY(${-p*18}px)`;
-      heroSub.style.transform=`translateY(${-p*14}px)`;heroSub.style.opacity=String(1-p*.55);
-      const cp=clamp((p-.22)/.42);heroCopy.style.opacity=String(cp);heroCopy.style.transform=`translateY(${24-cp*24}px)`;
-      const ap=clamp((p-.34)/.36);heroActions.style.opacity=String(.42+ap*.58);heroActions.style.transform=`translateY(${12-ap*12}px)`;
-      scrollCue.style.opacity=String(1-clamp(p/.20));
-      ticking=false;
-    }
-    window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(heroScroll);ticking=true}},{passive:true});
-
-    function openCarta(src,label){const m=document.getElementById('cartaModal');const im=document.getElementById('cartaModalImg');im.src=src;im.alt=label;m.classList.add('open');document.body.style.overflow='hidden'}
-    function closeCarta(){document.getElementById('cartaModal').classList.remove('open');document.body.style.overflow=''}
-    document.getElementById('cartaModal').addEventListener('click',e=>{if(e.target.id==='cartaModal')closeCarta()});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeCarta();closePhoto()}});
-
-    // Chef Virtual
-    let chef={qty:0,hunger:'',pref:'',budget:0,step:'qty'};
-    const chat=document.getElementById('chat-window');const options=document.getElementById('options-container');
-    function addMessage(text,side='ai'){chat.insertAdjacentHTML('beforeend',`<div class="flex items-start gap-3 ${side==='user'?'justify-end':''} max-w-full"><div class="${side==='ai'?'chat-bubble-ai text-gray-300':'chat-bubble-user text-white ml-auto'} p-5 text-sm leading-relaxed max-w-[92%]">${text}</div></div>`);chat.scrollTop=chat.scrollHeight}
-    function setOptions(arr){options.innerHTML=arr.map(o=>`<button class="px-5 py-3 bg-white/5 hover:bg-rose-600 rounded-full text-[11px] font-bold uppercase transition-all border border-white/10" onclick="chefStep('${o.value}','${o.label.replaceAll("'","\\'")}')">${o.label}</button>`).join('')}
-    function restartChef(){chef={qty:0,hunger:'',pref:'',budget:0,step:'qty'};chat.innerHTML=`<div class="flex items-start gap-3 max-w-[92%]"><div class="chat-bubble-ai p-5 text-sm leading-relaxed text-gray-300">¡Hola! Soy el Chef Virtual de Deskaro. Vamos a montar una propuesta para compartir. <br><br><strong>¿Cuántos vais a ser?</strong></div></div>`;setOptions([{value:'2',label:'Somos 2'},{value:'4',label:'Somos 3 o 4'},{value:'6',label:'Grupo +5'}])}
-    function chefStep(value,label){addMessage(label,'user');options.innerHTML=`<span class="text-[10px] text-gray-500 animate-pulse uppercase font-black tracking-widest">El Chef está cuadrando la mesa...</span>`;setTimeout(()=>{
-      if(chef.step==='qty'){chef.qty=+value;chef.step='hunger';addMessage('Perfecto. <strong>¿Con qué nivel de hambre venís?</strong>');setOptions([{value:'light',label:'Picoteo'},{value:'normal',label:'Hambre normal'},{value:'strong',label:'Venimos fuertes'}]);}
-      else if(chef.step==='hunger'){chef.hunger=value;chef.step='pref';addMessage('Anotado. Ahora decidid el terreno de juego.');setOptions([{value:'meat',label:'Carne'},{value:'fish',label:'Mar'},{value:'mixed',label:'Variado'}]);}
-      else if(chef.step==='pref'){chef.pref=value;chef.step='budget';addMessage('Último dato: <strong>presupuesto aproximado por persona, sin contar copas</strong>.');setOptions([{value:'15',label:'Hasta 15€'},{value:'22',label:'15–22€'},{value:'30',label:'22–30€'},{value:'40',label:'Sin miedo'}]);}
-      else if(chef.step==='budget'){chef.budget=+value;chef.step='done';generateChefProposal();}
-    },520)}
-    function generateChefProposal(){
-      const q=chef.qty;const strong=chef.hunger==='strong';let picks=[];
-      if(chef.pref==='fish'){
-        picks=q<=2?[['Ensaladilla Rusa',6],['Calamar Nacional',14],['Tartar de atún y aguacate',19.5]]:[['Ensaladilla Rusa',9],['Fritura de la huerta',13],['Pata de pulpo Deskaro XL',24],['Chanquetes',12]];
-      }else if(chef.pref==='meat'){
-        picks=q<=2?[['Croquetón de la abuela x2',5],['Torreznos',8],['Pluma Ibérica',18]]:[['Ensaladilla Rusa',9],['Torreznos',8],['Fideos tostados presa / entrecot',30],['Miniburguer “Tres caracoles” x2',12]];
-      }else{
-        picks=q<=2?[['Ensaladilla Rusa',6],['Torreznos',8],['Calamar Nacional',14],['Miniburguer “Tres caracoles”',6]]:[['Ensaladilla Rusa',9],['Nuestros nachos caseros',14],['Calamar Nacional',14],['Fideos tostados con gambón',25]];
-      }
-      if(strong){picks.push(chef.pref==='fish'?['Pulpo frito',14]:chef.pref==='meat'?['Miniburguer “Queso de cabra” x2',12]:['Croquetón de la abuela x4',10]);}
-      let total=picks.reduce((s,p)=>s+p[1],0);const max=chef.budget*q;
-      while(total>max&&picks.length>2){total-=picks.pop()[1]}
-      const per=total/q;
-      addMessage(`<strong class="text-white">PROPUESTA DESKARO PARA ${q} ${q===1?'PERSONA':'PERSONAS'}</strong><br><br><div class="space-y-1 text-rose-300 font-bold">${picks.map(p=>`• ${p[0]} <span class="text-gray-500 font-normal">${String(p[1]).replace('.',',')}€</span>`).join('<br>')}</div><br><div class="border-t border-white/10 pt-3"><strong>Total aprox.: ${String(total.toFixed(1)).replace('.0','').replace('.',',')}€</strong><br><span class="text-gray-400">≈ ${String(per.toFixed(2)).replace('.',',')}€ por persona · sin bebidas</span></div><br><span class="text-xs text-gray-500">Propuesta orientativa; disponibilidad y cantidades finales pueden variar.</span>`);
-      options.innerHTML=`<a href="#carta" class="px-5 py-3 bg-white/10 hover:bg-white/20 rounded-full text-[11px] font-bold uppercase border border-white/10">Ver carta completa</a><a href="https://www.instagram.com/tabernadeskaro/" target="_blank" rel="noopener" class="px-5 py-3 bg-rose-600 rounded-full text-[11px] font-bold uppercase"><i class="fab fa-instagram mr-1"></i> Instagram</a>`;
-    }
-    restartChef();
-  </script>
+  });
+  const until=Number(sessionStorage.getItem('deskaro_auth_until')||0);
+  if(sessionStorage.getItem('deskaro_auth')==='ok' && Date.now()<until){
+    document.querySelector('.submit').innerHTML='<i class="fas fa-arrow-right" style="margin-right:8px"></i> Continuar a la preview';
+    form.addEventListener('dblclick',()=>location.href='preview.html');
+  }
+</script>
 </body>
 </html>
