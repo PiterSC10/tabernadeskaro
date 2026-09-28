@@ -3,57 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Taberna Deskaro en Huelin, Málaga. Carta, platos deskarados, vinos y reservas por WhatsApp.">
-    <meta name="theme-color" content="#050505">
     <title>Taberna Deskaro | Menú Personalizado IA</title>
+    <meta name="robots" content="noindex, nofollow">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Oswald:wght@500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --deskaro-red: #e11d48;
-            --deskaro-dark: #050505;
-            --deskaro-card: #0f0f0f;
+        :root { --deskaro-red:#e11d48; --deskaro-dark:#050505; --deskaro-card:#0f0f0f; }
+        body { font-family:'Plus Jakarta Sans',sans-serif; background-color:var(--deskaro-dark); color:#fff; overflow-x:hidden; }
+        .font-title { font-family:'Oswald',sans-serif; }
+        .reveal { opacity:0; transform:translateY(30px); transition:all .8s cubic-bezier(.16,1,.3,1); }
+        .reveal.active { opacity:1; transform:translateY(0); }
+        .glass-header { background:rgba(5,5,5,.85); backdrop-filter:blur(15px); border-bottom:1px solid rgba(255,255,255,.05); }
+        .neon-border { border:1px solid rgba(225,29,72,.2); box-shadow:0 0 25px rgba(225,29,72,.05); transition:all .4s ease; }
+        .menu-row { border-bottom:1px dashed rgba(255,255,255,.1); }
+        .scroll-hide::-webkit-scrollbar { display:none; }
+        .chat-bubble-ai { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.05); border-radius:1.5rem 1.5rem 1.5rem 0; }
+        .chat-bubble-user { background:var(--deskaro-red); border-radius:1.5rem 1.5rem 0 1.5rem; font-weight:600; }
+
+        /* Marca de agua elegante para la demo */
+        .demo-watermark {
+            position:fixed;
+            top:50%; left:50%;
+            transform:translate(-50%,-50%) rotate(-18deg);
+            z-index:99999;
+            pointer-events:none;
+            user-select:none;
+            white-space:nowrap;
+            text-align:center;
+            opacity:.095;
+            filter:blur(.3px);
+            mix-blend-mode:screen;
         }
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: var(--deskaro-dark); 
-            color: #ffffff;
-            overflow-x: hidden;
+        .demo-watermark .main {
+            font-family:'Oswald',sans-serif;
+            font-size:clamp(4rem,12vw,11rem);
+            font-weight:800;
+            line-height:.82;
+            letter-spacing:-.04em;
+            text-transform:uppercase;
+            color:#fff;
+            text-shadow:0 0 30px rgba(225,29,72,.25);
         }
-        .font-title { font-family: 'Oswald', sans-serif; }
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        .demo-watermark .sub {
+            margin-top:1.2rem;
+            font-size:clamp(.65rem,1.2vw,1rem);
+            font-weight:800;
+            letter-spacing:.55em;
+            text-transform:uppercase;
+            color:#fff;
         }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .glass-header {
-            background: rgba(5, 5, 5, 0.85);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        .preview-chip {
+            position:fixed;
+            right:18px; bottom:18px;
+            z-index:99998;
+            pointer-events:none;
+            user-select:none;
+            padding:10px 15px;
+            border-radius:999px;
+            background:rgba(5,5,5,.72);
+            border:1px solid rgba(225,29,72,.28);
+            backdrop-filter:blur(12px);
+            color:rgba(255,255,255,.68);
+            font-size:9px;
+            font-weight:800;
+            letter-spacing:.18em;
+            text-transform:uppercase;
+            box-shadow:0 12px 40px rgba(0,0,0,.35);
         }
-        .neon-border {
-            border: 1px solid rgba(225, 29, 72, 0.2);
-            box-shadow: 0 0 25px rgba(225, 29, 72, 0.05);
-            transition: all 0.4s ease;
+        @media (max-width:640px) {
+            .demo-watermark { transform:translate(-50%,-50%) rotate(-24deg); opacity:.085; }
+            .preview-chip { right:12px; bottom:12px; font-size:8px; padding:9px 12px; }
         }
-        .menu-row { border-bottom: 1px dashed rgba(255, 255, 255, 0.1); }
-        .scroll-hide::-webkit-scrollbar { display: none; }
-        .chat-bubble-ai {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 1.5rem 1.5rem 1.5rem 0;
-        }
-        .chat-bubble-user {
-            background: var(--deskaro-red);
-            border-radius: 1.5rem 1.5rem 0 1.5rem;
-            font-weight: 600;
-        }
-        .subtle-card{background:#0f0f0f;border:1px solid rgba(255,255,255,.05);border-radius:1.5rem}
     </style>
 </head>
 <body class="antialiased selection:bg-rose-600 selection:text-white">
+
+    <div class="demo-watermark" aria-hidden="true">
+        <div class="main">DEMO PRIVADA</div>
+        <div class="sub">TABERNA DESKARO · VERSIÓN PREVIA</div>
+    </div>
+    <div class="preview-chip" aria-hidden="true">Propuesta visual · No versión final</div>
 
     <nav class="fixed top-0 w-full z-[100] glass-header px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
@@ -64,10 +94,9 @@
             <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest">
                 <a href="#ia-section" class="text-rose-400 flex items-center gap-2"><i class="fas fa-magic animate-pulse"></i> Diseñador de Menú</a>
                 <a href="#carta" class="hover:text-rose-500 transition-colors">La Carta</a>
-                <a href="#bebidas" class="hover:text-rose-500 transition-colors">Bebidas</a>
                 <a href="#contacto" class="hover:text-rose-500 transition-colors">Ubicación</a>
             </div>
-            <a href="https://wa.me/34744660685" target="_blank" rel="noopener" class="px-5 py-2.5 bg-[--deskaro-red] text-white rounded-full text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all">RESERVAR</a>
+            <a href="https://wa.me/34744660685" class="px-5 py-2.5 bg-[--deskaro-red] text-white rounded-full text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all">RESERVAR</a>
         </div>
     </nav>
 
@@ -88,7 +117,6 @@
                 <h2 class="font-title text-4xl md:text-6xl uppercase tracking-tighter">TU COMIDA A MEDIDA</h2>
                 <p class="text-gray-500 text-sm mt-3">Dime qué buscas y diseñaré la propuesta perfecta de platos y cantidades.</p>
             </div>
-
             <div class="reveal neon-border bg-[#0c0c0c] rounded-[2.5rem] overflow-hidden min-h-[500px] flex flex-col">
                 <div class="bg-black/40 px-8 py-5 border-b border-white/5 flex items-center justify-between">
                     <div class="flex items-center space-x-3">
@@ -96,183 +124,41 @@
                         <div><h4 class="font-bold text-sm">Chef Virtual Deskaro</h4><span class="text-[10px] text-emerald-400">En línea • Especialista en Huelin</span></div>
                     </div>
                 </div>
-
                 <div id="chat-window" class="flex-grow p-8 space-y-6 overflow-y-auto max-h-[400px] scroll-hide">
                     <div class="flex items-start gap-3 max-w-[90%]"><div class="chat-bubble-ai p-5 text-sm leading-relaxed text-gray-300">¡Hola! Soy el Chef Virtual de Deskaro. Vamos a diseñar tu menú perfecto para que no sobre ni falte nada. <br><br>Para empezar, <strong>¿Cuántos comensales vais a ser hoy?</strong></div></div>
                 </div>
-
                 <div class="p-8 bg-black/40 border-t border-white/5">
                     <div id="options-container" class="flex flex-wrap gap-3 justify-center">
-                        <button onclick="handleStep('quantity', 'Somos 2', 2)" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Somos 2</button>
-                        <button onclick="handleStep('quantity', 'Somos 3 o 4', 4)" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Somos 3 o 4</button>
-                        <button onclick="handleStep('quantity', 'Grupo Grande (+5)', 6)" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Grupo Grande</button>
+                        <button onclick="handleStep('quantity','Somos 2',2)" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Somos 2</button>
+                        <button onclick="handleStep('quantity','Somos 3 o 4',4)" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Somos 3 o 4</button>
+                        <button onclick="handleStep('quantity','Grupo Grande (+5)',6)" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Grupo Grande</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="carta" class="py-24 px-6 max-w-6xl mx-auto">
-        <div class="text-center reveal mb-20">
-            <h2 class="font-title text-6xl uppercase tracking-tighter">LA CARTA</h2>
-            <div class="h-1 w-20 bg-[--deskaro-red] mx-auto mt-4"></div>
-            <p class="text-gray-500 mt-4 text-sm">Precios transcritos de la carta fotografiada.</p>
-        </div>
-
+    <section id="carta" class="py-24 px-6 max-w-5xl mx-auto">
+        <div class="text-center reveal mb-20"><h2 class="font-title text-6xl uppercase tracking-tighter">LA CARTA</h2><div class="h-1 w-20 bg-[--deskaro-red] mx-auto mt-4"></div></div>
         <div class="grid md:grid-cols-2 gap-16">
             <div class="reveal">
                 <h3 class="font-title text-3xl uppercase tracking-tighter mb-8 text-rose-500">Entrantes</h3>
-                <div class="space-y-4 text-sm">
-                    <div class="flex justify-between menu-row pb-2"><span>Ensaladilla Rusa <small class="text-gray-500">(tapa / media / ración)</small></span><span>4,5 / 6 / 9€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Ensalada mixta con melva</span><span>12€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Ensalada de pimientos asados</span><span>6€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Ensalada de pimientos con melva</span><span>9€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Tomate Paco con ajitos y AOVE</span><span>9,5€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Tomate Paco con anchoas/melva</span><span>12€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Tomate Paco con aguacate y AOVE</span><span>12€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Queso Curado <small class="text-gray-500">(media / ración)</small></span><span>6 / 10€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Torreznos <small class="text-gray-500">(media / ración)</small></span><span>6 / 8€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Nuestros nachos caseros <small class="text-gray-500">(media / ración)</small></span><span>8 / 14€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Papas Fritas <small class="text-gray-500">(media / ración)</small></span><span>4 / 6€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Papas Bravas <small class="text-gray-500">(media / ración)</small></span><span>5 / 8€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Papas Deskaro</span><span>10€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Albóndigas en salsa de almendras <small class="text-gray-500">(media / ración)</small></span><span>7 / 12€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Huevos rotos</span><span>13€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Pincho de Langostinos</span><span>5€/ud.</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Croquetón de la abuela</span><span>2,5€/ud.</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Tortillita Camarón/Bacalao</span><span>3,5€/ud.</span></div>
+                <div class="space-y-4">
+                    <div class="flex justify-between menu-row pb-2"><span>Nachos Caseros Deskaro</span><span>7.00€</span></div>
+                    <div class="flex justify-between menu-row pb-2"><span>Torreznos Crujientes</span><span>5.00€</span></div>
+                    <div class="flex justify-between menu-row pb-2"><span>Croquetas del Chef (ud)</span><span>1.50€</span></div>
+                    <div class="flex justify-between menu-row pb-2"><span>Ensaladilla Rusa</span><span>5.00€</span></div>
                 </div>
             </div>
-
             <div class="reveal">
-                <h3 class="font-title text-3xl uppercase tracking-tighter mb-8 text-rose-500">Del Mar</h3>
-                <div class="space-y-4 text-sm">
-                    <div class="flex justify-between menu-row pb-2"><span>Gambas a la plancha</span><span>S/M</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Langostinos pil-pil</span><span>9€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Boquerones <small class="text-gray-500">(media / ración)</small></span><span>6 / 10€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Jibia frita o plancha <small class="text-gray-500">(media / ración)</small></span><span>6 / 10€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Buchones de rosada <small class="text-gray-500">(media / ración)</small></span><span>6 / 10€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Calamar Nacional <small class="text-gray-500">(media / ración)</small></span><span>8 / 14€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Pulpo frito <small class="text-gray-500">(media / ración)</small></span><span>8 / 14€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Fritura de la huerta <small class="text-gray-500">(media / ración)</small></span><span>9 / 13€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Tartar de atún y aguacate</span><span>19,5€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Pulpo gallega</span><span>24€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Pata de pulpo Deskaro XL</span><span>24€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Chanquetes</span><span>9€</span></div>
+                <h3 class="font-title text-3xl uppercase tracking-tighter mb-8 text-rose-500">Los Virales</h3>
+                <div class="space-y-4">
+                    <div class="flex justify-between menu-row pb-2"><span>Fideos Tostados con Presa</span><span>25.00€</span></div>
+                    <div class="flex justify-between menu-row pb-2"><span>Fideos Tostados con Entrecot</span><span>30.00€</span></div>
+                    <div class="flex justify-between menu-row pb-2"><span>Pata de Pulpo a la Brasa</span><span>20.00€</span></div>
+                    <div class="flex justify-between menu-row pb-2"><span>Tartar de Atún y Aguacate</span><span>20.00€</span></div>
                 </div>
             </div>
-
-            <div class="reveal">
-                <h3 class="font-title text-3xl uppercase tracking-tighter mb-8 text-rose-500">Bocaditos</h3>
-                <div class="space-y-4 text-sm">
-                    <div class="flex justify-between menu-row pb-2"><span>Miniburguer “Vareta”</span><span>5,5€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Miniburguer “Tres caracoles”</span><span>6€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Miniburguer “Queso de cabra”</span><span>6€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Bocata de calamares</span><span>7€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Serranito mini premium</span><span>7€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Mini-cresta Deskaro</span><span>6€</span></div>
-                    <div class="text-xs text-gray-500 pt-1">Extra de patatas con tu burger: 2€</div>
-                </div>
-            </div>
-
-            <div class="reveal">
-                <h3 class="font-title text-3xl uppercase tracking-tighter mb-8 text-rose-500">Rincón Carnívoro</h3>
-                <div class="space-y-4 text-sm">
-                    <div class="flex justify-between menu-row pb-2"><span>Entrecotte (aprox. 300 g)</span><span>24€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Presa Ibérica (aprox. 300 g)</span><span>22€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Pluma Ibérica (aprox. 300 g)</span><span>18€</span></div>
-                    <div class="text-xs text-gray-500 pt-1">Guarnición incluida: patatas fritas, pimiento o patatas asadas.</div>
-                </div>
-            </div>
-
-            <div class="reveal">
-                <h3 class="font-title text-3xl uppercase tracking-tighter mb-8 text-rose-500">Platazos Deskarados</h3>
-                <div class="space-y-4 text-sm">
-                    <div class="flex justify-between menu-row pb-2"><span>Cachopo</span><span>30€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Fideos tostados con gambón</span><span>25€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Fideos tostados presa/entrecot</span><span>30€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Fideos tostados estilo Antonio</span><span>30€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Chuletón de vaca</span><span>70€/kg</span></div>
-                </div>
-            </div>
-
-            <div class="reveal">
-                <h3 class="font-title text-3xl uppercase tracking-tighter mb-8 text-rose-500">Peques & Postres</h3>
-                <div class="space-y-4 text-sm">
-                    <div class="flex justify-between menu-row pb-2"><span>Menú miniburguer</span><span>7€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Menú croqueta</span><span>7€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Lagrimitas con patatas</span><span>7€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Brownie de la casa</span><span>5,5€</span></div>
-                    <div class="flex justify-between menu-row pb-2"><span>Tartas de queso variadas</span><span>5,5€</span></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="reveal mt-14 flex flex-wrap justify-center gap-3">
-            <a href="carta-comida.jpg" target="_blank" class="px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-xs font-bold uppercase tracking-widest transition-all"><i class="far fa-image mr-2"></i>Ver carta original</a>
-            <a href="#bebidas" class="px-6 py-3 bg-[--deskaro-red] rounded-full text-xs font-bold uppercase tracking-widest transition-all">Ver bebidas</a>
-        </div>
-    </section>
-
-    <section id="bebidas" class="py-24 px-6 bg-[#080808]">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center reveal mb-16">
-                <span class="text-[--deskaro-red] font-bold text-xs uppercase tracking-[0.4em] block mb-2">Bar & Bodega</span>
-                <h2 class="font-title text-5xl md:text-7xl uppercase tracking-tighter">BEBIDAS Y VINOS</h2>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="reveal subtle-card p-7">
-                    <h3 class="font-title text-2xl uppercase text-rose-500 mb-5">Bebidas</h3>
-                    <div class="space-y-3 text-sm">
-                        <div class="flex justify-between menu-row pb-2"><span>Caña</span><span>1,9€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Copa</span><span>3€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Pinta</span><span>3,8€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Copa tinto verano</span><span>2,5€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Pinta tinto verano</span><span>3,5€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Alhambra especial</span><span>2,7€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Corona</span><span>3,5€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Mahou</span><span>3€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Coca-Cola / Zero</span><span>2,2€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Agua</span><span>2,2€</span></div>
-                    </div>
-                </div>
-                <div class="reveal subtle-card p-7">
-                    <h3 class="font-title text-2xl uppercase text-rose-500 mb-5">Vinos Blancos</h3>
-                    <div class="space-y-3 text-sm">
-                        <div class="menu-row pb-2"><div class="flex justify-between"><span>Viña Tempero</span><span>2€ / 14€</span></div><small class="text-gray-600">Verdejo · DO Rueda</small></div>
-                        <div class="menu-row pb-2"><div class="flex justify-between"><span>Rippa Dori</span><span>16,5€</span></div><small class="text-gray-600">Verdejo · DO Rueda</small></div>
-                        <div class="menu-row pb-2"><div class="flex justify-between"><span>Entrechuelos</span><span>18€</span></div><small class="text-gray-600">Chardonnay · DO Cádiz</small></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Frizzante</span><span>13€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Benizar semi dulce</span><span>2€ / 13€</span></div>
-                    </div>
-                </div>
-                <div class="reveal subtle-card p-7">
-                    <h3 class="font-title text-2xl uppercase text-rose-500 mb-5">Vinos Tintos</h3>
-                    <div class="space-y-3 text-sm">
-                        <div class="menu-row pb-2"><div class="flex justify-between"><span>Serna Imperial</span><span>2,5€ / 17€</span></div><small class="text-gray-600">DO Rioja</small></div>
-                        <div class="menu-row pb-2"><div class="flex justify-between"><span>Rippa Dorii Roble</span><span>3€ / 18€</span></div><small class="text-gray-600">DO Rioja</small></div>
-                        <div class="menu-row pb-2"><div class="flex justify-between"><span>Rubén Ramos</span><span>22€</span></div><small class="text-gray-600">DO Ribera del Duero</small></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Entrechuelos Roble</span><span>16€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Antología Crianza</span><span>20,5€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Valcerraín Crianza</span><span>22,5€</span></div>
-                    </div>
-                </div>
-                <div class="reveal subtle-card p-7">
-                    <h3 class="font-title text-2xl uppercase text-rose-500 mb-5">Copas</h3>
-                    <div class="space-y-3 text-sm">
-                        <div class="flex justify-between menu-row pb-2"><span>Ginebra</span><span>6€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Ginebra Premium</span><span>8€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Ron</span><span>6€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Ron Premium</span><span>8€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Vodka</span><span>6€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Vodka Premium</span><span>8€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Whisky</span><span>6€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Whisky Premium</span><span>8€</span></div>
-                        <div class="flex justify-between menu-row pb-2"><span>Licores</span><span>6€</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="reveal mt-10 text-center"><a href="carta-bebidas.jpg" target="_blank" class="px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-xs font-bold uppercase tracking-widest transition-all"><i class="far fa-image mr-2"></i>Ver carta de bebidas original</a></div>
         </div>
     </section>
 
@@ -287,8 +173,8 @@
                 </div>
             </div>
             <div class="flex flex-col justify-center space-y-4">
-                <a href="https://wa.me/34744660685" target="_blank" rel="noopener" class="w-full p-6 bg-emerald-600 rounded-3xl text-center font-black uppercase tracking-[0.2em] hover:bg-emerald-500 transition-all flex items-center justify-center gap-3"><i class="fab fa-whatsapp text-2xl"></i> Hablar por WhatsApp</a>
-                <a href="https://instagram.com/tabernadeskaro" target="_blank" rel="noopener" class="w-full p-6 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl text-center font-black uppercase tracking-[0.2em] hover:opacity-90 transition-all flex items-center justify-center gap-3"><i class="fab fa-instagram text-2xl"></i> DM en Instagram</a>
+                <a href="https://wa.me/34744660685" class="w-full p-6 bg-emerald-600 rounded-3xl text-center font-black uppercase tracking-[0.2em] hover:bg-emerald-500 transition-all flex items-center justify-center gap-3"><i class="fab fa-whatsapp text-2xl"></i> Hablar por WhatsApp</a>
+                <a href="https://instagram.com/tabernadeskaro" class="w-full p-6 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl text-center font-black uppercase tracking-[0.2em] hover:opacity-90 transition-all flex items-center justify-center gap-3"><i class="fab fa-instagram text-2xl"></i> DM en Instagram</a>
             </div>
         </div>
     </section>
@@ -296,64 +182,40 @@
     <footer class="py-12 text-center text-[10px] text-gray-700 uppercase tracking-[0.5em]">TABERNA DESKARO &copy; 2026 • HUELIN • MÁLAGA</footer>
 
     <script>
-        function checkReveal() {
-            document.querySelectorAll('.reveal').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight * 0.9) el.classList.add('active');
-            });
+        function checkReveal(){ document.querySelectorAll('.reveal').forEach(el=>{ if(el.getBoundingClientRect().top < window.innerHeight*.9) el.classList.add('active'); }); }
+        window.addEventListener('scroll',checkReveal); window.addEventListener('load',checkReveal);
+        let config={qty:0,drink:'',pref:'',step:'quantity'};
+        function addMessage(text,side){
+            const chat=document.getElementById('chat-window');
+            const bubbleClass=side==='ai'?'chat-bubble-ai text-gray-300':'chat-bubble-user text-white self-end ml-auto';
+            const icon=side==='ai'?'🤖':'👤';
+            chat.innerHTML+=`<div class="flex items-start gap-3 ${side==='user'?'justify-end':''} max-w-full">${side==='ai'?`<div class="text-xs mt-4">${icon}</div>`:''}<div class="${bubbleClass} p-5 text-sm leading-relaxed">${text}</div></div>`;
+            chat.scrollTop=chat.scrollHeight;
         }
-        window.addEventListener('scroll', checkReveal);
-        window.addEventListener('load', checkReveal);
-
-        let config = { qty: 0, drink: '', pref: '', step: 'quantity' };
-
-        function addMessage(text, side) {
-            const chat = document.getElementById('chat-window');
-            const bubbleClass = side === 'ai' ? 'chat-bubble-ai text-gray-300' : 'chat-bubble-user text-white self-end ml-auto';
-            const icon = side === 'ai' ? '🤖' : '👤';
-            chat.innerHTML += `<div class="flex items-start gap-3 ${side === 'user' ? 'justify-end' : ''} max-w-full">${side === 'ai' ? `<div class="text-xs mt-4">${icon}</div>` : ''}<div class="${bubbleClass} p-5 text-sm leading-relaxed">${text}</div></div>`;
-            chat.scrollTop = chat.scrollHeight;
+        function handleStep(currentStep,label,value){
+            addMessage(label,'user');
+            const container=document.getElementById('options-container');
+            container.innerHTML='<span class="text-xs text-gray-500 animate-pulse uppercase font-black tracking-widest">El Chef está anotando...</span>';
+            setTimeout(()=>{
+                if(currentStep==='quantity'){
+                    config.qty=value;
+                    addMessage('¡Perfecto! Un buen grupo. Ahora, <strong>¿Qué os apetece beber para empezar?</strong>','ai');
+                    container.innerHTML=`<button onclick="handleStep('drink','Cervezas bien frías 🍻','beer')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Cervezas</button><button onclick="handleStep('drink','Vinito de la tierra 🍷','wine')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Vino</button><button onclick="handleStep('drink','Refrescos / Agua 💧','soft')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Refrescos</button>`;
+                }else if(currentStep==='drink'){
+                    config.drink=value;
+                    addMessage('Marchando la bebida. Vamos a lo importante: <strong>¿Qué tipo de comida preferís hoy?</strong>','ai');
+                    container.innerHTML=`<button onclick="handleStep('pref','Carne y Brasa 🥩','meat')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Carne / Brasa</button><button onclick="handleStep('pref','Pescado y Mar 🐟','fish')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Pescado / Mar</button><button onclick="handleStep('pref','Un poco de todo 🌀','all')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Variado</button>`;
+                }else if(currentStep==='pref'){ config.pref=value; generateMenu(); }
+            },800);
         }
-
-        function handleStep(currentStep, label, value) {
-            addMessage(label, 'user');
-            const container = document.getElementById('options-container');
-            container.innerHTML = `<span class="text-xs text-gray-500 animate-pulse uppercase font-black tracking-widest">El Chef está anotando...</span>`;
-            setTimeout(() => {
-                if (currentStep === 'quantity') {
-                    config.qty = value;
-                    addMessage('¡Perfecto! Ahora, <strong>¿qué os apetece beber para empezar?</strong>', 'ai');
-                    container.innerHTML = `<button onclick="handleStep('drink','Cervezas bien frías 🍻','beer')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Cervezas</button><button onclick="handleStep('drink','Vinito 🍷','wine')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Vino</button><button onclick="handleStep('drink','Refrescos / Agua 💧','soft')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Refrescos</button>`;
-                } else if (currentStep === 'drink') {
-                    config.drink = value;
-                    addMessage('Marchando la bebida. Vamos a lo importante: <strong>¿qué tipo de comida preferís hoy?</strong>', 'ai');
-                    container.innerHTML = `<button onclick="handleStep('pref','Carne y platos potentes 🥩','meat')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Carne</button><button onclick="handleStep('pref','Pescado y mar 🐟','fish')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Pescado / Mar</button><button onclick="handleStep('pref','Un poco de todo 🌀','all')" class="px-6 py-3 bg-white/5 hover:bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all border border-white/10">Variado</button>`;
-                } else if (currentStep === 'pref') {
-                    config.pref = value;
-                    generateMenu();
-                }
-            }, 650);
-        }
-
-        function generateMenu() {
-            let items = [];
-            let total = 0;
-            if (config.qty === 2) {
-                if (config.pref === 'fish') { items = ['Boquerones (media) · 6€','Tartar de atún y aguacate · 19,5€','Tarta de queso · 5,5€']; total = 31; }
-                else if (config.pref === 'meat') { items = ['Croquetón de la abuela x2 · 5€','Miniburguer Tres caracoles x2 · 12€','Pluma Ibérica · 18€','Brownie · 5,5€']; total = 40.5; }
-                else { items = ['Ensaladilla Rusa (tapa) · 4,5€','Torreznos (media) · 6€','Fideos tostados con gambón · 25€','Tarta de queso · 5,5€']; total = 41; }
-            } else if (config.qty === 4) {
-                if (config.pref === 'meat') { items = ['Ensaladilla Rusa (ración) · 9€','Croquetón x4 · 10€','Fideos tostados presa/entrecot · 30€','Pluma Ibérica · 18€','2 postres · 11€']; total = 78; }
-                else if (config.pref === 'fish') { items = ['Ensaladilla Rusa (ración) · 9€','Calamar Nacional (ración) · 14€','Pulpo frito (ración) · 14€','Fideos tostados con gambón · 25€','2 postres · 11€']; total = 73; }
-                else { items = ['Ensaladilla Rusa (ración) · 9€','Torreznos (ración) · 8€','Fritura de la huerta (ración) · 13€','Fideos tostados con gambón · 25€','2 postres · 11€']; total = 66; }
-            } else {
-                if (config.pref === 'meat') { items = ['2 Ensaladillas Rusa (ración) · 18€','Croquetón x6 · 15€','Cachopo · 30€','Fideos presa/entrecot · 30€','Pluma Ibérica · 18€','3 postres · 16,5€']; total = 127.5; }
-                else if (config.pref === 'fish') { items = ['2 Ensaladillas Rusa (ración) · 18€','Calamar Nacional (ración) · 14€','Pulpo frito (ración) · 14€','Fideos con gambón · 25€','Pata de pulpo Deskaro XL · 24€','3 postres · 16,5€']; total = 111.5; }
-                else { items = ['2 Ensaladillas Rusa (ración) · 18€','Torreznos (ración) · 8€','Fritura de la huerta · 13€','Fideos con gambón · 25€','Cachopo · 30€','3 postres · 16,5€']; total = 110.5; }
-            }
-            const pp = (total / config.qty).toFixed(2).replace('.', ',');
-            const proposal = `<strong>¡MENÚ CONFIGURADO!</strong><br><br>Para ${config.qty} personas os propongo:<ul class="mt-3 space-y-1 text-rose-400 font-bold">${items.map(i => `<li>• ${i}</li>`).join('')}</ul><br><span class="text-white font-bold">Total orientativo comida: ${String(total).replace('.', ',')}€ · ${pp}€ por persona.</span><br><span class="text-gray-500 text-xs">Bebidas no incluidas. La propuesta es orientativa y puede ajustarse en mesa.</span>`;
-            addMessage(proposal, 'ai');
-            document.getElementById('options-container').innerHTML = `<button onclick="location.reload()" class="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold uppercase transition-all border border-white/10">Reiniciar Consulta 🔄</button><a href="https://wa.me/34744660685" target="_blank" rel="noopener" class="px-6 py-3 bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all shadow-lg shadow-rose-900/40">Reservar Mesa Ahora</a>`;
+        function generateMenu(){
+            let items=[];
+            if(config.qty===2){ items=['Nachos Caseros','Fideos de Presa','Tarta Payoyo']; if(config.pref==='fish') items=['Tartar de Atún','Pulpo a la Brasa','Postre']; }
+            else if(config.qty===4){ items=['Torreznos (x2)','Fritura Variada','Fideos con Entrecot','2 Tartas']; if(config.pref==='meat') items=['Croquetas','Ensaladilla','Fideos de Presa','Pluma Ibérica']; }
+            else { items=['Ronda de Entrantes','Fideos de Presa (x2)','Fritura Malagueña','Surtido de Postres']; }
+            const proposal=`<strong>¡MENÚ CONFIGURADO!</strong><br><br>Basado en vuestro grupo de ${config.qty} y preferencia de ${config.pref}, os sugiero:<br><ul class="mt-2 space-y-1 text-rose-400 font-bold">${items.map(i=>`<li>• ${i}</li>`).join('')}</ul><br>Es la cantidad justa para que salgáis contentos sin quedar pesados.`;
+            addMessage(proposal,'ai');
+            document.getElementById('options-container').innerHTML=`<button onclick="location.reload()" class="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold uppercase transition-all border border-white/10">Reiniciar Consulta 🔄</button><a href="https://wa.me/34744660685" class="px-6 py-3 bg-[--deskaro-red] rounded-full text-xs font-bold uppercase transition-all shadow-lg shadow-rose-900/40">Reservar Mesa Ahora</a>`;
         }
     </script>
 </body>
