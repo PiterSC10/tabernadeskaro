@@ -18,6 +18,14 @@
     :root{--red:#e11d48;--bg:#050505;--soft:#101010;--line:rgba(255,255,255,.08)}*{box-sizing:border-box}html{background:#050505}body{margin:0;background:radial-gradient(circle at 50% -10%,rgba(225,29,72,.12),transparent 28%),#050505;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden}
     body:before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:62px 62px}.wm{position:fixed;z-index:0;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-18deg);font:800 clamp(6rem,15vw,15rem)/.8 'Oswald';opacity:.026;white-space:nowrap;pointer-events:none}
     nav{position:sticky;top:0;z-index:50;background:rgba(5,5,5,.82);border-bottom:1px solid var(--line);backdrop-filter:blur(18px);padding:14px 22px}.nav-inner{max-width:1440px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px}.logo{height:36px;max-width:205px;object-fit:contain}.nav-actions{display:flex;gap:9px}.pill{display:inline-flex;align-items:center;gap:8px;padding:11px 15px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:#0c0c0c;color:#ddd;text-decoration:none;font-size:9px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;cursor:pointer}.pill.red{background:var(--red);border-color:var(--red);color:#fff}
+    .pill.attention-cta{position:relative;isolation:isolate;box-shadow:0 0 0 1px rgba(251,113,133,.48),0 0 16px rgba(225,29,72,.55),0 0 34px rgba(225,29,72,.28);animation:deskaroNeon 1.75s ease-in-out infinite}
+    .pill.attention-cta:before{content:"";position:absolute;inset:-7px;border-radius:999px;border:1px solid rgba(251,113,133,.58);opacity:.18;filter:blur(.2px);z-index:-1;animation:deskaroHalo 1.75s ease-in-out infinite}
+    .pill.attention-cta:after{content:"";position:absolute;inset:0;border-radius:999px;background:linear-gradient(110deg,transparent 0 30%,rgba(255,255,255,.34) 46%,transparent 62%);transform:translateX(-130%);z-index:-1;animation:deskaroShine 3s ease-in-out infinite}
+    .pill.attention-cta:hover{transform:translateY(-1px) scale(1.035);box-shadow:0 0 0 1px rgba(255,255,255,.72),0 0 22px rgba(251,113,133,.82),0 0 52px rgba(225,29,72,.48)}
+    @keyframes deskaroNeon{0%,100%{filter:brightness(1);box-shadow:0 0 0 1px rgba(251,113,133,.42),0 0 13px rgba(225,29,72,.44),0 0 28px rgba(225,29,72,.20)}50%{filter:brightness(1.16);box-shadow:0 0 0 2px rgba(251,113,133,.74),0 0 24px rgba(251,113,133,.78),0 0 48px rgba(225,29,72,.38)}}
+    @keyframes deskaroHalo{0%,100%{transform:scale(.96);opacity:.12}50%{transform:scale(1.10);opacity:.52}}
+    @keyframes deskaroShine{0%,58%{transform:translateX(-135%)}76%,100%{transform:translateX(135%)}}
+    @media (prefers-reduced-motion:reduce){.pill.attention-cta,.pill.attention-cta:before,.pill.attention-cta:after{animation:none}.pill.attention-cta{box-shadow:0 0 0 1px rgba(251,113,133,.62),0 0 22px rgba(225,29,72,.55)}}
     main{position:relative;z-index:2}.hero{max-width:1320px;margin:auto;padding:86px 24px 42px;text-align:center}.kicker{color:#fb7185;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.35em}.hero h1{font:800 clamp(4.5rem,13vw,11rem)/.78 'Oswald';margin:18px 0 22px;letter-spacing:-.065em;text-transform:uppercase}.hero h1 span{color:var(--red)}.lead{max-width:760px;margin:auto;color:#8b8b92;font-size:clamp(14px,2vw,18px);line-height:1.7}.hero-actions{margin-top:28px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
     .mock-section{max-width:1440px;margin:0 auto;padding:48px 24px 90px}.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:26px}.section-head h2{font:800 clamp(2.7rem,6vw,5.8rem)/.9 'Oswald';margin:0;text-transform:uppercase;letter-spacing:-.04em}.section-head p{max-width:520px;color:#777;font-size:13px;line-height:1.65;margin:0}
     .stage{position:relative;min-height:850px;display:flex;justify-content:center;align-items:flex-start;padding-top:20px}.glow{position:absolute;top:16%;left:50%;transform:translateX(-50%);width:760px;height:420px;background:rgba(225,29,72,.13);filter:blur(130px);border-radius:50%;pointer-events:none}.desktop-shell{position:relative;width:min(1160px,86vw);aspect-ratio:16/10;background:#111;border:1px solid rgba(255,255,255,.12);border-radius:28px;box-shadow:0 55px 130px rgba(0,0,0,.7);overflow:hidden;transform:perspective(1800px) rotateX(1.7deg);transform-origin:center bottom}.browser-bar{height:42px;border-bottom:1px solid rgba(255,255,255,.07);background:#0d0d0d;display:flex;align-items:center;gap:7px;padding:0 15px}.browser-bar span{width:9px;height:9px;border-radius:50%;background:#2a2a2a}.urlbar{margin-left:9px;height:24px;flex:1;max-width:430px;border-radius:999px;background:#161616;color:#555;font-size:9px;display:flex;align-items:center;padding:0 12px}.desktop-viewport{position:absolute;left:0;right:0;top:42px;bottom:0;overflow:hidden;background:#050505}.desktop-viewport iframe{border:0;width:1440px;height:1000px;transform-origin:0 0;transform:scale(var(--desk-scale));pointer-events:none}
@@ -27,6 +35,29 @@
     .shots{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:12px;margin-top:12px}.shot{min-height:280px;border:1px solid var(--line);border-radius:24px;overflow:hidden;position:relative;background:#0b0b0b}.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.72)}.shot:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92),transparent 66%)}.shot-copy{position:absolute;z-index:2;left:20px;right:20px;bottom:18px}.shot-copy b{font:700 24px 'Oswald';text-transform:uppercase}.shot-copy span{display:block;color:#aaa;font-size:10px;margin-top:4px}.footer{padding:44px 24px 60px;text-align:center;border-top:1px solid var(--line);color:#616168;font-size:10px}.footer img{height:38px;max-width:220px;object-fit:contain;margin-bottom:12px}.footer a{color:#9ca3af;text-decoration:none}.footer a:hover{color:#fb7185}
     @media(max-width:900px){.feature-grid{grid-template-columns:repeat(2,1fr)}.shots{grid-template-columns:1fr 1fr}.shots .shot:first-child{grid-column:1/-1}.stage{min-height:680px}.phone-shell{width:180px;height:380px;border-width:6px;border-radius:29px}.phone-shell iframe{transform:scale(.435)}.callout{width:300px}.section-head{align-items:flex-start;flex-direction:column}.desktop-shell{width:94vw;border-radius:20px}}
     @media(max-width:600px){nav{padding:12px}.logo{height:28px}.nav-actions .hide-sm{display:none}.hero{padding:58px 17px 20px}.mock-section{padding:30px 14px 60px}.stage{min-height:430px}.desktop-shell{width:96vw;border-radius:16px}.browser-bar{height:31px}.desktop-viewport{top:31px}.phone-shell{width:102px;height:215px;right:0;bottom:2%;border-width:4px;border-radius:19px}.phone-shell:before{width:38px;height:9px;top:3px}.phone-shell iframe{transform:scale(.248)}.callout{display:none}.feature-grid{grid-template-columns:1fr}.shots{display:flex;overflow:auto;scroll-snap-type:x mandatory}.shot{min-width:82vw;scroll-snap-align:center}.hero h1{font-size:4.9rem}.section-head h2{font-size:3.2rem}}
+
+    /* RECORRIDO VISUAL · más mockups, misma sintonía Deskaro */
+    .mock-tour{margin-top:54px;padding-top:38px;border-top:1px solid var(--line)}
+    .mock-tour-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:18px}
+    .mock-tour-head h3{margin:6px 0 0;font:800 clamp(2.2rem,5vw,4.7rem)/.9 'Oswald';text-transform:uppercase;letter-spacing:-.035em}
+    .mock-tour-head p{max-width:520px;margin:0;color:#777;font-size:12px;line-height:1.65}
+    .mock-carousel-wrap{position:relative}
+    .mock-carousel{display:flex;gap:15px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:8px 2px 18px;scrollbar-width:thin;scrollbar-color:rgba(225,29,72,.6) rgba(255,255,255,.05)}
+    .mock-carousel::-webkit-scrollbar{height:6px}.mock-carousel::-webkit-scrollbar-track{background:rgba(255,255,255,.04);border-radius:999px}.mock-carousel::-webkit-scrollbar-thumb{background:linear-gradient(90deg,#9f1239,#e11d48,#fb7185);border-radius:999px}
+    .mock-card{flex:0 0 min(560px,76vw);scroll-snap-align:start;background:linear-gradient(180deg,#101010,#080808);border:1px solid rgba(255,255,255,.085);border-radius:24px;overflow:hidden;box-shadow:0 26px 70px rgba(0,0,0,.38);transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+    .mock-card:hover{transform:translateY(-4px);border-color:rgba(225,29,72,.32);box-shadow:0 30px 80px rgba(0,0,0,.48),0 0 28px rgba(225,29,72,.08)}
+    .mock-card-bar{height:38px;display:flex;align-items:center;gap:6px;padding:0 13px;background:#0b0b0b;border-bottom:1px solid rgba(255,255,255,.06)}
+    .mock-card-bar i{width:7px;height:7px;border-radius:50%;background:#27272a;display:block}.mock-card-url{margin-left:7px;color:#4b4b52;font-size:8px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .mock-card-view{height:330px;overflow:hidden;position:relative;background:#050505}
+    .mock-card-view:after{content:"";position:absolute;inset:auto 0 0;height:42px;background:linear-gradient(transparent,rgba(5,5,5,.78));pointer-events:none}
+    .mock-card-view iframe{border:0;width:1280px;height:980px;transform-origin:0 0;pointer-events:none;background:#050505}
+    .mock-card-copy{padding:17px 18px 19px;display:flex;justify-content:space-between;gap:16px;align-items:center}
+    .mock-card-copy b{display:block;font:700 24px 'Oswald';text-transform:uppercase;letter-spacing:-.02em}.mock-card-copy span{display:block;margin-top:4px;color:#777;font-size:10px;line-height:1.45}.mock-num{font:800 38px/1 'Oswald';color:rgba(225,29,72,.22)}
+    .mock-arrows{display:flex;gap:8px;flex:0 0 auto}.mock-arrow{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.1);background:#0c0c0c;color:#fff;cursor:pointer;display:grid;place-items:center;transition:.25s ease}.mock-arrow:hover{background:var(--red);border-color:var(--red);box-shadow:0 0 22px rgba(225,29,72,.28)}
+    .more-shots{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}.more-shot{position:relative;min-height:230px;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:#0b0b0b}.more-shot img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;filter:brightness(.72);transition:transform .65s cubic-bezier(.16,1,.3,1),filter .45s ease}.more-shot:hover img{transform:scale(1.045);filter:brightness(.82)}.more-shot:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.9),transparent 62%)}.more-shot-copy{position:absolute;z-index:2;left:16px;right:16px;bottom:15px}.more-shot-copy b{font:700 20px 'Oswald';text-transform:uppercase}.more-shot-copy span{display:block;color:#999;font-size:9px;margin-top:4px}
+    @media(max-width:900px){.mock-tour-head{align-items:flex-start;flex-direction:column}.more-shots{grid-template-columns:1fr 1fr}.mock-card{flex-basis:min(520px,86vw)}}
+    @media(max-width:600px){.mock-tour{margin-top:36px;padding-top:28px}.mock-card{flex-basis:88vw;border-radius:19px}.mock-card-view{height:250px}.mock-card-copy b{font-size:20px}.mock-num{font-size:30px}.more-shots{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}.more-shot{min-width:76vw;min-height:220px;scroll-snap-align:center}.mock-tour-head p{font-size:11px}}
+
   </style>
   <script>
     (function(){const until=Number(sessionStorage.getItem('deskaro_auth_until')||0);if(sessionStorage.getItem('deskaro_auth')!=='ok'||Date.now()>until){sessionStorage.clear();location.replace('index.html');}})();
@@ -34,7 +65,7 @@
 </head>
 <body>
   <div class="wm">DEMO PRIVADA</div>
-  <nav><div class="nav-inner"><img class="logo" src="logo-deskaro.png" alt="Taberna Deskaro" /><div class="nav-actions"><a class="pill hide-sm" href="https://www.instagram.com/tabernadeskaro/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a><a class="pill red" href="web.html"><i class="fas fa-arrow-up-right-from-square"></i> Ver web completa</a><button class="pill" id="logout"><i class="fas fa-lock"></i><span class="hide-sm">Salir</span></button></div></div></nav>
+  <nav><div class="nav-inner"><img class="logo" src="logo-deskaro.png" alt="Taberna Deskaro" /><div class="nav-actions"><a class="pill hide-sm" href="https://www.instagram.com/tabernadeskaro/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a><a class="pill red attention-cta" href="web.html"><i class="fas fa-arrow-up-right-from-square"></i> Ver web completa</a><button class="pill" id="logout"><i class="fas fa-lock"></i><span class="hide-sm">Salir</span></button></div></div></nav>
   <main>
     <section class="hero"><div class="kicker">Presentación privada · Taberna Deskaro</div><h1>El proyecto<br><span>completo.</span></h1><p class="lead">Una vista previa visual de la experiencia Deskaro: diseño responsive, carta completa, fotografías reales, Chef Virtual, reseñas, ubicación e identidad preparada para compartir.</p><div class="hero-actions"><a class="pill red" href="web.html"><i class="fas fa-play"></i> Entrar en la web</a><a class="pill" href="#mockup"><i class="fas fa-display"></i> Ver mockup</a></div></section>
 
@@ -44,13 +75,48 @@
       <div class="feature-grid"><article class="feature"><i class="fas fa-utensils"></i><b>Carta completa</b><p>Platos, precios, bebidas y carta original integrados en la misma experiencia.</p></article><article class="feature"><i class="fas fa-wand-magic-sparkles"></i><b>Chef Virtual</b><p>Recomendaciones visuales según comensales, preferencias y presupuesto.</p></article><article class="feature"><i class="fas fa-star"></i><b>Reseñas</b><p>Carrusel horizontal con opiniones reales, flechas y estética de marca.</p></article><article class="feature"><i class="fas fa-location-dot"></i><b>Ubicación</b><p>Mapa, acceso a cómo llegar y presencia local en Huelin, Málaga.</p></article></div>
 
       <div class="shots"><article class="shot"><img src="foto-fideos-entrecot.jpg" alt="Fideos tostados con entrecot" /><div class="shot-copy"><b>Lo más Deskaro</b><span>Fotografía real integrada en el diseño.</span></div></article><article class="shot"><img src="foto-pulpo.jpg" alt="Pulpo" /><div class="shot-copy"><b>Producto</b><span>Platos protagonistas.</span></div></article><article class="shot"><img src="foto-fachada.jpg" alt="Fachada de Taberna Deskaro" /><div class="shot-copy"><b>Huelin</b><span>El local también forma parte de la experiencia.</span></div></article></div>
+
+      <div class="mock-tour">
+        <div class="mock-tour-head">
+          <div><div class="kicker">Recorrido visual</div><h3>Más partes.<br>Más Deskaro.</h3></div>
+          <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap"><p>Un vistazo rápido a las zonas clave de la web completa, manteniendo la misma estética negra, roja y limpia de todo el proyecto.</p><div class="mock-arrows"><button class="mock-arrow" id="mockPrev" aria-label="Mockup anterior"><i class="fas fa-arrow-left"></i></button><button class="mock-arrow" id="mockNext" aria-label="Mockup siguiente"><i class="fas fa-arrow-right"></i></button></div></div>
+        </div>
+
+        <div class="mock-carousel" id="mockCarousel">
+          <article class="mock-card"><div class="mock-card-bar"><i></i><i></i><i></i><div class="mock-card-url">deskaro · top deskaro</div></div><div class="mock-card-view"><iframe loading="lazy" src="web.html#top-deskaro" title="Mockup Lo más Deskaro" tabindex="-1"></iframe></div><div class="mock-card-copy"><div><b>Lo más Deskaro</b><span>Platos protagonistas y fotografía real.</span></div><div class="mock-num">01</div></div></article>
+          <article class="mock-card"><div class="mock-card-bar"><i></i><i></i><i></i><div class="mock-card-url">deskaro · chef virtual</div></div><div class="mock-card-view"><iframe loading="lazy" src="web.html#chef" title="Mockup Chef Virtual" tabindex="-1"></iframe></div><div class="mock-card-copy"><div><b>Chef Virtual</b><span>La parte interactiva del proyecto.</span></div><div class="mock-num">02</div></div></article>
+          <article class="mock-card"><div class="mock-card-bar"><i></i><i></i><i></i><div class="mock-card-url">deskaro · carta completa</div></div><div class="mock-card-view"><iframe loading="lazy" src="web.html#carta" title="Mockup Carta completa" tabindex="-1"></iframe></div><div class="mock-card-copy"><div><b>Carta completa</b><span>Platos y precios dentro de la propia web.</span></div><div class="mock-num">03</div></div></article>
+          <article class="mock-card"><div class="mock-card-bar"><i></i><i></i><i></i><div class="mock-card-url">deskaro · reseñas</div></div><div class="mock-card-view"><iframe loading="lazy" src="web.html#resenas" title="Mockup Reseñas" tabindex="-1"></iframe></div><div class="mock-card-copy"><div><b>Reseñas</b><span>Opiniones reales en carrusel visual.</span></div><div class="mock-num">04</div></div></article>
+          <article class="mock-card"><div class="mock-card-bar"><i></i><i></i><i></i><div class="mock-card-url">deskaro · galería</div></div><div class="mock-card-view"><iframe loading="lazy" src="web.html#galeria" title="Mockup Galería" tabindex="-1"></iframe></div><div class="mock-card-copy"><div><b>Galería</b><span>Producto, local y ambiente Deskaro.</span></div><div class="mock-num">05</div></div></article>
+          <article class="mock-card"><div class="mock-card-bar"><i></i><i></i><i></i><div class="mock-card-url">deskaro · ubicación</div></div><div class="mock-card-view"><iframe loading="lazy" src="web.html#contacto" title="Mockup Ubicación" tabindex="-1"></iframe></div><div class="mock-card-copy"><div><b>Cómo llegar</b><span>Ubicación y contacto integrados en el diseño.</span></div><div class="mock-num">06</div></div></article>
+        </div>
+
+        <div class="more-shots">
+          <article class="more-shot"><img src="foto-croquetas.jpg" alt="Croquetas de la abuela" /><div class="more-shot-copy"><b>Croquetas</b><span>Producto real · Deskaro</span></div></article>
+          <article class="more-shot"><img src="foto-fideos-gambon.jpg" alt="Fideos tostados con gambón" /><div class="more-shot-copy"><b>Fideos tostados</b><span>Uno de los protagonistas de la carta</span></div></article>
+          <article class="more-shot"><img src="foto-tomate.jpg" alt="Tomate Deskaro" /><div class="more-shot-copy"><b>Producto</b><span>Fotografía integrada, sin romper la estética</span></div></article>
+          <article class="more-shot"><img src="foto-fachada-noche.jpg" alt="Taberna Deskaro de noche" /><div class="more-shot-copy"><b>El local</b><span>Huelin · Málaga</span></div></article>
+        </div>
+      </div>
+
     </section>
   </main>
   <footer class="footer"><img src="logo-deskaro.png" alt="Taberna Deskaro" /><div>VISTA PREVIA PRIVADA · NO INDEXADA</div><div style="margin-top:10px">Powered by <a href="https://yourdesigngpt.netlify.app" target="_blank" rel="noopener">YourDesignGPT</a></div></footer>
 <script>
   const shell=document.querySelector('.desktop-shell');
-  function scaleIframe(){const viewport=shell.querySelector('.desktop-viewport');const s=viewport.clientWidth/1440;shell.style.setProperty('--desk-scale',String(s));}
+  function scaleIframe(){
+    const viewport=shell.querySelector('.desktop-viewport');
+    const s=viewport.clientWidth/1440;
+    shell.style.setProperty('--desk-scale',String(s));
+    document.querySelectorAll('.mock-card-view').forEach(v=>{
+      const frame=v.querySelector('iframe');
+      if(frame) frame.style.transform='scale('+(v.clientWidth/1280)+')';
+    });
+  }
   addEventListener('resize',scaleIframe);scaleIframe();
+  const mc=document.getElementById('mockCarousel');
+  document.getElementById('mockPrev')?.addEventListener('click',()=>mc.scrollBy({left:-Math.min(580,innerWidth*.82),behavior:'smooth'}));
+  document.getElementById('mockNext')?.addEventListener('click',()=>mc.scrollBy({left:Math.min(580,innerWidth*.82),behavior:'smooth'}));
   document.getElementById('logout').addEventListener('click',()=>{sessionStorage.clear();location.replace('index.html');});
 </script>
 </body>
